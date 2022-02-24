@@ -9,30 +9,27 @@
 #include <QMessageBox>
 #include <QHeaderView>
 
-PositioningSystemListView::PositioningSystemListView(Config *config, QWidget *parent)
-  : QWidget(parent), ui(new Ui::PositioningSystemListView), _config(config)
-{
-  Settings settings;
-
-  ui->setupUi(this);
-
-  connect(ui->listView->header(), SIGNAL(sectionCountChanged(int,int)),
-          this, SLOT(loadPositioningSectionState()));
-  connect(ui->listView->header(), SIGNAL(sectionResized(int,int,int)),
-          this, SLOT(storePositioningSectionState()));
-
-  ui->listView->setModel(new PositioningSystemListWrapper(_config->posSystems(), ui->listView));
-
-  if (settings.hideGSPNote())
-    ui->gpsNote->setVisible(false);
-
-  connect(ui->addGPS, SIGNAL(clicked()), this, SLOT(onAddGPS()));
-  connect(ui->addAPRS, SIGNAL(clicked()), this, SLOT(onAddAPRS()));
-  connect(ui->remGPS, SIGNAL(clicked()), this, SLOT(onRemGPS()));
-  connect(ui->listView, SIGNAL(doubleClicked(unsigned)), this, SLOT(onEditGPS(unsigned)));
-  connect(ui->gpsNote, SIGNAL(linkActivated(QString)), this, SLOT(onHideGPSNote()));
 
 
+PositioningSystemListView::PositioningSystemListView(Config *config, QWidget *parent): QWidget(parent), ui(new Ui::PositioningSystemListView), _config(config) {
+	Settings settings;
+
+	ui->setupUi(this);
+
+	connect(ui->listView->header(), SIGNAL(sectionCountChanged(int,int)), this, SLOT(loadPositioningSectionState()));
+	connect(ui->listView->header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(storePositioningSectionState()));
+
+	ui->listView->setModel(new PositioningSystemListWrapper(_config->posSystems(), ui->listView));
+
+	if (settings.hideGSPNote()) {
+		ui->gpsNote->setVisible(false);
+	}
+
+	connect(ui->addGPS, SIGNAL(clicked()), this, SLOT(onAddGPS()));
+	connect(ui->addAPRS, SIGNAL(clicked()), this, SLOT(onAddAPRS()));
+	connect(ui->remGPS, SIGNAL(clicked()), this, SLOT(onRemGPS()));
+	connect(ui->listView, SIGNAL(doubleClicked(unsigned)), this, SLOT(onEditGPS(unsigned)));
+	connect(ui->gpsNote, SIGNAL(linkActivated(QString)), this, SLOT(onHideGPSNote()));
 }
 
 PositioningSystemListView::~PositioningSystemListView() {

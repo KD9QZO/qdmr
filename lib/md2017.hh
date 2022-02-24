@@ -1,4 +1,4 @@
-/** @defgroup md2017 TYT MD-2017, Retevis RT82
+/** \defgroup md2017 TYT MD-2017, Retevis RT82
  * Device specific classes for TYT MD-2017 and Retevis RT82.
  *
  * \image html md2017.jpg "MD-2017" width=200px
@@ -6,7 +6,7 @@
  *
  * <img src="sm2017.jpg" width="200px" align="left"/>
  * The TYT MD-2017 and the identical Retevis RT-82 are decent VHF/UHF FM and DMR handheld radios.
- * Both radios are available with and without an GPS option. @c libdmrconf will support that
+ * Both radios are available with and without an GPS option. \c libdmrconf will support that
  * feature. Non-GPS variants of that radio will simply ignore any GPS system settings.
  *
  * These radios support up to 3000 channels organized in 250 zones. Each zone may hold up to 64
@@ -18,7 +18,7 @@
  * callsign database of up to 100000 entries. This can be used to resolve amlost any DMR ID assigned
  * (at the time of this writing, there are about 140k IDs assigned) to name and callsign.
  *
- * @ingroup tyt */
+ * \ingroup tyt */
 #ifndef MD2017_HH
 #define MD2017_HH
 
@@ -29,17 +29,17 @@
 /** Implements an USB interface to the TYT MD-2017 & Retevis RT82 VHF/UHF 5W DMR (Tier I&II) radios.
  *
  * The TYT MD-2017 and Retevis RT82 radios use the TyT typical DFU-style communication protocol
- * to read and write codeplugs onto the radio (see @c TyTRadio).
+ * to read and write codeplugs onto the radio (see \c TyTRadio).
  *
- * @ingroup md2017 */
+ * \ingroup md2017 */
 class MD2017 : public TyTRadio
 {
   Q_OBJECT
 
 public:
   /** Constructor.
-   * @param device Specifies the DFU device to use for communication with the device.
-   * @param parent The QObject parent. */
+   * \param device Specifies the DFU device to use for communication with the device.
+   * \param parent The QObject parent. */
   MD2017(TyTInterface *device=nullptr, QObject *parent=nullptr);
   /** Desturctor. */
   virtual ~MD2017();

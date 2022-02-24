@@ -20,11 +20,11 @@ class CRC32;
  * uint32_t containing the file-size excluding the suffix in little endian. Finally, there is a
  * single byte (N) holding the number of images.
  *
- * @code
+ * \code
  * +---+---+---+---+---+---+---+---+---+---+---+
  * |      "DfuSe"      | V |   file size   | N |
  * +---+---+---+---+---+---+---+---+---+---+---+
- * @endcode
+ * \endcode
  *
  * The file suffix consists of the device, product and vendor IDs as uint16_t followed by a
  * fixed signature uin16_t 0x011a (little endian) followed by another fixed signature containing the
@@ -32,11 +32,11 @@ class CRC32;
  * is a CRC32 field computed over the entire file excluding the CRC itself and stored in little
  * endian.
  *
- * @code
+ * \code
  * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
  * |  dev  |  prod |  vend |  Sig  |    UFD    | S |     CRC32     |
  * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
- * @endcode
+ * \endcode
  *
  * Each image section consists of a image prefix followed by several element sections. The image
  * prefix consists of a 6byte signature containting the ASCII string "Target" followed by a
@@ -46,29 +46,29 @@ class CRC32;
  * Finally the last 32bit field contains the number of elements, the image consists of in little
  * endian too.
  *
- * @code
+ * \code
  * +---+---+---+---+---+---+---+---+---+---+---+---+...+---+---+---+---+---+---+---+---+---+
  * |       "Target"        | A |    is named   | 255b name |      size     |   N Elements  |
  * +---+---+---+---+---+---+---+---+---+---+---+---+...+---+---+---+---+---+---+---+---+---+
- * @endcode
+ * \endcode
  *
  * Finally, each element of an image is prefixed by a header containing the target address and size
  * of the element in little endian.
  *
- * @code
+ * \code
  * +---+---+---+---+---+---+---+---+---+...+---+
  * |    address    |      size     | el. data  |
  * +---+---+---+---+---+---+---+---+---+...+---+
- * @endcode
+ * \endcode
  *
- * @ingroup util
+ * \ingroup util
  */
 class DFUFile: public QObject
 {
 	Q_OBJECT
 
 public:
-  /** Represents a single element within a @c Image. */
+  /** Represents a single element within a \c Image. */
 	class Element {
 	public:
     /** Empty constructor. */
@@ -110,7 +110,7 @@ public:
 		QByteArray _data;
 	};
 
-  /** Represents a single image within a @c DFUFile. */
+  /** Represents a single image within a \c DFUFile. */
 	class Image
 	{
 	public:
@@ -131,7 +131,7 @@ public:
     /** Sets the alternate settings byte. */
 		void setAlternateSettings(uint8_t s);
 
-    /** Returns @c true if the image is named. */
+    /** Returns \c true if the image is named. */
 		bool isNamed() const;
     /** Returns the name of the image. */
 		const QString &name() const;
@@ -195,15 +195,15 @@ public:
 
   /** Returns the number of images within the DFU file. */
 	int numImages() const;
-  /** Returns a reference to the @c i-th image of the file. */
+  /** Returns a reference to the \c i-th image of the file. */
 	const Image &image(int i) const;
-  /** Returns a reference to the @c i-th image of the file. */
+  /** Returns a reference to the \c i-th image of the file. */
 	Image &image(int i);
   /** Adds a new image to the file. */
 	void addImage(const QString &name, uint8_t altSettings=1);
   /** Adds an image to the file. */
 	void addImage(const Image &img);
-  /** Deletes the @c i-th image from the file. */
+  /** Deletes the \c i-th image from the file. */
 	void remImage(int i);
 
   /** Checks if all image addresses and sizes is aligned with the given block size. */
@@ -213,17 +213,17 @@ public:
 	const QString &errorMessage() const;
 
   /** Reads the specified DFU file.
-   * @return @c false on error. */
+   * \return \c false on error. */
 	bool read(const QString &filename);
   /** Reads the specified DFU file.
-   * @returns @c false on error. */
+   * \returns \c false on error. */
 	bool read(QFile &file);
 
   /** Writes to the specified file.
-   * @returns @c false on error. */
+   * \returns \c false on error. */
 	bool write(const QString &filename);
   /** Writes to the specified file.
-   * @returns @c false on error. */
+   * \returns \c false on error. */
 	bool write(QFile &file);
 
   /** Dumps a text representation of the DFU file structure to the specified text stream. */

@@ -5,9 +5,9 @@
 
 /** Device specific implementation of the call-sign DB for the TyT MD-UV390.
  *
- * In fact this callsign DB is identical to the generic @c TyTCallsignDB.
+ * In fact this callsign DB is identical to the generic \c TyTCallsignDB.
  *
- * @ingroup uv390 */
+ * \ingroup uv390 */
 class UV390CallsignDB : public TyTCallsignDB
 {
   Q_OBJECT

@@ -5,35 +5,35 @@
 
 
 typedef struct __attribute((packed)) {
-  uint8_t signature[5];      ///< File signature = "DfuSe"
-  uint8_t version;           ///< File version = 0x01
-  uint32_t image_size;       ///< Total file size in big-endian
-  uint8_t n_targets;         ///< Number of images.
+  uint8_t signature[5];		/*!< File signature = "DfuSe" */
+  uint8_t version;		/*!< File version = 0x01 */
+  uint32_t image_size;		/*!< Total file size in big-endian */
+  uint8_t n_targets;		/*!< Number of images. */
 } file_prefix_t;
 
 typedef struct __attribute((packed)) {
-  uint16_t device_id;        ///< Device id in little endian
-  uint16_t product_id;       ///< Product id in little endian
-  uint16_t vendor_id;        ///< Vendor id in little endian
-  uint8_t DFUlo;             ///< Fixed 0x1A
-  uint8_t DFUhi;             ///< Fixed 0x01
-  uint8_t signature[3];      ///< Fixed "UFD", {0x44, 0x46, 0x55}
-  uint8_t size;              ///< Suffix size, fixed 16
-  uint32_t crc;              ///< CRC over compltete file excluding the CRC in little endian.
+  uint16_t device_id;		/*!< Device id in little endian */
+  uint16_t product_id;		/*!< Product id in little endian */
+  uint16_t vendor_id;		/*!< Vendor id in little endian */
+  uint8_t DFUlo;		/*!< Fixed 0x1A */
+  uint8_t DFUhi;		/*!< Fixed 0x01 */
+  uint8_t signature[3];		/*!< Fixed "UFD", {0x44, 0x46, 0x55} */
+  uint8_t size;		/*!< Suffix size, fixed 16 */
+  uint32_t crc;		/*!< CRC over compltete file excluding the CRC in little endian. */
 } file_suffix_t;
 
 typedef struct __attribute((packed)) {
-  uint8_t signature[6];      ///< Target signature, fixed "Target"
-  uint8_t alternate_setting; ///< Alternate setting for image.
-  uint32_t is_named;         ///< Bool, if targed is named;
-  uint8_t name[255];         ///< Target name (0-padded?).
-  uint32_t size;             ///< Size of complete image excl. prefix in big endian.
-  uint32_t n_elements;       ///< Number of elements in image in big endian.
+  uint8_t signature[6];		/*!< Target signature, fixed "Target" */
+  uint8_t alternate_setting;		/*!< Alternate setting for image. */
+  uint32_t is_named;		/*!< Bool, if targed is named; */
+  uint8_t name[255];		/*!< Target name (0-padded?). */
+  uint32_t size;		/*!< Size of complete image excl. prefix in big endian. */
+  uint32_t n_elements;		/*!< Number of elements in image in big endian. */
 } image_prefix_t;
 
 typedef struct __attribute((packed)) {
-  uint32_t address;          ///< Target address of element in big endian.
-  uint32_t size;             ///< Element size in big endian;
+  uint32_t address;		/*!< Target address of element in big endian. */
+  uint32_t size;		/*!< Element size in big endian; */
 } element_prefix_t;
 
 

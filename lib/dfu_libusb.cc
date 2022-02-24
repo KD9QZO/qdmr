@@ -1,43 +1,42 @@
 #include "dfu_libusb.hh"
+
 #include <unistd.h>
+
 #include "logger.hh"
 #include "utils.hh"
 
 
 // USB request types.
-#define REQUEST_TYPE_TO_HOST    0xA1
-#define REQUEST_TYPE_TO_DEVICE  0x21
+#define REQUEST_TYPE_TO_HOST	0xA1
+#define REQUEST_TYPE_TO_DEVICE	0x21
 
 enum {
-    REQUEST_DETACH      = 0,
-    REQUEST_DNLOAD      = 1,
-    REQUEST_UPLOAD      = 2,
-    REQUEST_GETSTATUS   = 3,
-    REQUEST_CLRSTATUS   = 4,
-    REQUEST_GETSTATE    = 5,
-    REQUEST_ABORT       = 6,
+	REQUEST_DETACH      = 0,
+	REQUEST_DNLOAD      = 1,
+	REQUEST_UPLOAD      = 2,
+	REQUEST_GETSTATUS   = 3,
+	REQUEST_CLRSTATUS   = 4,
+	REQUEST_GETSTATE    = 5,
+	REQUEST_ABORT       = 6,
 };
 
 enum {
-    appIDLE                 = 0,
-    appDETACH               = 1,
-    dfuIDLE                 = 2,
-    dfuDNLOAD_SYNC          = 3,
-    dfuDNBUSY               = 4,
-    dfuDNLOAD_IDLE          = 5,
-    dfuMANIFEST_SYNC        = 6,
-    dfuMANIFEST             = 7,
-    dfuMANIFEST_WAIT_RESET  = 8,
-    dfuUPLOAD_IDLE          = 9,
-    dfuERROR                = 10,
+	appIDLE                 = 0,
+	appDETACH               = 1,
+	dfuIDLE                 = 2,
+	dfuDNLOAD_SYNC          = 3,
+	dfuDNBUSY               = 4,
+	dfuDNLOAD_IDLE          = 5,
+	dfuMANIFEST_SYNC        = 6,
+	dfuMANIFEST             = 7,
+	dfuMANIFEST_WAIT_RESET  = 8,
+	dfuUPLOAD_IDLE          = 9,
+	dfuERROR                = 10,
 };
 
 
-DFUDevice::DFUDevice(unsigned vid, unsigned pid, QObject *parent)
-  : QObject(parent), _ctx(nullptr), _dev(nullptr)
-{
-  logDebug() << "Try to detect USB DFU interface " << QString::number(vid,16)
-             << ":" << QString::number(pid,16) << ".";
+DFUDevice::DFUDevice(unsigned vid, unsigned pid, QObject *parent): QObject(parent), _ctx(nullptr), _dev(nullptr) {
+	logDebug() << "Try to detect USB DFU interface " << QString::number(vid, 16) << ":" << QString::number(pid, 16) << ".";
 
   int error = libusb_init(&_ctx);
   if (error < 0) {
@@ -47,21 +46,18 @@ DFUDevice::DFUDevice(unsigned vid, unsigned pid, QObject *parent)
   }
 
   if (! (_dev = libusb_open_device_with_vid_pid(_ctx, vid, pid))) {
-    _errorMessage = tr("%1 Cannot open device %2, %3: %4 %5").arg(__func__).arg(vid,0,16).arg(pid,0,16)
-        .arg(error).arg(libusb_strerror((enum libusb_error) error));
+    _errorMessage = tr("%1 Cannot open device %2, %3: %4 %5").arg(__func__).arg(vid,0,16).arg(pid,0,16).arg(error).arg(libusb_strerror((enum libusb_error) error));
     libusb_exit(_ctx);
     _ctx = nullptr;
     return;
   }
 
   if (libusb_kernel_driver_active(_dev, 0) && libusb_detach_kernel_driver(_dev, 0)) {
-    logWarn() << tr("Cannot detatch kernel driver for device %1:%2. "
-                    "Claim interface will likely fail.").arg(vid,0,16).arg(pid,0,16);
+    logWarn() << tr("Cannot detatch kernel driver for device %1:%2. Claim interface will likely fail.").arg(vid,0,16).arg(pid,0,16);
   }
 
   if (0 > (error = libusb_claim_interface(_dev, 0))) {
-    _errorMessage = tr("%1 Failed to claim USB interface: %2 %3").arg(__func__).arg(error)
-        .arg(libusb_strerror((enum libusb_error) error));
+    _errorMessage = tr("%1 Failed to claim USB interface: %2 %3").arg(__func__).arg(error).arg(libusb_strerror((enum libusb_error) error));
     libusb_close(_dev);
     _dev = nullptr;
     libusb_exit(_ctx);
@@ -69,18 +65,16 @@ DFUDevice::DFUDevice(unsigned vid, unsigned pid, QObject *parent)
     return;
   }
 
-  logDebug() << "Connected to DFU device " << QString::number(vid,16)
-             << ":" << QString::number(pid,16) << ".";
+  logDebug() << "Connected to DFU device " << QString::number(vid, 16) << ":" << QString::number(pid, 16) << ".";
 }
 
 
 DFUDevice::~DFUDevice() {
-  close();
+	close();
 }
 
-bool
-DFUDevice::isOpen() const {
-  return nullptr != _dev;
+bool DFUDevice::isOpen() const {
+	return (nullptr != _dev);
 }
 
 void

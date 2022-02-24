@@ -1,7 +1,7 @@
-/** @defgroup radioddity Radioddity radios
+/** \defgroup radioddity Radioddity radios
  * Abstract classes for Radioddity radios.
  *
- * @ingroup dsc */
+ * \ingroup dsc */
 #ifndef RADIODDITY_RADIO_HH
 #define RADIODDITY_RADIO_HH
 
@@ -10,13 +10,13 @@
 
 /** Base class for all Radioddity radios.
  *
- * @ingroup radioddity */
+ * \ingroup radioddity */
 class RadioddityRadio: public Radio
 {
 	Q_OBJECT
 
 public:
-  /** Do not construct this class directly, rather use @c Radio::detect. */
+  /** Do not construct this class directly, rather use \c Radio::detect. */
   explicit RadioddityRadio(RadioddityInterface *device=nullptr, QObject *parent=nullptr);
 
   virtual ~RadioddityRadio();

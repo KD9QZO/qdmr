@@ -1,91 +1,112 @@
 #include "settings.hh"
 #include "logger.hh"
 #include "config.h"
+
 #include <QStandardPaths>
 #include <QDir>
 
+
+
 QGeoCoordinate loc2deg(const QString &loc) {
-  double lon = 0, lat = 0;
-  if (2 > loc.size())
-    return QGeoCoordinate();
+	double lon = 0.0;
+	double lat = 0.0;
 
-  QChar l = loc[0].toUpper();
-  QChar c = loc[1].toUpper();
-  lon += double(int(l.toLatin1())-'A')*20;
-  lat += double(int(c.toLatin1())-'A')*10;
+	if (2 > loc.size()) {
+		return (QGeoCoordinate());
+	}
 
-  if (4 > loc.size()) {
-    lon = lon - 180;
-    lat = lat - 90;
-    return QGeoCoordinate(lat, lon);
-  }
+	QChar l = loc[0].toUpper();
+	QChar c = loc[1].toUpper();
+	lon += double(int(l.toLatin1()) - 'A') * 20;
+	lat += double(int(c.toLatin1()) - 'A') * 10;
 
-  l = loc[2].toUpper();
-  c = loc[3].toUpper();
-  lon += double(int(l.toLatin1())-'0')*2;
-  lat += double(int(c.toLatin1())-'0')*1;
+	if (4 > loc.size()) {
+		lon = lon - 180;
+		lat = lat - 90;
 
-  if (6 > loc.size()){
-    lon = lon - 180;
-    lat = lat - 90;
-    return QGeoCoordinate(lat, lon);
-  }
+		return (QGeoCoordinate(lat, lon));
+	}
 
-  l = loc[4].toUpper();
-  c = loc[5].toUpper();
-  lon += double(int(l.toLatin1())-'A')/12;
-  lat += double(int(c.toLatin1())-'A')/24;
+	l = loc[2].toUpper();
+	c = loc[3].toUpper();
+	lon += double(int(l.toLatin1()) - '0') * 2;
+	lat += double(int(c.toLatin1()) - '0') * 1;
 
-  lon = lon - 180;
-  lat = lat - 90;
-  return QGeoCoordinate(lat, lon);
+	if (6 > loc.size()) {
+		lon = lon - 180;
+		lat = lat - 90;
+
+		return (QGeoCoordinate(lat, lon));
+	}
+
+	l = loc[4].toUpper();
+	c = loc[5].toUpper();
+	lon += double(int(l.toLatin1()) - 'A') / 12;
+	lat += double(int(c.toLatin1()) - 'A') / 24;
+
+	lon = lon - 180;
+	lat = lat - 90;
+
+	return (QGeoCoordinate(lat, lon));
 }
 
 QString deg2loc(const QGeoCoordinate &coor) {
-  QString loc;
-  double lon = coor.longitude()+180;
-  double lat = coor.latitude()+90;
-  char l = char(lon/20); lon -= 20*double(l);
-  char c = char(lat/10); lat -= 10*double(c);
-  loc.append(l+'A'); loc.append(c+'A');
-  l = char(lon/2); lon -= 2*double(l);
-  c = char(lat/1); lat -= 1*double(c);
-  loc.append(l+'0'); loc.append(c+'0');
-  l = char(lon*12); lon -= double(l)/12;
-  c = char(lat*24); lat -= double(c)/24;
-  loc.append(l+'a'); loc.append(c+'a');
-  return loc;
+	QString loc;
+	double lon = coor.longitude() + 180;
+	double lat = coor.latitude() + 90;
+	char l = char(lon / 20);
+	lon -= 20 * double(l);
+	char c = char(lat / 10);
+	lat -= 10 * double(c);
+
+	loc.append(l + 'A');
+	loc.append(c + 'A');
+	l = char(lon / 2);
+	lon -= 2 * double(l);
+	c = char(lat / 1);
+	lat -= 1 * double(c);
+	loc.append(l + '0');
+	loc.append(c + '0');
+	l = char(lon * 12);
+	lon -= double(l) / 12;
+	c = char(lat * 24);
+	lat -= double(c) / 24;
+	loc.append(l + 'a');
+	loc.append(c + 'a');
+
+	return (loc);
 }
 
 
 /* ********************************************************************************************* *
  * Implementation of SettingsDialog
  * ********************************************************************************************* */
-Settings::Settings(QObject *parent)
-  : QSettings(parent)
-{
-  // pass...
+Settings::Settings(QObject *parent): QSettings(parent) {
+	// pass...
 }
 
-QDateTime
-Settings::lastRepeaterUpdate() const {
-  if (! contains("lastRepeaterUpdate"))
-    return QDateTime();
-  return value("lastRepeaterUpdate").toDateTime();
+QDateTime Settings::lastRepeaterUpdate() const {
+	if (! contains("lastRepeaterUpdate")) {
+		return (QDateTime());
+	}
+
+	return (value("lastRepeaterUpdate").toDateTime());
 }
 
-void
-Settings::repeaterUpdated() {
-  setValue("lastRepeaterUpdate", QDateTime::currentDateTime());
+void Settings::repeaterUpdated() {
+	setValue("lastRepeaterUpdate", QDateTime::currentDateTime());
 }
 
-bool
-Settings::repeaterUpdateNeeded(unsigned period) const {
-  QDateTime last = lastRepeaterUpdate();
-  if (! last.isValid())
-    return true;
-  QDateTime now = QDateTime::currentDateTime();
-  return last.daysTo(now) >= period;
+bool Settings::repeaterUpdateNeeded(unsigned period) const {
+	QDateTime last = lastRepeaterUpdate();
+
+	if (!last.isValid()) {
+		return (true);
+	}
+
+	QDateTime now = QDateTime::currentDateTime();
+
+	return (last.daysTo(now) >= period);
 }
 
 
@@ -141,40 +162,38 @@ Settings::setAutoEnableRoaming(bool update) {
   setValue("autoEnableRoaming", update);
 }
 
-QDir
-Settings::lastDirectory() const {
-  return QDir(value("lastDir", QStandardPaths::standardLocations(QStandardPaths::HomeLocation).first()).toString());
-}
-void
-Settings::setLastDirectoryDir(const QDir &dir) {
-  setValue("lastDir", dir.absolutePath());
+QDir Settings::lastDirectory() const {
+	return (QDir(value("lastDir", QStandardPaths::standardLocations(QStandardPaths::HomeLocation).first()).toString()));
 }
 
-Codeplug::Flags
-Settings::codePlugFlags() const {
-  Codeplug::Flags flags;
-  flags.updateCodePlug = updateCodeplug();
-  flags.autoEnableGPS  = autoEnableGPS();
-  flags.autoEnableRoaming = autoEnableRoaming();
-  return flags;
+void Settings::setLastDirectoryDir(const QDir &dir) {
+	setValue("lastDir", dir.absolutePath());
 }
 
-bool
-Settings::limitCallSignDBEntries() const {
-  return value("limitCallSignDBEntries", false).toBool();
-}
-void
-Settings::setLimitCallSignDBEnties(bool enable) {
-  setValue("limitCallSignDBEntries", enable);
+Codeplug::Flags Settings::codePlugFlags() const {
+	Codeplug::Flags flags;
+
+	flags.updateCodePlug = updateCodeplug();
+	flags.autoEnableGPS  = autoEnableGPS();
+	flags.autoEnableRoaming = autoEnableRoaming();
+
+	return (flags);
 }
 
-unsigned
-Settings::maxCallSignDBEntries() const {
-  return value("maxCallSignDBEntries", 1).toInt();
+bool Settings::limitCallSignDBEntries() const {
+	return value("limitCallSignDBEntries", false).toBool();
 }
-void
-Settings::setMaxCallSignDBEntries(unsigned max) {
-  setValue("maxCallSignDBEntries", max);
+
+void Settings::setLimitCallSignDBEnties(bool enable) {
+	setValue("limitCallSignDBEntries", enable);
+}
+
+unsigned Settings::maxCallSignDBEntries() const {
+	return value("maxCallSignDBEntries", 1).toInt();
+}
+
+void Settings::setMaxCallSignDBEntries(unsigned max) {
+	setValue("maxCallSignDBEntries", max);
 }
 
 bool
@@ -338,17 +357,14 @@ Settings::markUpdated() {
 /* ********************************************************************************************* *
  * Implementation of SettingsDialog
  * ********************************************************************************************* */
-SettingsDialog::SettingsDialog(QWidget *parent)
-  : QDialog(parent)
-{
+SettingsDialog::SettingsDialog(QWidget *parent): QDialog(parent) {
   setupUi(this);
 
   Settings settings;
 
   _source = QGeoPositionInfoSource::createDefaultSource(this);
   if (_source) {
-    connect(_source, SIGNAL(positionUpdated(QGeoPositionInfo)),
-            this, SLOT(positionUpdated(QGeoPositionInfo)));
+    connect(_source, SIGNAL(positionUpdated(QGeoPositionInfo)), this, SLOT(positionUpdated(QGeoPositionInfo)));
     if (settings.queryPosition())
       _source->startUpdates();
   }
@@ -358,8 +374,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
   if (queryLocation->isChecked())
     locatorEntry->setEnabled(false);
 
-  connect(Ui::SettingsDialog::ignoreFrequencyLimits, SIGNAL(toggled(bool)),
-          this, SLOT(onIgnoreFrequencyLimitsSet(bool)));
+  connect(Ui::SettingsDialog::ignoreFrequencyLimits, SIGNAL(toggled(bool)), this, SLOT(onIgnoreFrequencyLimitsSet(bool)));
   connect(queryLocation, SIGNAL(toggled(bool)), this, SLOT(onSystemLocationToggled(bool)));
 
   Ui::SettingsDialog::updateCodeplug->setChecked(settings.updateCodeplug());

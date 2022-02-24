@@ -9,7 +9,7 @@
  *
  * The correct serial port is selected by the given VID and PID to the constructor.
  *
- * @ingroup rif
+ * \ingroup rif
  */
 class USBSerial : public QSerialPort, public RadioInterface
 {
@@ -18,16 +18,16 @@ class USBSerial : public QSerialPort, public RadioInterface
 protected:
   /** Constructs an opens new serial interface to the devices identified by the given vendor and
    * product IDs.
-   * @param vid Vendor ID of device.
-   * @param pid Product ID of device.
-   * @param parent Specifies the parent object. */
+   * \param vid Vendor ID of device.
+   * \param pid Product ID of device.
+   * \param parent Specifies the parent object. */
   explicit USBSerial(unsigned vid, unsigned pid, QObject *parent=nullptr);
 
 public:
   /** Destrutor. */
   virtual ~USBSerial();
 
-  /** If @c true, the device has been found and is open. */
+  /** If \c true, the device has been found and is open. */
   bool isOpen() const;
   /** Closes the interface to the device. */
   void close();

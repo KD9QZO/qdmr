@@ -1,8 +1,8 @@
-/** @defgroup ogd77ex OpenGD77 Extensions
+/** \defgroup ogd77ex OpenGD77 Extensions
  * This module collects classes that implement the firmware specific extensions to the common
  * codeplug configuration for radios running the OpenGD77 firmware.
  *
- * @ingroup ogd77 */
+ * \ingroup ogd77 */
 #ifndef OPENGD77EXTENSION_HH
 #define OPENGD77EXTENSION_HH
 
@@ -10,8 +10,8 @@
 #include "configreader.hh"
 
 /** Implements the channel extensions for the OpenGD77 radios.
- * @since 0.9.0
- * @ingroup ogd77ex */
+ * \since 0.9.0
+ * \ingroup ogd77ex */
 class OpenGD77ChannelExtension: public ConfigExtension
 {
   Q_OBJECT
@@ -22,17 +22,17 @@ class OpenGD77ChannelExtension: public ConfigExtension
 public:
   /** All possible power settings. */
   enum class Power {
-    Global  =  0,              ///< Use global power setting.
-    P50mW   =  1,              ///< About 50mW.
-    P250mW  =  2,              ///< About 250mW.
-    P500mW  =  3,              ///< About 500mW.
-    P750mW  =  4,              ///< About 750mW.
-    P1W     =  5,              ///< About 1W.
-    P2W     =  6,              ///< About 2W.
-    P3W     =  7,              ///< About 3W.
-    P4W     =  8,              ///< About 4W.
-    P5W     =  9,              ///< About 5W.
-    Max     = 10,              ///< Maximum power (5.5W on UHF, 7W on VHF).
+    Global  =  0,		/*!< Use global power setting. */
+    P50mW   =  1,		/*!< About 50mW. */
+    P250mW  =  2,		/*!< About 250mW. */
+    P500mW  =  3,		/*!< About 500mW. */
+    P750mW  =  4,		/*!< About 750mW. */
+    P1W     =  5,		/*!< About 1W. */
+    P2W     =  6,		/*!< About 2W. */
+    P3W     =  7,		/*!< About 3W. */
+    P4W     =  8,		/*!< About 4W. */
+    P5W     =  9,		/*!< About 5W. */
+    Max     = 10,		/*!< Maximum power (5.5W on UHF, 7W on VHF). */
   };
   Q_ENUM(Power)
 
@@ -52,8 +52,8 @@ protected:
 };
 
 /** Implements the config reader for OpenGD77 channel extensions.
- * @since 0.9.0
- * @ingroup ogd77ex */
+ * \since 0.9.0
+ * \ingroup ogd77ex */
 class OpenGD77ChannelExtensionReader: public ExtensionReader
 {
   Q_OBJECT
@@ -72,8 +72,8 @@ private:
 
 
 /** Implements the contact extensions for the OpenGD77 radios.
- * @since 0.9.0
- * @ingroup ogd77ex */
+ * \since 0.9.0
+ * \ingroup ogd77ex */
 class OpenGD77ContactExtension: public ConfigExtension
 {
   Q_OBJECT
@@ -84,9 +84,9 @@ class OpenGD77ContactExtension: public ConfigExtension
 public:
   /** Possible values for the time-slot override option. */
   enum class TimeSlotOverride {
-    None = 0x01,                  ///< Do not override time-slot of channel.
-    TS1  = 0x00,                  ///< Force time-slot to TS1.
-    TS2  = 0x02                   ///< Force time-slot to TS2.
+    None = 0x01,		/*!< Do not override time-slot of channel. */
+    TS1  = 0x00,		/*!< Force time-slot to TS1. */
+    TS2  = 0x02		/*!< Force time-slot to TS2. */
   };
   Q_ENUM(TimeSlotOverride)
 
@@ -105,8 +105,8 @@ protected:
 };
 
 /** Implements the config reader for OpenGD77 contact extensions.
- * @since 0.9.0
- * @ingroup ogd77ex */
+ * \since 0.9.0
+ * \ingroup ogd77ex */
 class OpenGD77ContactExtensionReader: public ExtensionReader
 {
   Q_OBJECT

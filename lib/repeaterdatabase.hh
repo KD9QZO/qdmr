@@ -11,7 +11,7 @@
 #include <QGeoPositionInfoSource>
 
 /** Represents the complete downloaded repeater database from http://repeatermap.de.
- * @ingroup util */
+ * \ingroup util */
 class RepeaterDatabase : public QAbstractTableModel
 {
 	Q_OBJECT
@@ -19,7 +19,7 @@ class RepeaterDatabase : public QAbstractTableModel
 public:
 	/** Constructs a new repeater database.
 	 * The contructor will also start the download of the repeater database if the database was not
-	 * downloaded yet or the downloaded database is older than @c updatePeriodDays days.
+	 * downloaded yet or the downloaded database is older than \c updatePeriodDays days.
 	 *
 	 * The repeater database will be sorted with respect to the distance to the specified QTH. */
 	explicit RepeaterDatabase(const QGeoCoordinate &qth, unsigned updatePeriodDays=5, QObject *parent=nullptr);
@@ -63,7 +63,7 @@ private:
 
 
 /** A filter proxy for DMR repeaters.
- * @ingroup util */
+ * \ingroup util */
 class DMRRepeaterFilter: public QSortFilterProxyModel
 {
   Q_OBJECT
@@ -75,7 +75,7 @@ public:
 
 
 /** A filter proxy for analog FM repeaters.
- * @ingroup util */
+ * \ingroup util */
 class FMRepeaterFilter: public QSortFilterProxyModel
 {
   Q_OBJECT

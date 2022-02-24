@@ -1,10 +1,10 @@
-/** @defgroup gd77 Radioddity GD-77
+/** \defgroup gd77 Radioddity GD-77
  * Device specific classes for Radioddity GD-77 and GD-77S.
  *
  * \image html gd77.jpg "GD-77" width=200px
  * \image latex gd77.jpg "GD-77" width=200px
  *
- * @ingroup radioddity */
+ * \ingroup radioddity */
 
 #ifndef GD77_HH
 #define GD77_HH
@@ -17,13 +17,13 @@
 
 /** Implements an USB interface to the Radioddity GD-77(S) VHF/UHF 5W DMR (Tier I&II) radios.
  *
- * @ingroup gd77 */
+ * \ingroup gd77 */
 class GD77 : public RadioddityRadio
 {
 	Q_OBJECT
 
 public:
-	/** Do not construct this class directly, rather use @c Radio::detect. */
+	/** Do not construct this class directly, rather use \c Radio::detect. */
   explicit GD77(RadioddityInterface *device=nullptr, QObject *parent=nullptr);
 
 	const QString &name() const;

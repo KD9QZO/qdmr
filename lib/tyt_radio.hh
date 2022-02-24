@@ -1,7 +1,7 @@
-/** @defgroup tyt TYT/Retevis Radios
+/** \defgroup tyt TYT/Retevis Radios
  * Abstract classes for TYT and Retevis radios.
  *
- * @ingroup dsc */
+ * \ingroup dsc */
 #ifndef TYT_RADIO_HH
 #define TYT_RADIO_HH
 
@@ -10,13 +10,13 @@
 
 /** Implements an USB interface to TYT & Retevis radios.
  *
- * @ingroup tyt */
+ * \ingroup tyt */
 class TyTRadio: public Radio
 {
 	Q_OBJECT
 
 public:
-  /** Do not construct this class directly, rather use @c Radio::detect. */
+  /** Do not construct this class directly, rather use \c Radio::detect. */
   explicit TyTRadio(TyTInterface *device=nullptr, QObject *parent=nullptr);
 
   virtual ~TyTRadio();

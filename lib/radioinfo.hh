@@ -8,9 +8,9 @@
 /** Provides some information about a radio model.
  *
  * This class is used to unify radio enumeration and detection. It also will contains the detailed
- * features of the radio as used by the @c Radio::verify method.
+ * features of the radio as used by the \c Radio::verify method.
  *
- * @since 0.9.0 This class will replace the Radio::Features class in future. */
+ * \since 0.9.0 This class will replace the Radio::Features class in future. */
 class RadioInfo
 {
 public:
@@ -35,10 +35,10 @@ public:
   };
 
 public:
-  /** Use static methods the access radio info or call @c Radio::defaultRadioInfo. */
+  /** Use static methods the access radio info or call \c Radio::defaultRadioInfo. */
   RadioInfo(Radio radio, const QString &name, const QString manufacturer,
             const QList<RadioInfo> &alias=QList<RadioInfo>());
-  /** Use static methods the access radio info or call @c Radio::defaultRadioInfo. */
+  /** Use static methods the access radio info or call \c Radio::defaultRadioInfo. */
   RadioInfo(Radio radio, const QString &key, const QString &name, const QString manufacturer,
             const QList<RadioInfo> &alias=QList<RadioInfo>());
 
@@ -48,7 +48,7 @@ public:
   /** Copy constructor. */
   RadioInfo(const RadioInfo &other);
 
-  /** Retunrs @c true if the info is valid. */
+  /** Retunrs \c true if the info is valid. */
   bool isValid() const;
 
   /** Returns the radio key (used to identify radios in the command line). */
@@ -58,7 +58,7 @@ public:
   /** Retunrs the manufacturer name. */
   const QString &manufactuer() const;
 
-  /** Returns @c true if the radio has aliases.
+  /** Returns \c true if the radio has aliases.
    * That is other radios that are identical. */
   bool hasAlias() const;
   /** Returns the list of alias radios. */
@@ -68,7 +68,7 @@ public:
   Radio id() const;
 
 public:
-  /** Returns @c true if the given key is known. */
+  /** Returns \c true if the given key is known. */
   static bool hasRadioKey(const QString &key);
   /** Returns the radio info by key. */
   static RadioInfo byKey(const QString &key);

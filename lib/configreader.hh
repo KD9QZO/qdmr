@@ -1,4 +1,4 @@
-/** @defgroup yaml YAML Codeplug format.
+/** \defgroup yaml YAML Codeplug format.
  *
  * With version 0.9.0, there is a new extensible human-readable codeplug format. In contrast to the
  * former table based text files, this format is easy to extend. This finally allows me to implement
@@ -30,7 +30,7 @@ class RoamingZone;
 
 
 /** Base class for all extensible YAML parser.
- * @ingroup yaml */
+ * \ingroup yaml */
 class AbstractConfigReader : public QObject
 {
   Q_OBJECT
@@ -43,7 +43,7 @@ public:
   /** Returns the error message when reading fails. */
   const QString &errorMessage() const;
 
-  /** Allocates the @c ConfigObject depending on the parsed node. */
+  /** Allocates the \c ConfigObject depending on the parsed node. */
   virtual ConfigObject *allocate(const YAML::Node &node, const ConfigObject::Context &ctx) = 0;
   /** Parses the given YAML node, updates the given object and updates the given context (IDs). */
   virtual bool parse(ConfigObject *obj, const YAML::Node &node, ConfigObject::Context &ctx);
@@ -65,9 +65,9 @@ protected:
 
 
 /** Base class for all extension parser.
- * This class already implements the @c parse and @c link methods to read all QMetaProperties
- * of the @c ExtensionObject.
- * @ingroup yaml */
+ * This class already implements the \c parse and \c link methods to read all QMetaProperties
+ * of the \c ExtensionObject.
+ * \ingroup yaml */
 class ExtensionReader: public AbstractConfigReader
 {
   Q_OBJECT
@@ -79,7 +79,7 @@ protected:
 
 
 /** Implements the config parser.
- * @ingroup yaml */
+ * \ingroup yaml */
 class ConfigReader: public AbstractConfigReader
 {
   Q_OBJECT
@@ -214,7 +214,7 @@ protected:
 
 
 /** Base class for all readers that parse elements with IDs.
- * @ingroup yaml */
+ * \ingroup yaml */
 class ObjectReader: public AbstractConfigReader
 {
   Q_OBJECT
@@ -230,7 +230,7 @@ public:
 };
 
 /** Reads the global radio settings.
- * @ingroup yaml */
+ * \ingroup yaml */
 class RadioSettingsReader: public AbstractConfigReader
 {
   Q_OBJECT
@@ -253,7 +253,7 @@ protected:
 };
 
 /** Reads radio ID definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class RadioIdReader: public ObjectReader
 {
   Q_OBJECT
@@ -277,7 +277,7 @@ protected:
 
 
 /** Base class for channel parser.
- * @ingroup yaml */
+ * \ingroup yaml */
 class ChannelReader: public ObjectReader
 {
   Q_OBJECT
@@ -302,7 +302,7 @@ protected:
 
 
 /** Reads digital channel definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class DigitalChannelReader: public ChannelReader
 {
   Q_OBJECT
@@ -327,7 +327,7 @@ protected:
 
 
 /** Reads analog channel definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class AnalogChannelReader: public ChannelReader
 {
   Q_OBJECT
@@ -352,7 +352,7 @@ protected:
 
 
 /** Reads digital zone definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class ZoneReader: public ObjectReader
 {
   Q_OBJECT
@@ -376,7 +376,7 @@ protected:
 
 
 /** Base class for all contact parser.
- * @ingroup yaml */
+ * \ingroup yaml */
 class ContactReader: public ObjectReader
 {
   Q_OBJECT
@@ -401,7 +401,7 @@ protected:
 
 
 /** Base class for digital contact readers.
- * @ingroup yaml */
+ * \ingroup yaml */
 class DMRContactReader: public ContactReader
 {
   Q_OBJECT
@@ -426,7 +426,7 @@ protected:
 
 
 /** Base class for all positioning system parsers.
- * @ingroup yaml */
+ * \ingroup yaml */
 class PositioningReader: public ObjectReader
 {
   Q_OBJECT
@@ -451,7 +451,7 @@ protected:
 
 
 /** Reads GPS system definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class GPSSystemReader: public PositioningReader
 {
   Q_OBJECT
@@ -475,7 +475,7 @@ protected:
 
 
 /** Reads APRS system definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class APRSSystemReader: public PositioningReader
 {
   Q_OBJECT
@@ -499,7 +499,7 @@ protected:
 
 
 /** Reads scan-list definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class ScanListReader: public ObjectReader
 {
   Q_OBJECT
@@ -523,7 +523,7 @@ protected:
 
 
 /** Reads group list definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class GroupListReader: public ObjectReader
 {
   Q_OBJECT
@@ -547,7 +547,7 @@ protected:
 
 
 /** Reads roaming zones definitions.
- * @ingroup yaml */
+ * \ingroup yaml */
 class RoamingReader: public ObjectReader
 {
   Q_OBJECT

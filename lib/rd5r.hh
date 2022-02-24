@@ -1,4 +1,4 @@
-/** @defgroup rd5r Baofeng/Radioddity RD-5R
+/** \defgroup rd5r Baofeng/Radioddity RD-5R
  * Device specific classes for Baofeng/Radioddity RD-5R.
  *
  * \image html rd5r.jpg "RD-5R" width=200px
@@ -19,7 +19,7 @@
  * The radio can also hold up to 255 contacts (actually 256, but due to a bug in the firmware RX is
  * disabled whenever all 256 contacts are set), 64 RX group lists and 250 scanlists.
  *
- * @ingroup radioddity */
+ * \ingroup radioddity */
 #ifndef RD5R_HH
 #define RD5R_HH
 
@@ -29,11 +29,11 @@
 
 /** Implements an interface to the Baofeng/Radioddity RD-5R VHF/UHF 5W DMR (Tier I/II) radio.
  *
- * The Baofeng/Radioddity RD-5R radio uses a weird HID (human-interface device, see @c HID and
- * @c HIDevice) protocol for communication. This class implements the communication details with
+ * The Baofeng/Radioddity RD-5R radio uses a weird HID (human-interface device, see \c HID and
+ * \c HIDevice) protocol for communication. This class implements the communication details with
  * the radio to read and write codeplugs on the device.
  *
- * @ingroup rd5r */
+ * \ingroup rd5r */
 class RD5R: public RadioddityRadio
 {
 	Q_OBJECT
@@ -41,7 +41,7 @@ class RD5R: public RadioddityRadio
 public:
   /** Constructor.
    * Do not call this constructor directly. Consider using the factory method
-   * @c Radio::detect. */
+   * \c Radio::detect. */
   RD5R(RadioddityInterface *device=nullptr, QObject *parent=nullptr);
 
   virtual ~RD5R();

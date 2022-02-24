@@ -654,7 +654,7 @@ ChannelList::findDigitalChannel(double rx, double tx, DigitalChannel::TimeSlot t
   for (int i=0; i<count(); i++) {
     if (! _items[i]->is<DigitalChannel>())
       continue;
-    /// @bug I should certainly change the frequency handling to integer values!
+    /// \bug I should certainly change the frequency handling to integer values!
     if ( (1e-6<std::abs(channel(i)->txFrequency()-tx)) ||
          (1e-6<std::abs(channel(i)->rxFrequency()-rx)) )
       continue;

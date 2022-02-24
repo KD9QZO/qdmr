@@ -6,7 +6,7 @@
 
 /** Represents a DMR ID (radio ID) within the abstract config.
  *
- * @ingroup conf */
+ * \ingroup conf */
 class RadioID : public ConfigObject
 {
   Q_OBJECT
@@ -18,9 +18,9 @@ class RadioID : public ConfigObject
 
 public:
   /** Constructor.
-   * @param name Specifies the name of the ID.
-   * @param number Specifies the DMR ID.
-   * @param parent Specifies the parent QObject owning this object. */
+   * \param name Specifies the name of the ID.
+   * \param number Specifies the DMR ID.
+   * \param parent Specifies the parent QObject owning this object. */
   explicit RadioID(const QString &name, uint32_t number, QObject *parent = nullptr);
 
   /** Returns the name of the DMR ID. */
@@ -48,7 +48,7 @@ protected:
 
 
 /** A singleton radio ID representing the default DMR radio ID within the abstract config.
- * @ingroup conf */
+ * \ingroup conf */
 class DefaultRadioID: public RadioID
 {
   Q_OBJECT
@@ -71,7 +71,7 @@ private:
  * There must always be at least one valid DMR ID. The first (index 0) ID is always the default
  * DMR ID of the radio.
  *
- * @ingroup conf */
+ * \ingroup conf */
 class RadioIDList: public ConfigObjectList
 {
   Q_OBJECT

@@ -6,10 +6,10 @@
 
 /** Interface to TyT (and Retevis) devices.
  *
- * This class extends the @c DFUDevice and implements the @c RadioInterface to identify the radio,
+ * This class extends the \c DFUDevice and implements the \c RadioInterface to identify the radio,
  * reading/writing and erasing codeplugs or the callsign DB.
  *
- * @section tytif TyT protocol
+ * \section tytif TyT protocol
  * The communication with the device is kind of weird. It all happens through memory reads and
  * writes. This is not unusual as such, but they implemented a weird memory mapping. Everyhing
  * written to block 0 (i.e., memory address 0x00000000) is a command to the radio. Responses to
@@ -20,34 +20,34 @@
  * and data are send and written to the same DFU interface number. Someone did not understood the
  * DFU interface.
  *
- * @subsection Commands
+ * \subsection Commands
  * The following commands has been seen.
  *
- * @subsubsection tytifepm Enter program mode
+ * \subsubsection tytifepm Enter program mode
  * The request written is
- * @code
+ * \code
  * +------+------+
  * | 0x91 | 0x01 |
  * +------+------+
- * @endcode
+ * \endcode
  * There is no explict response read back.
  *
- * @subsubsection tytiferb Reboot
+ * \subsubsection tytiferb Reboot
  * The request written is
- * @code
+ * \code
  * +------+------+
  * | 0x91 | 0x05 |
  * +------+------+
- * @endcode
+ * \endcode
  * There is no explict response read back.
  *
- * @subsubsection tyifid Identify/Get Info
+ * \subsubsection tyifid Identify/Get Info
  * The request written is
- * @code
+ * \code
  * +------+------+
  * | 0xa2 | What |
  * +------+------+
- * @endcode
+ * \endcode
  * There is always some response read back. The size varies whith whatever is read back.
  * <table>
  *  <tr><th>WhatCode</th> <th>Resp. Len.</th> <th>Description></th></tr>
@@ -59,26 +59,26 @@
  *  <tr><td>0x07</td>     <td>16</td>         <td>Unknown</td></tr>
  * </table>
  *
- * @subsubsection tytidsa Set address
+ * \subsubsection tytidsa Set address
  * The request written is
- * @code
+ * \code
  * +------+------+------+------+------+
  * | 0x21 | Address little endian     |
  * +------+------+------+------+------+
- * @endcode
+ * \endcode
  * There is no response read back. Before reading or writing memory, the address must be set using
  * this command. The start block for reading/writing this memory, is 2.
  *
- * @subsubsection tytife Erase
+ * \subsubsection tytife Erase
  * The request written is
- * @code
+ * \code
  * +------+------+------+------+------+
  * | 0x41 | Address little endian     |
  * +------+------+------+------+------+
- * @endcode
+ * \endcode
  * There is no response read. The erased page size appears to be 0x010000 bytes.
  *
- * @subsection tytifrw Read and write memory
+ * \subsection tytifrw Read and write memory
  * Before writing memory, it must be erased.
  *
  * Before reading and writing memory, the address must be set.
@@ -86,7 +86,7 @@
  * After this, the memory can be read/written by simply writing to consecutive blocks starting
  * with block 2.
  *
- * @ingroup tyt */
+ * \ingroup tyt */
 class TyTInterface : public DFUDevice, public RadioInterface
 {
   Q_OBJECT
@@ -109,7 +109,7 @@ public:
   bool write_finish();
   bool reboot();
 
-  /** Erases a memory section at @c start of size @c size. */
+  /** Erases a memory section at \c start of size \c size. */
   bool erase(unsigned start, unsigned size, void (*progress)(unsigned, void *)=nullptr, void *ctx=nullptr);
 
   const QString &errorMessage() const;

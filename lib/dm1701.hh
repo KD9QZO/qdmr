@@ -1,4 +1,4 @@
-/** @defgroup dm1701 Baofeng DM-1701, Retevis RT84
+/** \defgroup dm1701 Baofeng DM-1701, Retevis RT84
  * Device specific classes for Baofeng DM-1701 and Retevis RT84.
  *
  * \image html dm1701.png "DM-1701" width=200px
@@ -15,7 +15,7 @@
  *   - 250 zones, 64 channels each (A & B)
  *   - 250 scan lists, 31 channels each
  *   - ...
- * @ingroup dsc */
+ * \ingroup dsc */
 #ifndef DM1701_HH
 #define DM1701_HH
 
@@ -30,16 +30,16 @@
 /** Implements an USB interface to the  Baofeng DM-1701 and Retevis RT84 VHF/UHF 5W DMR (Tier I&II) radios.
  *
  * The  Baofeng DM-1701 and Retevis RT84 radios use a DFU-style communication protocol to read and write
- * codeplugs onto the radio (see @c DFUDevice). This class implements the communication details
+ * codeplugs onto the radio (see \c DFUDevice). This class implements the communication details
  * using DFU protocol.
  *
- * @ingroup dm1701 */
+ * \ingroup dm1701 */
 class DM1701: public TyTRadio
 {
 	Q_OBJECT
 
 public:
-  /** Do not construct this class directly, rather use @c Radio::detect. */
+  /** Do not construct this class directly, rather use \c Radio::detect. */
   explicit DM1701(TyTInterface *device=nullptr, QObject *parent=nullptr);
 
   const QString &name() const;

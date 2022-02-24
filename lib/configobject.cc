@@ -9,33 +9,27 @@
 /* ********************************************************************************************* *
  * Implementation of ConfigObject::Context
  * ********************************************************************************************* */
-QHash<QString, QHash<QString, ConfigObject *>> ConfigObject::Context::_tagObjects =
-    QHash<QString, QHash<QString, ConfigObject *>>();
-QHash<QString, QHash<ConfigObject *, QString>> ConfigObject::Context::_tagNames =
-    QHash<QString, QHash<ConfigObject *, QString>>();
+QHash<QString, QHash<QString, ConfigObject*>> ConfigObject::Context::_tagObjects = QHash<QString, QHash<QString, ConfigObject*>>();
+QHash<QString, QHash<ConfigObject*, QString>> ConfigObject::Context::_tagNames = QHash<QString, QHash<ConfigObject*, QString>>();
 
-ConfigObject::Context::Context()
-  : _version(), _objects(), _ids()
-{
-  // pass...
+ConfigObject::Context::Context(): _version(), _objects(), _ids() {
+	// pass...
 }
 
 ConfigObject::Context::~Context() {
-  // pass...
+	// pass...
 }
 
-const QString &
-ConfigObject::Context::version() const {
-  return _version;
-}
-void
-ConfigObject::Context::setVersion(const QString &ver) {
-  _version = ver;
+const QString &ConfigObject::Context::version() const {
+	return (_version);
 }
 
-bool
-ConfigObject::Context::contains(ConfigObject *obj) const {
-  return _ids.contains(obj);
+void ConfigObject::Context::setVersion(const QString &ver) {
+	_version = ver;
+}
+
+bool ConfigObject::Context::contains(ConfigObject *obj) const {
+	return (_ids.contains(obj));
 }
 
 bool
@@ -425,16 +419,18 @@ ConfigObjectList::label(ConfigObject::Context &context) {
   return true;
 }
 
-YAML::Node
-ConfigObjectList::serialize(const ConfigObject::Context &context) {
-  YAML::Node list(YAML::NodeType::Sequence);
-  foreach (ConfigObject *obj, _items) {
-    YAML::Node node = obj->serialize(context);
-    if (node.IsNull())
-      return node;
-    list.push_back(node);
-  }
-  return list;
+YAML::Node ConfigObjectList::serialize(const ConfigObject::Context &context) {
+	YAML::Node list(YAML::NodeType::Sequence);
+
+	foreach (ConfigObject *obj, _items) {
+		YAML::Node node = obj->serialize(context);
+		if (node.IsNull()) {
+			return (node);
+		}
+		list.push_back(node);
+	}
+
+	return (list);
 }
 
 int ConfigObjectList::add(ConfigObject *obj, int row) {
@@ -461,26 +457,25 @@ ConfigObjectList::del(ConfigObject *obj) {
 /* ********************************************************************************************* *
  * Implementation of ConfigObjectRefList
  * ********************************************************************************************* */
-ConfigObjectRefList::ConfigObjectRefList(const QMetaObject &elementType, QObject *parent)
-  : AbstractConfigObjectList(elementType, parent)
-{
-  // pass...
+ConfigObjectRefList::ConfigObjectRefList(const QMetaObject &elementType, QObject *parent): AbstractConfigObjectList(elementType, parent) {
+	// pass...
 }
 
-bool
-ConfigObjectRefList::label(ConfigObject::Context &context) {
-  // pass...
-  return true;
+bool ConfigObjectRefList::label(ConfigObject::Context &context) {
+	// pass...
+	return (true);
 }
 
-YAML::Node
-ConfigObjectRefList::serialize(const ConfigObject::Context &context) {
-  YAML::Node list(YAML::NodeType::Sequence);
-  foreach (ConfigObject *obj, _items) {
-    if (! context.contains(obj))
-      return YAML::Node();
-    list.push_back(context.getId(obj).toStdString());
-  }
-  return list;
+YAML::Node ConfigObjectRefList::serialize(const ConfigObject::Context &context) {
+	YAML::Node list(YAML::NodeType::Sequence);
+
+	foreach (ConfigObject *obj, _items) {
+		if (! context.contains(obj)) {
+			return (YAML::Node());
+		}
+		list.push_back(context.getId(obj).toStdString());
+	}
+
+	return (list);
 }
 

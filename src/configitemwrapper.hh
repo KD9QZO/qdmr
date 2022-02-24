@@ -12,11 +12,11 @@ protected:
   GenericListWrapper(AbstractConfigObjectList *list, QObject *parent=nullptr);
 
 public:
-  /** Moves the channel at index @c idx one step up. */
+  /** Moves the channel at index \c idx one step up. */
   virtual bool moveUp(int idx);
   /** Moves the channels at one step up. */
   virtual bool moveUp(int first, int last);
-  /** Moves the channel at index @c idx one step down. */
+  /** Moves the channel at index \c idx one step down. */
   virtual bool moveDown(int idx);
   /** Moves the channels one step down. */
   virtual bool moveDown(int first, int last);
@@ -55,11 +55,11 @@ protected:
   GenericTableWrapper(AbstractConfigObjectList *list, QObject *parent=nullptr);
 
 public:
-  /** Moves the channel at index @c idx one step up. */
+  /** Moves the channel at index \c idx one step up. */
   virtual bool moveUp(int idx);
   /** Moves the channels at one step up. */
   virtual bool moveUp(int first, int last);
-  /** Moves the channel at index @c idx one step down. */
+  /** Moves the channel at index \c idx one step down. */
   virtual bool moveDown(int idx);
   /** Moves the channels one step down. */
   virtual bool moveDown(int first, int last);

@@ -5,7 +5,7 @@
 #include "configreader.hh"
 
 /** Represents the TyT button settings extension.
- * @ingroup tyt */
+ * \ingroup tyt */
 class TyTButtonSettings : public ConfigExtension
 {
   Q_OBJECT
@@ -24,36 +24,36 @@ class TyTButtonSettings : public ConfigExtension
 public:
   /** Possible actions for the side-buttons. */
   enum ButtonAction {
-    Disabled = 0,                       ///< Disabled side-button action.
-    ToggleAllAlertTones = 1,            ///< Toggle all alert tones.
-    EmergencyOn = 2,                    ///< Enable emergency.
-    EmergencyOff = 3,                   ///< Disable emergency.
-    PowerSelect = 4,                    ///< Select TX power.
-    MonitorToggle = 5,                  ///< Toggle monitor (promiscuous mode on digital channel, open squelch on analog channel).
-    NuisanceDelete = 6,                 ///< Nuisance delete.
-    OneTouch1 = 7,                      ///< Perform one-touch action 1.
-    OneTouch2 = 8,                      ///< Perform one-touch action 2.
-    OneTouch3 = 9,                      ///< Perform one-touch action 3.
-    OneTouch4 = 10,                     ///< Perform one-touch action 4.
-    OneTouch5 = 11,                     ///< Perform one-touch action 5.
-    OneTouch6 = 12,                     ///< Perform one-touch action 6.
-    RepeaterTalkaroundToggle = 13,      ///< Toggle repater mode / talkaround.
-    ScanToggle = 14,                    ///< Start/stop scan.
-    SquelchToggle = 21,                 ///< Enable/disable squelch.
-    PrivacyToggle = 22,                 ///< Enable/disable privacy system.
-    VoxToggle = 23,                     ///< Enable/disable VOX.
-    ZoneIncrement = 24,                 ///< Switch to next zone.
-    BatteryIndicator = 26,              ///< Show battery charge.
-    ManualDialForPrivate = 30,          ///< Manual dial for private.
-    LoneWorkerToggle = 31,              ///< Toggle lone-worker.
-    RecordToggle = 34,                  ///< Enable/disable recording (dep. on firmware).
-    RecordPlayback = 35,                ///< Start/stop playback.
-    RecordDeleteAll = 36,               ///< Delete all recordings.
-    Tone1750Hz = 38,                    ///< Send 1750Hz tone.
-    SwitchUpDown = 47,                  ///< Switch Channel A/B.
-    RightKey = 48,                      ///< Who knows?
-    LeftKey = 49,                       ///< Who knows?
-    ZoneDecrement = 55                  ///< Switch to previous zone.
+    Disabled = 0,		/*!< Disabled side-button action. */
+    ToggleAllAlertTones = 1,		/*!< Toggle all alert tones. */
+    EmergencyOn = 2,		/*!< Enable emergency. */
+    EmergencyOff = 3,		/*!< Disable emergency. */
+    PowerSelect = 4,		/*!< Select TX power. */
+    MonitorToggle = 5,		/*!< Toggle monitor (promiscuous mode on digital channel, open squelch on analog channel). */
+    NuisanceDelete = 6,		/*!< Nuisance delete. */
+    OneTouch1 = 7,		/*!< Perform one-touch action 1. */
+    OneTouch2 = 8,		/*!< Perform one-touch action 2. */
+    OneTouch3 = 9,		/*!< Perform one-touch action 3. */
+    OneTouch4 = 10,		/*!< Perform one-touch action 4. */
+    OneTouch5 = 11,		/*!< Perform one-touch action 5. */
+    OneTouch6 = 12,		/*!< Perform one-touch action 6. */
+    RepeaterTalkaroundToggle = 13,		/*!< Toggle repater mode / talkaround. */
+    ScanToggle = 14,		/*!< Start/stop scan. */
+    SquelchToggle = 21,		/*!< Enable/disable squelch. */
+    PrivacyToggle = 22,		/*!< Enable/disable privacy system. */
+    VoxToggle = 23,		/*!< Enable/disable VOX. */
+    ZoneIncrement = 24,		/*!< Switch to next zone. */
+    BatteryIndicator = 26,		/*!< Show battery charge. */
+    ManualDialForPrivate = 30,		/*!< Manual dial for private. */
+    LoneWorkerToggle = 31,		/*!< Toggle lone-worker. */
+    RecordToggle = 34,		/*!< Enable/disable recording (dep. on firmware). */
+    RecordPlayback = 35,		/*!< Start/stop playback. */
+    RecordDeleteAll = 36,		/*!< Delete all recordings. */
+    Tone1750Hz = 38,		/*!< Send 1750Hz tone. */
+    SwitchUpDown = 47,		/*!< Switch Channel A/B. */
+    RightKey = 48,		/*!< Who knows? */
+    LeftKey = 49,		/*!< Who knows? */
+    ZoneDecrement = 55		/*!< Switch to previous zone. */
   };
   Q_ENUM(ButtonAction)
 
@@ -101,7 +101,7 @@ protected:
 
 
 /** Parses the TyT config extensions.
- * @ingroup tyt */
+ * \ingroup tyt */
 class TyTButtonSettingsReader: public ExtensionReader
 {
   Q_OBJECT

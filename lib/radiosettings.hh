@@ -5,7 +5,7 @@
 #include "channel.hh"
 
 /** Represents the common radio-global settings.
- * @ingroup conf */
+ * \ingroup conf */
 class RadioSettings : public ConfigObject
 {
   Q_OBJECT
@@ -48,7 +48,7 @@ public:
   /** (Re-)Sets the MIC amplification level [1,10]. */
   void setMicLevel(unsigned value);
 
-  /** Returns @c true if the speech synthesis is enabled. */
+  /** Returns \c true if the speech synthesis is enabled. */
   bool speech() const;
   /** Enables/disables the speech synthesis. */
   void enableSpeech(bool enabled);
@@ -63,7 +63,7 @@ public:
   /** Sets the default channel power. */
   void setPower(Channel::Power power);
 
-  /** Retuns @c true if VOX is disabled by default. */
+  /** Retuns \c true if VOX is disabled by default. */
   bool voxDisabled() const;
   /** Returns the default VOX level [0-10], 0=disabled. */
   unsigned vox() const;
@@ -72,7 +72,7 @@ public:
   /** Disables VOX by default. */
   void disableVOX();
 
-  /** Returns @c true if the transmit timeout (TOT) is disabled. */
+  /** Returns \c true if the transmit timeout (TOT) is disabled. */
   bool totDisabled() const;
   /** Returns the default transmit timeout (TOT) in seconds, 0=disabled. */
   unsigned tot() const;

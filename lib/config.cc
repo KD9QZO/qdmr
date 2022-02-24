@@ -14,38 +14,36 @@
 /* ********************************************************************************************* *
  * Implementation of Config
  * ********************************************************************************************* */
-Config::Config(QObject *parent)
-  : ConfigObject("", parent), _modified(false), _settings(new RadioSettings(this)),
-    _radioIDs(new RadioIDList(this)), _contacts(new ContactList(this)),
-    _rxGroupLists(new RXGroupLists(this)), _channels(new ChannelList(this)),
-    _zones(new ZoneList(this)), _scanlists(new ScanLists(this)),
-    _gpsSystems(new PositioningSystems(this)), _roaming(new RoamingZoneList(this))
-{
-  connect(_settings, SIGNAL(modified(ConfigObject*)), this, SLOT(onConfigModified()));
-  connect(_radioIDs, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_radioIDs, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_radioIDs, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
-  connect(_contacts, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_contacts, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_contacts, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
-  connect(_rxGroupLists, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_rxGroupLists, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_rxGroupLists, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
-  connect(_channels, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_channels, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_channels, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
-  connect(_zones, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_zones, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_zones, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
-  connect(_scanlists, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_scanlists, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_scanlists, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
-  connect(_gpsSystems, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_gpsSystems, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_gpsSystems, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
-  connect(_roaming, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
-  connect(_roaming, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
-  connect(_roaming, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+Config::Config(QObject *parent): ConfigObject("", parent), _modified(false), _settings(new RadioSettings(this)),
+		_radioIDs(new RadioIDList(this)), _contacts(new ContactList(this)),
+		_rxGroupLists(new RXGroupLists(this)), _channels(new ChannelList(this)),
+		_zones(new ZoneList(this)), _scanlists(new ScanLists(this)),
+		_gpsSystems(new PositioningSystems(this)), _roaming(new RoamingZoneList(this)) {
+	connect(_settings, SIGNAL(modified(ConfigObject*)), this, SLOT(onConfigModified()));
+	connect(_radioIDs, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_radioIDs, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_radioIDs, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+	connect(_contacts, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_contacts, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_contacts, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+	connect(_rxGroupLists, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_rxGroupLists, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_rxGroupLists, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+	connect(_channels, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_channels, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_channels, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+	connect(_zones, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_zones, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_zones, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+	connect(_scanlists, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_scanlists, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_scanlists, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+	connect(_gpsSystems, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_gpsSystems, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_gpsSystems, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
+	connect(_roaming, SIGNAL(elementAdded(int)), this, SLOT(onConfigModified()));
+	connect(_roaming, SIGNAL(elementRemoved(int)), this, SLOT(onConfigModified()));
+	connect(_roaming, SIGNAL(elementModified(int)), this, SLOT(onConfigModified()));
 }
 
 bool

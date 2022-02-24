@@ -9,7 +9,7 @@ Radio::Features _uv390_features = {
 
   .frequencyLimits = QVector<Radio::Features::FrequencyRange>{ {136., 174.}, {400., 480.} },
 
-  .maxRadioIDs        = 1,  /// @todo UV390 supports multiple radio IDs, not implemented yet.
+  .maxRadioIDs        = 1,  /// \todo UV390 supports multiple radio IDs, not implemented yet.
   .needsDefaultRadioID = true,
   .maxIntroLineLength = 10,
 

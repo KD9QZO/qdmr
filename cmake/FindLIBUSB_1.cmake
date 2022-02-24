@@ -1,16 +1,20 @@
-# - Try to find libusb-1.0
-# Once done this will define
 #
-# LIBUSB_1_FOUND - system has libusb
-# LIBUSB_1_INCLUDE_DIRS - the libusb include directory
-# LIBUSB_1_LIBRARIES - Link these to use libusb
-# LIBUSB_1_DEFINITIONS - Compiler switches required for using libusb
+# cmake/FindLIBUSB_1.cmake
+#
+# Try to find libusb-1.0
+# ======================
+#
+# Once done this will define:
+# * LIBUSB_1_FOUND        -- system has libusb
+# * LIBUSB_1_INCLUDE_DIRS -- the libusb include directory
+# * LIBUSB_1_LIBRARIES    -- Link these to use libusb
+# * LIBUSB_1_DEFINITIONS  -- Compiler switches required for using libusb
 #
 # Adapted from cmake-modules Google Code project
 #
-# Copyright (c) 2006 Andreas Schneider <mail@cynapses.org>
+# Copyright (c) 2006 Andreas Schneider <mail\cynapses.org>
 #
-# (Changes for libusb) Copyright (c) 2008 Kyle Machulis <kyle@nonpolynomial.com>
+# (Changes for libusb) Copyright (c) 2008 Kyle Machulis <kyle\nonpolynomial.com>
 #
 # Redistribution and use is allowed according to the terms of the New BSD license.
 #
@@ -43,29 +47,29 @@
 #
 
 
-if (LIBUSB_1_LIBRARIES AND LIBUSB_1_INCLUDE_DIRS)
-  # in cache already
-  set(LIBUSB_FOUND TRUE)
-else (LIBUSB_1_LIBRARIES AND LIBUSB_1_INCLUDE_DIRS)
-  find_path(LIBUSB_1_INCLUDE_DIR
-    NAMES
-libusb.h
-    PATHS
-      /usr/include
-      /usr/local/include
-      /sw/include
-PATH_SUFFIXES
-libusb-1.0
-  )
+if(LIBUSB_1_LIBRARIES AND LIBUSB_1_INCLUDE_DIRS)
+	# in cache already
+	set(LIBUSB_FOUND TRUE)
+else(LIBUSB_1_LIBRARIES AND LIBUSB_1_INCLUDE_DIRS)
+	find_path(LIBUSB_1_INCLUDE_DIR
+		NAMES
+		libusb.h
+		PATHS
+		/usr/include
+		/usr/local/include
+		/sw/include
+		PATH_SUFFIXES
+		libusb-1.0
+	)
 
-  find_library(LIBUSB_1_LIBRARY
-    NAMES
-      usb-1.0 usb
-    PATHS
-      /usr/lib
-      /usr/local/lib
-      /sw/lib
-  )
+	find_library(LIBUSB_1_LIBRARY
+		NAMES
+		usb-1.0 usb
+		PATHS
+		/usr/lib
+		/usr/local/lib
+		/sw/lib
+	)
 
   set(LIBUSB_1_INCLUDE_DIRS
     ${LIBUSB_1_INCLUDE_DIR}

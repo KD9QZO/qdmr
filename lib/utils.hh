@@ -1,4 +1,4 @@
-/** @defgroup util Utility functions and classes.
+/** \defgroup util Utility functions and classes.
  * This module collects alls utility functions and classes. That is, functions to encode some
  * data and also classes implementing the DFU file format.
  */
@@ -12,26 +12,26 @@
 #include "signaling.hh"
 #include "gpssystem.hh"
 
-/** Decodes the unicode string stored in @c data of size @c size. The @c fill code also defines the
+/** Decodes the unicode string stored in \c data of size \c size. The \c fill code also defines the
  * end-of-string symbol.
- * @returns The decoded string. */
+ * \returns The decoded string. */
 QString decode_unicode(const uint16_t *data, size_t size, uint16_t fill=0x0000);
-/** Encodes the string @c text as unicode and stores the result into @c data using up-to @c size
- * 16bit words in data. The @c fill word specifies the fill and end-of-string word. */
+/** Encodes the string \c text as unicode and stores the result into \c data using up-to \c size
+ * 16bit words in data. The \c fill word specifies the fill and end-of-string word. */
 void encode_unicode(uint16_t *data, const QString &text, size_t size, uint16_t fill=0x0000);
 
-/** Decodes the ascii string in @c data into a @c QString of up-to size length. The @c fill word
+/** Decodes the ascii string in \c data into a \c QString of up-to size length. The \c fill word
  * specifies the fill and end-of-string word. */
 QString decode_ascii(const uint8_t *data, size_t size, uint16_t fill=0x00);
-/** Encodes the given QString @c text of up-to size length as ASCII into @c data using the
- * @c fill word as fill and end-of-string word. */
+/** Encodes the given QString \c text of up-to size length as ASCII into \c data using the
+ * \c fill word as fill and end-of-string word. */
 void encode_ascii(uint8_t *data, const QString &text, size_t size, uint16_t fill=0x00);
 
-/** Decodes the UTF-8 string in @c data into a @c QString of up-to size length. The @c fill word
+/** Decodes the UTF-8 string in \c data into a \c QString of up-to size length. The \c fill word
  * specifies the fill and end-of-string word. */
 QString decode_utf8(const uint8_t *data, size_t size, uint16_t fill=0x00);
-/** Encodes the given QString @c text of up-to size length as UTF-8 into @c data using the
- * @c fill word as fill and end-of-string word. */
+/** Encodes the given QString \c text of up-to size length as UTF-8 into \c data using the
+ * \c fill word as fill and end-of-string word. */
 void encode_utf8(uint8_t *data, const QString &text, size_t size, uint16_t fill=0x00);
 
 /** Decodes an 8 digit BCD encoded frequency (in MHz). */
@@ -58,15 +58,15 @@ bool encode_dtmf_bin(const QString &number, uint8_t *num, int size=16, uint8_t f
 QString decode_dtmf_bcd_be(const uint8_t *num, int digits);
 bool encode_dtmf_bcd_be(const QString &number, uint8_t *num, int size, uint8_t fill);
 
-/** Decodes the CTCSS tone or DCS code to @c Signaling::Code. */
+/** Decodes the CTCSS tone or DCS code to \c Signaling::Code. */
 Signaling::Code decode_ctcss_tone_table(uint16_t data);
-/** Encodes the CTCSS tone or DCS code from @c Signaling::Code. */
+/** Encodes the CTCSS tone or DCS code from \c Signaling::Code. */
 uint16_t encode_ctcss_tone_table(Signaling::Code code);
 /** Interprets the given number as octal and returns the decimal representation.
- * @param oct The octal number between 0-7777.*/
+ * \param oct The octal number between 0-7777.*/
 uint16_t oct_to_dec(uint16_t oct);
 /** Returns the given number as octal value.
- * @param dec The decimal number between 0-4095*/
+ * \param dec The decimal number between 0-4095*/
 uint16_t dec_to_oct(uint16_t dec);
 
 /** Validates a DMR ID number. */

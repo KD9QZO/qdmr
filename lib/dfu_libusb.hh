@@ -10,7 +10,7 @@
  * firmware of their radios. This class implements this protocol, see
  * https://www.usb.org/sites/default/files/DFU_1.1.pdf for details.
  *
- * @ingroup rif */
+ * \ingroup rif */
 class DFUDevice: public QObject
 {
 	Q_OBJECT
@@ -25,12 +25,12 @@ private:
 	} status_t;
 
 public:
-  /** Opens a connection to the USB-DFU devuce at vendor @c vid and product @c pid. */
+  /** Opens a connection to the USB-DFU devuce at vendor \c vid and product \c pid. */
 	DFUDevice(unsigned vid, unsigned pid, QObject *parent=nullptr);
   /** Destructor. */
 	virtual ~DFUDevice();
 
-  /** Retuns @c true if the DFU device interface is open. */
+  /** Retuns \c true if the DFU device interface is open. */
   bool isOpen() const;
   /** Closes the DFU iterface. */
   void close();

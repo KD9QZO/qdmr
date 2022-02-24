@@ -5,56 +5,56 @@
 
 /** Device specific implementation of the codeplug for the TyT MD-UV390.
  *
- * The codeplug consists of two segments. The first segment starts at address @c 0x002000 and ends at
- * address @c 0x040000. The second segment starts at address @c 0x110000 and ends at @c 0x1a0000. The
- * segments must align with @c 0x400 (1024 bytes).
+ * The codeplug consists of two segments. The first segment starts at address \c 0x002000 and ends at
+ * address \c 0x040000. The second segment starts at address \c 0x110000 and ends at \c 0x1a0000. The
+ * segments must align with \c 0x400 (1024 bytes).
  *
- * @section uv390cpl Codeplug structure within radio
+ * \section uv390cpl Codeplug structure within radio
  * The codeplug structure is reverse engineered almost completely and can be programmed from
  * scratch. That is, it is not neccessary to update an existing codeplug on the radio.
  * <table>
  *  <tr><th>Start</th>    <th>End</th>      <th>Size</th>    <th>Content</th></tr>
  *  <tr><th colspan="4">First segment 0x002000-0x040000</th></tr>
- *  <tr><td>0x002000</td> <td>0x00200c</td> <td>0x0000c</td> <td>Timestamp see @c TyTCodeplug::TimestampElement.</td></tr>
+ *  <tr><td>0x002000</td> <td>0x00200c</td> <td>0x0000c</td> <td>Timestamp see \c TyTCodeplug::TimestampElement.</td></tr>
  *  <tr><td>0x00200c</td> <td>0x002040</td> <td>0x00034</td> <td>Reserved, filled with 0xff. </td></tr>
- *  <tr><td>0x002040</td> <td>0x0020f0</td> <td>0x000b0</td> <td>General settings see @c TyTCodeplug::GeneralSettingsElement.</td></tr>
- *  <tr><td>0x0020f0</td> <td>0x002100</td> <td>0x00010</td> <td>Menu settings, see @c TyTCodeplug::MenuSettingsElement.</td></tr>
- *  <tr><td>0x002100</td> <td>0x002140</td> <td>0x00040</td> <td>Button config, see @c TyTCodeplug::ButtonSettingsElement.</td></tr>
+ *  <tr><td>0x002040</td> <td>0x0020f0</td> <td>0x000b0</td> <td>General settings see \c TyTCodeplug::GeneralSettingsElement.</td></tr>
+ *  <tr><td>0x0020f0</td> <td>0x002100</td> <td>0x00010</td> <td>Menu settings, see \c TyTCodeplug::MenuSettingsElement.</td></tr>
+ *  <tr><td>0x002100</td> <td>0x002140</td> <td>0x00040</td> <td>Button config, see \c TyTCodeplug::ButtonSettingsElement.</td></tr>
  *  <tr><td>0x002140</td> <td>0x002180</td> <td>0x00040</td> <td>Reserved, filled with 0xff.</td></tr>
- *  <tr><td>0x002180</td> <td>0x0059c0</td> <td>0x03840</td> <td>50 Text messages @ 0x120 bytes each, see @c UV390Codeplug::message_t.</td></tr>
- *  <tr><td>0x0059c0</td> <td>0x005a70</td> <td>0x000b0</td> <td>Privacy keys, see @c TyTCodeplug::EncryptionElement.</td></tr>
- *  <tr><td>0x005a50</td> <td>0x005f60</td> <td>0x00510</td> <td>Emergency Systems, see @c TyTCodeplug::EmergencySystemElement.</td></td>
+ *  <tr><td>0x002180</td> <td>0x0059c0</td> <td>0x03840</td> <td>50 Text messages @ 0x120 bytes each, see \c UV390Codeplug::message_t.</td></tr>
+ *  <tr><td>0x0059c0</td> <td>0x005a70</td> <td>0x000b0</td> <td>Privacy keys, see \c TyTCodeplug::EncryptionElement.</td></tr>
+ *  <tr><td>0x005a50</td> <td>0x005f60</td> <td>0x00510</td> <td>Emergency Systems, see \c TyTCodeplug::EmergencySystemElement.</td></td>
  *  <tr><td>0x005f60</td> <td>0x00ec20</td> <td>0x08cc0</td> <td>Reserved, filled with 0xff.</td></td>
- *  <tr><td>0x00ec20</td> <td>0x0149e0</td> <td>0x05dc0</td> <td>250 RX Group lists @ 0x60 bytes each, see @c TyTCodeplug::GroupListElement.</td></tr>
- *  <tr><td>0x0149e0</td> <td>0x018860</td> <td>0x03e80</td> <td>250 Zones @ 0x40 bytes each, see @c TyTCodeplug::ZoneElement.</td></tr>
- *  <tr><td>0x018860</td> <td>0x01edf0</td> <td>0x06590</td> <td>250 Scanlists @ 0x68 bytes each, see @c TyTCodeplug::ScanListElement.</td></tr>
- *  <tr><td>0x01edf0</td> <td>0x02ef00</td> <td>0x10110</td> <td>Reserved, filled with @c 0xff. </td></tr>
- *  <tr><td>0x02ef00</td> <td>0x02ef40</td> <td>0x00040</td> <td>VFO A channel, see @c TyTCodeplug::VFOChannelElement.</td></tr>
- *  <tr><td>0x02ef40</td> <td>0x02ef80</td> <td>0x00040</td> <td>VFO B channel, see @c TyTCodeplug::VFOChannelElement.</td></tr>
- *  <tr><td>0x02ef80</td> <td>0x02f000</td> <td>0x00080</td> <td>Reserved, filled with @c 0xff. </td></tr>
- *  <tr><td>0x02f000</td> <td>0x02f010</td> <td>0x00010</td> <td>Boot settings, see @c TyTCodeplug::BootSettingsElement.</td></tr>
- *  <tr><td>0x02f010</td> <td>0x031000</td> <td>0x01ff0</td> <td>Reserved, filled with @c 0xff. </td></tr>
- *  <tr><td>0x031000</td> <td>0x03eac0</td> <td>0x0dac0</td> <td>250 Zone-extensions @ 0xe0 bytes each, see @c TyTCodeplug::ZoneExtElement.</td></tr>
- *  <tr><td>0x03eac0</td> <td>0x03ec40</td> <td>0x00180</td> <td>Reserved, filled with @c 0xff. </td></tr>
- *  <tr><td>0x03ec40</td> <td>0x03ed40</td> <td>0x00100</td> <td>16 GPS systems @ 0x10 bytes each, see @c TyTCodeplug::GPSSystemElement.</td></tr>
- *  <tr><td>0x03ed40</td> <td>0x040000</td> <td>0x012c0</td> <td>Reserved, filled with @c 0xff. </td></tr>
+ *  <tr><td>0x00ec20</td> <td>0x0149e0</td> <td>0x05dc0</td> <td>250 RX Group lists @ 0x60 bytes each, see \c TyTCodeplug::GroupListElement.</td></tr>
+ *  <tr><td>0x0149e0</td> <td>0x018860</td> <td>0x03e80</td> <td>250 Zones @ 0x40 bytes each, see \c TyTCodeplug::ZoneElement.</td></tr>
+ *  <tr><td>0x018860</td> <td>0x01edf0</td> <td>0x06590</td> <td>250 Scanlists @ 0x68 bytes each, see \c TyTCodeplug::ScanListElement.</td></tr>
+ *  <tr><td>0x01edf0</td> <td>0x02ef00</td> <td>0x10110</td> <td>Reserved, filled with \c 0xff. </td></tr>
+ *  <tr><td>0x02ef00</td> <td>0x02ef40</td> <td>0x00040</td> <td>VFO A channel, see \c TyTCodeplug::VFOChannelElement.</td></tr>
+ *  <tr><td>0x02ef40</td> <td>0x02ef80</td> <td>0x00040</td> <td>VFO B channel, see \c TyTCodeplug::VFOChannelElement.</td></tr>
+ *  <tr><td>0x02ef80</td> <td>0x02f000</td> <td>0x00080</td> <td>Reserved, filled with \c 0xff. </td></tr>
+ *  <tr><td>0x02f000</td> <td>0x02f010</td> <td>0x00010</td> <td>Boot settings, see \c TyTCodeplug::BootSettingsElement.</td></tr>
+ *  <tr><td>0x02f010</td> <td>0x031000</td> <td>0x01ff0</td> <td>Reserved, filled with \c 0xff. </td></tr>
+ *  <tr><td>0x031000</td> <td>0x03eac0</td> <td>0x0dac0</td> <td>250 Zone-extensions @ 0xe0 bytes each, see \c TyTCodeplug::ZoneExtElement.</td></tr>
+ *  <tr><td>0x03eac0</td> <td>0x03ec40</td> <td>0x00180</td> <td>Reserved, filled with \c 0xff. </td></tr>
+ *  <tr><td>0x03ec40</td> <td>0x03ed40</td> <td>0x00100</td> <td>16 GPS systems @ 0x10 bytes each, see \c TyTCodeplug::GPSSystemElement.</td></tr>
+ *  <tr><td>0x03ed40</td> <td>0x040000</td> <td>0x012c0</td> <td>Reserved, filled with \c 0xff. </td></tr>
  *  <tr><th colspan="4">Second segment 0x110000-0x1a0000</th></tr>
- *  <tr><td>0x110000</td> <td>0x13ee00</td> <td>0x2ee00</td> <td>3000 Channels @ 0x40 bytes each, see @c TyTCodeplug::ChannelElement.</td></tr>
- *  <tr><td>0x13ee00</td> <td>0x140000</td> <td>0x01200</td> <td>Reserved, filled with @c 0xff. </td></tr>
- *  <tr><td>0x140000</td> <td>0x197e40</td> <td>0x57e40</td> <td>10000 Contacts @ 0x24 bytes each, see @c TyTCodeplug::ContactElement.</td></tr>
- *  <tr><td>0x197e40</td> <td>0x1a0000</td> <td>0x081c0</td> <td>Reserved, filled with @c 0xff. </td></tr>
+ *  <tr><td>0x110000</td> <td>0x13ee00</td> <td>0x2ee00</td> <td>3000 Channels @ 0x40 bytes each, see \c TyTCodeplug::ChannelElement.</td></tr>
+ *  <tr><td>0x13ee00</td> <td>0x140000</td> <td>0x01200</td> <td>Reserved, filled with \c 0xff. </td></tr>
+ *  <tr><td>0x140000</td> <td>0x197e40</td> <td>0x57e40</td> <td>10000 Contacts @ 0x24 bytes each, see \c TyTCodeplug::ContactElement.</td></tr>
+ *  <tr><td>0x197e40</td> <td>0x1a0000</td> <td>0x081c0</td> <td>Reserved, filled with \c 0xff. </td></tr>
  * </table>
  *
- * @ingroup uv390 */
+ * \ingroup uv390 */
 class UV390Codeplug : public TyTCodeplug
 {
   Q_OBJECT
 
 public:
-  /** Extends the @c TyTCodeplug::ChannelElement for the TyT MD-UV390 and Retevis RT3S.
+  /** Extends the \c TyTCodeplug::ChannelElement for the TyT MD-UV390 and Retevis RT3S.
    *
    * Memory layout of encoded channel:
-   * @verbinclude uv390_channel.txt */
+   * \verbinclude uv390_channel.txt */
   class ChannelElement: public TyTCodeplug::ChannelElement
   {
   public:
@@ -69,9 +69,9 @@ public:
      * This radio has a feature that allows to disable radios remotely by sending a specific tone.
      * Certainly not a feature used in ham-radio. */
     enum TurnOffFreq {
-      TURNOFF_NONE = 3,             ///< Turn-off disabled. Default!
-      TURNOFF_259_2HZ = 0,          ///< Turn-off on 259.2Hz tone.
-      TURNOFF_55_2HZ = 1            ///< Turn-off on 55.2Hz tone.
+      TURNOFF_NONE = 3,		/*!< Turn-off disabled. Default! */
+      TURNOFF_259_2HZ = 0,		/*!< Turn-off on 259.2Hz tone. */
+      TURNOFF_55_2HZ = 1		/*!< Turn-off on 55.2Hz tone. */
     };
 
 
@@ -106,22 +106,22 @@ public:
     /** Sets the power of this channel. */
     virtual void setPower(Channel::Power pwr);
 
-    /** Returns @c true if the channel allows interruption enabled. */
+    /** Returns \c true if the channel allows interruption enabled. */
     virtual bool allowInterrupt() const;
     /** Enables/disables interruption for this channel. */
     virtual void enableAllowInterrupt(bool enable);
 
-    /** Returns @c true if the channel has dual-capacity direct mode enabled. */
+    /** Returns \c true if the channel has dual-capacity direct mode enabled. */
     virtual bool dualCapacityDirectMode() const;
     /** Enables/disables dual-capacity direct mode for this channel. */
     virtual void enableDualCapacityDirectMode(bool enable);
 
-    /** Retruns @c true if the radio acts as the leader for this DCDM channel. */
+    /** Retruns \c true if the radio acts as the leader for this DCDM channel. */
     virtual bool leaderOrMS() const;
     /** Enables/disables this radio to be the leader for this DCDM channel. */
     virtual void enableLeaderOrMS(bool enable);
 
-    /** Constructs a generic @c Channel object from the codeplug channel. */
+    /** Constructs a generic \c Channel object from the codeplug channel. */
     virtual Channel *toChannelObj() const;
     /** Initializes this codeplug channel from the given generic configuration. */
     virtual void fromChannelObj(const Channel *c, Context &ctx);
@@ -153,11 +153,11 @@ public:
   };
 
   /** Extended zone data.
-   * The zone definition @c ZoneElement contains only a single set of 16 channels. For each zone
+   * The zone definition \c ZoneElement contains only a single set of 16 channels. For each zone
    * definition, there is a zone extension which extends a zone to zwo sets of 64 channels each.
    *
    * Memory layout of encoded zone extension:
-   * @verbinclude uv390_zoneext.txt */
+   * \verbinclude uv390_zoneext.txt */
   class ZoneExtElement: public Codeplug::Element
   {
   protected:
@@ -188,11 +188,11 @@ public:
     virtual bool linkZoneObj(Zone *zone, Context &ctx);
   };
 
-  /** Extends the common @c TyTCodeplug::GeneralSettings to implement the MD-UV390 specific
+  /** Extends the common \c TyTCodeplug::GeneralSettings to implement the MD-UV390 specific
    * settings.
    *
    * Memory layout of the settings (size 0x???? bytes):
-   * @verbinclude uv390_settings.txt */
+   * \verbinclude uv390_settings.txt */
   class GeneralSettingsElement: public TyTCodeplug::GeneralSettingsElement
   {
   protected:
@@ -218,35 +218,35 @@ public:
     /** Sets the transmit mode. */
     virtual void setTransmitMode(TransmitMode mode);
 
-    /** Returns @c true, if the speech synthesis is enabled. */
+    /** Returns \c true, if the speech synthesis is enabled. */
     virtual bool channelVoiceAnnounce() const;
     /** Enables/disables the speech synthesis. */
     virtual void enableChannelVoiceAnnounce(bool enable);
 
-    /** Returns @c true, if keypad tones are enabled. */
+    /** Returns \c true, if keypad tones are enabled. */
     virtual bool keypadTones() const;
     /** Enables/disables the keypad tones. */
     virtual void enableKeypadTones(bool enable);
 
-    /** Returns @c true, if VFO A is in channel mode. */
+    /** Returns \c true, if VFO A is in channel mode. */
     virtual bool channelModeA() const;
     /** Enables/disables the channel mode for VFO A. */
     virtual void enableChannelModeA(bool enable);
-    /** Returns @c true, if VFO B is in channel mode. */
+    /** Returns \c true, if VFO B is in channel mode. */
     virtual bool channelModeB() const;
     /** Enables/disables the channel mode for VFO B. */
     virtual void enableChannelModeB(bool enable);
 
-    /** Returns @c true, if the radio is in channel (and not VFO) mode. */
+    /** Returns \c true, if the radio is in channel (and not VFO) mode. */
     virtual bool channelMode() const;
     /** Enable/disable channel mode. */
     virtual void enableChannelMode(bool enable);
 
-    /** Returns @c true if group-call match is enabled. */
+    /** Returns \c true if group-call match is enabled. */
     virtual bool groupCallMatch() const;
     /** Enables/disables group-call match. */
     virtual void enableGroupCallMatch(bool enable);
-    /** Returns @c true if private-call match is enabled. */
+    /** Returns \c true if private-call match is enabled. */
     virtual bool privateCallMatch() const;
     /** Enables/disables private-call match. */
     virtual void enablePrivateCallMatch(bool enable);
@@ -260,7 +260,7 @@ public:
     virtual unsigned channelHangTime() const;
     /** Sets the channel hang time. */
     virtual void setChannelHangTime(unsigned dur);
-    /** Returns @c true, if public zone is enabled. */
+    /** Returns \c true, if public zone is enabled. */
     virtual bool publicZone() const;
     /** Enables/disables public zone. */
     virtual void enablePublicZone(bool enable);
@@ -275,7 +275,7 @@ public:
     /** Sets the microphone gain. */
     virtual void setMICLevel(unsigned val);
 
-    /** If @c true, radio ID editing is enabled. */
+    /** If \c true, radio ID editing is enabled. */
     virtual bool editRadioID() const;
     /** Enable/disable radio ID editing. */
     virtual void enableEditRadioID(bool enable);
@@ -289,7 +289,7 @@ public:
   /** Represents the boot-time settings (selected zone and channels) within the UV390 code-plug.
    *
    * Memory layout of encoded boot settings:
-   * @verbinclude uv390_bootsettings.txt */
+   * \verbinclude uv390_bootsettings.txt */
   class BootSettingsElement: public Codeplug::Element
   {
   protected:
@@ -321,7 +321,7 @@ public:
   /** Represents the menu settings (selected zone and channels) within the UV390 code-plug.
    *
    * Memory layout of encoded boot settings:
-   * @verbinclude uv390_menusettings.txt */
+   * \verbinclude uv390_menusettings.txt */
   class MenuSettingsElement: public TyTCodeplug::MenuSettingsElement
   {
   protected:
@@ -334,45 +334,45 @@ public:
 
     void clear();
 
-    /** Returns @c true if GPS settings menu is enabled. */
+    /** Returns \c true if GPS settings menu is enabled. */
     virtual bool gpsSettings() const;
     /** Enables/disables GPS settings menu. */
     virtual void enableGPSSettings(bool enable);
-    /** Returns @c true if recording menu is enabled. */
+    /** Returns \c true if recording menu is enabled. */
     virtual bool recording() const;
     /** Enables/disables recording menu. */
     virtual void enableRecording(bool enable);
 
-    /** Returns @c true if group call match menu is enabled. */
+    /** Returns \c true if group call match menu is enabled. */
     virtual bool groupCallMatch() const;
     /** Enables/disables group call match menu. */
     virtual void enableGroupCallMatch(bool enable);
-    /** Returns @c true if private call match menu is enabled. */
+    /** Returns \c true if private call match menu is enabled. */
     virtual bool privateCallMatch() const;
     /** Enables/disables private call match menu. */
     virtual void enablePrivateCallMatch(bool enable);
-    /** Returns @c true if menu hang time item is enabled. */
+    /** Returns \c true if menu hang time item is enabled. */
     virtual bool menuHangtimeItem() const;
     /** Enables/disables menu hang time item. */
     virtual void enableMenuHangtimeItem(bool enable);
-    /** Returns @c true if TX mode menu is enabled. */
+    /** Returns \c true if TX mode menu is enabled. */
     virtual bool txMode() const;
     /** Enables/disables TX mode menu. */
     virtual void enableTXMode(bool enable);
-    /** Returns @c true if zone settings menu is enabled. */
+    /** Returns \c true if zone settings menu is enabled. */
     virtual bool zoneSettings() const;
     /** Enables/disables zone settings menu. */
     virtual void enableZoneSettings(bool enable);
-    /** Returns @c true if new zone menu is enabled. */
+    /** Returns \c true if new zone menu is enabled. */
     virtual bool newZone() const;
     /** Enables/disables new zone menu. */
     virtual void enableNewZone(bool enable);
 
-    /** Returns @c true if edit zone menu is enabled. */
+    /** Returns \c true if edit zone menu is enabled. */
     virtual bool editZone() const;
     /** Enables/disables edit zone menu. */
     virtual void enableEditZone(bool enable);
-    /** Returns @c true if new scan list menu is enabled. */
+    /** Returns \c true if new scan list menu is enabled. */
     virtual bool newScanList() const;
     /** Enables/disables new scan list menu. */
     virtual void enableNewScanList(bool enable);

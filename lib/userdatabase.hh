@@ -18,13 +18,13 @@
  * to help assemble private call contacts and to assemble so-called CSV callsign databases, that
  * are programmable to some DMR radios to resolve the DMR ID to callsigns and names.
  *
- * @ingroup util */
+ * \ingroup util */
 class UserDatabase : public QAbstractTableModel
 {
 	Q_OBJECT
 
 public:
-	/** Represents the user information within the @c UserDatabase. */
+	/** Represents the user information within the \c UserDatabase. */
 	class User {
 	public:
 		/** Empty constructor. */
@@ -32,7 +32,7 @@ public:
 		/** Constructs entry from JSON object. */
 		User(const QJsonObject &obj);
 
-		/** Returns @c true if the entry is valid. */
+		/** Returns \c true if the entry is valid. */
 		inline bool isValid() const { return 0 != id; }
 
     /** Returns the "distance" between this user and the given ID. */
@@ -59,7 +59,7 @@ public:
 public:
 	/** Constructs the user-database.
 	 * The constructor will download the current user database if it was not downloaded yet or
-	 * if the downloaded version is older than @c updatePeriodDays days. */
+	 * if the downloaded version is older than \c updatePeriodDays days. */
 	explicit UserDatabase(unsigned updatePeriodDays=30, QObject *parent=nullptr);
 
   /** Returns the number of users. */
@@ -75,7 +75,7 @@ public:
   /** Sorts users with respect to the minimum distance to the given IDs. */
   void sortUsers(const QSet<unsigned> &ids);
 
-	/** Returns the user with index @c idx. */
+	/** Returns the user with index \c idx. */
   const User &user(int idx) const;
 
 	/** Returns the age of the database in days. */

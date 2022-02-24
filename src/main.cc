@@ -1,36 +1,45 @@
 #include "application.hh"
+
 #include <QFile>
 #include <QTextStream>
 #include <QMainWindow>
 #include <QMessageBox>
+
 #include "logger.hh"
 #include "settings.hh"
+
 #include <stdio.h>
 #include <QSplashScreen>
 
-int main(int argc, char *argv[])
-{
-  QTextStream out(stderr);
-  Logger::get().addHandler(new StreamLogHandler(out));
 
-  Application app(argc, argv);
 
-  //QPixmap pixmap(":/icons/splash.png");
-  //QSplashScreen splash(pixmap);
-  //splash.show();
-  //app.processEvents();
+int main(int argc, char *argv[]) {
+	QTextStream out(stderr);
+	Logger::get().addHandler(new StreamLogHandler(out));
 
-  QMainWindow *mainWindow = app.mainWindow();
-  mainWindow->show();
-  //splash.finish(mainWindow);
+	Application app(argc, argv);
 
-  Settings settings;
-  if (settings.showDisclaimer()) {
-    app.showAbout();
-    settings.setShowDisclaimer(false);
-  }
+#if 0
+	QPixmap pixmap(":/icons/splash.png");
+	QSplashScreen splash(pixmap);
+	splash.show();
+	app.processEvents();
+#endif
 
-  app.exec();
+	QMainWindow *mainWindow = app.mainWindow();
+	mainWindow->show();
 
-  return 0;
+#if 0
+	splash.finish(mainWindow);
+#endif
+
+	Settings settings;
+	if (settings.showDisclaimer()) {
+		app.showAbout();
+		settings.setShowDisclaimer(false);
+	}
+
+	app.exec();
+
+	return (0);
 }

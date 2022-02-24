@@ -11,7 +11,7 @@ class AnalogChannel;
 
 
 /** Base class of the positioning systems, that is APRS and DMR position reporting system.
- * @ingroup conf */
+ * \ingroup conf */
 class PositioningSystem: public ConfigObject
 {
   Q_OBJECT
@@ -23,11 +23,11 @@ class PositioningSystem: public ConfigObject
 
 protected:
   /** Hidden constructor.
-   * The PositioningSystem class is not instantiated directly, use either @c GPSSystem or
-   * @c APRSSystem instead.
-   * @param name Specifies the name of the system.
-   * @param period Specifies the auto-update period in seconds.
-   * @param parent Specified the QObject parent object. */
+   * The PositioningSystem class is not instantiated directly, use either \c GPSSystem or
+   * \c APRSSystem instead.
+   * \param name Specifies the name of the system.
+   * \param period Specifies the auto-update period in seconds.
+   * \param parent Specified the QObject parent object. */
   explicit PositioningSystem(const QString &name, unsigned period=300, QObject *parent=nullptr);
 
 public:
@@ -36,7 +36,7 @@ public:
 
   using ConfigObject::serialize;
 
-  /** Returns @c true if this positioning system is an instance of the specified system. */
+  /** Returns \c true if this positioning system is an instance of the specified system. */
   template <class System>
   bool is() const { return nullptr != dynamic_cast<const System *>(this); }
 
@@ -74,7 +74,7 @@ protected:
 
 
 /** This class represents a GPS signalling system within the codeplug.
- * @ingroup conf */
+ * \ingroup conf */
 class GPSSystem : public PositioningSystem
 {
   Q_OBJECT
@@ -89,21 +89,21 @@ public:
    *
    * Please note, that a contact needs to be set in order for the GPS system to work properly.
    *
-   * @param name Specifies the name of the GPS system.
-   * @param contact Specifies the contact, the GPS position is send to.
-   * @param revertChannel Specifies the channel on which the GPS is send on. If @c nullptr, the GPS
+   * \param name Specifies the name of the GPS system.
+   * \param contact Specifies the contact, the GPS position is send to.
+   * \param revertChannel Specifies the channel on which the GPS is send on. If \c nullptr, the GPS
    * data is send on the current channel.
-   * @param period Specifies the update period in seconds.
-   * @param parent Specifies the QObject parent object. */
+   * \param period Specifies the update period in seconds.
+   * \param parent Specifies the QObject parent object. */
   GPSSystem(const QString &name, DigitalContact *contact=nullptr,
             DigitalChannel *revertChannel = nullptr, unsigned period=300,
             QObject *parent = nullptr);
 
   YAML::Node serialize(const Context &context);
 
-  /** Returns @c true if a contact is set for the GPS system. */
+  /** Returns \c true if a contact is set for the GPS system. */
   bool hasContact() const;
-  /** Returns the destination contact for the GPS information or @c nullptr if not set. */
+  /** Returns the destination contact for the GPS information or \c nullptr if not set. */
   DigitalContact *contactObj() const;
   /** Sets the destination contact for the GPS information. */
   void setContact(DigitalContact *contactObj);
@@ -112,10 +112,10 @@ public:
   /** Returns the reference to the destination contact. */
   DigitalContactReference *contact();
 
-  /** Returns @c true if the GPS system has a revert channel set. If not, the GPS information will
+  /** Returns \c true if the GPS system has a revert channel set. If not, the GPS information will
    * be send on the current channel. */
   bool hasRevertChannel() const;
-  /** Returns the revert channel for the GPS information or @c nullptr if not set. */
+  /** Returns the revert channel for the GPS information or \c nullptr if not set. */
   DigitalChannel *revertChannel() const;
   /** Sets the revert channel for the GPS information to be send on. */
   void setRevertChannel(DigitalChannel *channel);
@@ -133,7 +133,7 @@ protected:
 
 
 /** Represents an APRS system wihtin the generic config.
- * @ingroup conf */
+ * \ingroup conf */
 class APRSSystem: public PositioningSystem
 {
   Q_OBJECT
@@ -146,10 +146,10 @@ class APRSSystem: public PositioningSystem
   Q_PROPERTY(QString message READ message WRITE setMessage)
 
 public:
-  static const unsigned PRIMARY_TABLE   = (0<<8);   ///< Primary icon table flag.
-  static const unsigned SECONDARY_TABLE = (1<<8);   ///< Secondary icon table flag.
-  static const unsigned TABLE_MASK      = (3<<8);   ///< Bitmask for icon table flags.
-  static const unsigned ICON_MASK       = 0x7f;     ///< Bitmask for the icon table entry.
+  static const unsigned PRIMARY_TABLE   = (0<<8);		/*!< Primary icon table flag. */
+  static const unsigned SECONDARY_TABLE = (1<<8);		/*!< Secondary icon table flag. */
+  static const unsigned TABLE_MASK      = (3<<8);		/*!< Bitmask for icon table flags. */
+  static const unsigned ICON_MASK       = 0x7f;		/*!< Bitmask for the icon table entry. */
 
   /** All implemented APRS icons. */
   enum class Icon {
@@ -168,20 +168,20 @@ public:
 
 public:
   /** Constructor for a APRS system.
-   * @param name Specifies the name of the APRS system. This property is just a name, it does not
+   * \param name Specifies the name of the APRS system. This property is just a name, it does not
    *        affect the radio configuration.
-   * @param channel Specifies the transmit channel. This property is not optional. A transmit
+   * \param channel Specifies the transmit channel. This property is not optional. A transmit
    *        channel must be specified to obtain a working APRS system.
-   * @param dest Specifies the destination call, APRS messages are send to. Usually 'WIDE3' is a
+   * \param dest Specifies the destination call, APRS messages are send to. Usually 'WIDE3' is a
    *        reasonable setting.
-   * @param destSSID Specifies the destination SSID. Usually 3 is a reasonable choice.
-   * @param src Specifies the source call, usually you call has to be entered here.
-   * @param srcSSID The source SSID, usually 7 is a reasonable choice of handhelds.
-   * @param path Specifies the APRS path string.
-   * @param icon Specifies the map icon to send.
-   * @param message An optional message to send.
-   * @param period Specifies the auto-update period in seconds.
-   * @param parent Specifies the QObject parent object. */
+   * \param destSSID Specifies the destination SSID. Usually 3 is a reasonable choice.
+   * \param src Specifies the source call, usually you call has to be entered here.
+   * \param srcSSID The source SSID, usually 7 is a reasonable choice of handhelds.
+   * \param path Specifies the APRS path string.
+   * \param icon Specifies the map icon to send.
+   * \param message An optional message to send.
+   * \param period Specifies the auto-update period in seconds.
+   * \param parent Specifies the QObject parent object. */
   explicit APRSSystem(const QString &name, AnalogChannel *channel, const QString &dest, unsigned destSSID,
                       const QString &src, unsigned srcSSID,
                       const QString &path="", Icon icon=Icon::Jogger,
@@ -251,7 +251,7 @@ protected:
 
 
 /** The list of positioning systems.
- * @ingroup conf */
+ * \ingroup conf */
 class PositioningSystems: public ConfigObjectList
 {
 Q_OBJECT
@@ -279,7 +279,7 @@ public:
   /** Returns the index of the specified APRS system. That index is only within all
    * defined APRS systems. */
   int indexOfAPRSSys(APRSSystem *gps) const;
-  /** Returns the APRS system at index @c idx.
+  /** Returns the APRS system at index \c idx.
    * That index is only within all defined APRS systems. */
   APRSSystem *aprsSystem(int idx) const;
 };

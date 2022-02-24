@@ -1,5 +1,5 @@
-#ifndef SETTINGS_HH
-#define SETTINGS_HH
+#ifndef SETTINGS_HH_
+#define SETTINGS_HH_
 
 #include <QSettings>
 #include <QDateTime>
@@ -11,110 +11,110 @@
 #include "codeplug.hh"
 
 
-class Settings : public QSettings
-{
+
+class Settings: public QSettings {
 	Q_OBJECT
 
 public:
-	explicit Settings(QObject *parent=nullptr);
+	explicit Settings(QObject *parent = nullptr);
 
 	QDateTime lastRepeaterUpdate() const;
-	bool repeaterUpdateNeeded(unsigned period=7) const;
+	bool repeaterUpdateNeeded(unsigned period = 7) const;
 	void repeaterUpdated();
 
-  bool queryPosition() const;
-  void setQueryPosition(bool enable);
+	bool queryPosition() const;
+	void setQueryPosition(bool enable);
 
-  QString locator() const;
-  void setLocator(const QString &locator);
-  QGeoCoordinate position() const;
+	QString locator() const;
+	void setLocator(const QString &locator);
+	QGeoCoordinate position() const;
 
-  bool updateCodeplug() const;
-  void setUpdateCodeplug(bool update);
+	bool updateCodeplug() const;
+	void setUpdateCodeplug(bool update);
 
-  bool autoEnableGPS() const;
-  void setAutoEnableGPS(bool enable);
+	bool autoEnableGPS() const;
+	void setAutoEnableGPS(bool enable);
 
-  bool autoEnableRoaming() const;
-  void setAutoEnableRoaming(bool enable);
+	bool autoEnableRoaming() const;
+	void setAutoEnableRoaming(bool enable);
 
-  QDir lastDirectory() const;
-  void setLastDirectoryDir(const QDir &dir);
+	QDir lastDirectory() const;
+	void setLastDirectoryDir(const QDir &dir);
 
-  Codeplug::Flags codePlugFlags() const;
+	Codeplug::Flags codePlugFlags() const;
 
-  bool limitCallSignDBEntries() const;
-  void setLimitCallSignDBEnties(bool enable);
-  unsigned maxCallSignDBEntries() const;
-  void  setMaxCallSignDBEntries(unsigned max);
-  bool selectUsingUserDMRID();
-  void setSelectUsingUserDMRID(bool enable);
-  QSet<unsigned> callSignDBPrefixes();
-  void setCallSignDBPrefixes(const QSet<unsigned> &prefixes);
+	bool limitCallSignDBEntries() const;
+	void setLimitCallSignDBEnties(bool enable);
+	unsigned maxCallSignDBEntries() const;
+	void  setMaxCallSignDBEntries(unsigned max);
+	bool selectUsingUserDMRID();
+	void setSelectUsingUserDMRID(bool enable);
+	QSet<unsigned> callSignDBPrefixes();
+	void setCallSignDBPrefixes(const QSet<unsigned> &prefixes);
 
-  bool ignoreVerificationWarning() const;
-  void setIgnoreVerificationWarning(bool ignore);
+	bool ignoreVerificationWarning() const;
+	void setIgnoreVerificationWarning(bool ignore);
 
-  bool ignoreFrequencyLimits() const;
-  void setIgnoreFrequencyLimits(bool ignore);
+	bool ignoreFrequencyLimits() const;
+	void setIgnoreFrequencyLimits(bool ignore);
 
-  bool showCommercialFeatures() const;
-  void setShowCommercialFeatures(bool show);
+	bool showCommercialFeatures() const;
+	void setShowCommercialFeatures(bool show);
 
-  bool hideGSPNote() const;
-  void setHideGPSNote(bool hide);
+	bool hideGSPNote() const;
+	void setHideGPSNote(bool hide);
 
-  bool hideRoamingNote() const;
-  void setHideRoamingNote(bool hide);
+	bool hideRoamingNote() const;
+	void setHideRoamingNote(bool hide);
 
-  bool hideZoneNote() const;
-  void setHideZoneNote(bool hide);
+	bool hideZoneNote() const;
+	void setHideZoneNote(bool hide);
 
-  bool showDisclaimer() const;
-  void setShowDisclaimer(bool show);
+	bool showDisclaimer() const;
+	void setShowDisclaimer(bool show);
 
-  QByteArray mainWindowState() const;
-  void setMainWindowState(const QByteArray &state);
+	QByteArray mainWindowState() const;
+	void setMainWindowState(const QByteArray &state);
 
-  QByteArray radioIdListHeaderState() const;
-  void setRadioIdListHeaderState(const QByteArray &state);
+	QByteArray radioIdListHeaderState() const;
+	void setRadioIdListHeaderState(const QByteArray &state);
 
-  QByteArray contactListHeaderState() const;
-  void setContactListHeaderState(const QByteArray &state);
+	QByteArray contactListHeaderState() const;
+	void setContactListHeaderState(const QByteArray &state);
 
-  QByteArray channelListHeaderState() const;
-  void setChannelListHeaderState(const QByteArray &state);
+	QByteArray channelListHeaderState() const;
+	void setChannelListHeaderState(const QByteArray &state);
 
-  QByteArray positioningHeaderState() const;
-  void setPositioningHeaderState(const QByteArray &state);
+	QByteArray positioningHeaderState() const;
+	void setPositioningHeaderState(const QByteArray &state);
 
-  bool isUpdated() const;
-  void markUpdated();
+	bool isUpdated() const;
+	void markUpdated();
 };
 
 
-class SettingsDialog: public QDialog, private Ui::SettingsDialog
-{
-  Q_OBJECT
+class SettingsDialog: public QDialog, private Ui::SettingsDialog {
+	Q_OBJECT
 
 public:
-  explicit SettingsDialog(QWidget *parent=nullptr);
+	explicit SettingsDialog(QWidget *parent = nullptr);
 
-  bool systemLocationEnabled() const;
-  QString locator() const;
+	bool systemLocationEnabled() const;
+	QString locator() const;
 
 public slots:
-  void accept();
+	void accept();
 
 protected slots:
-  void onSystemLocationToggled(bool enable);
-  void positionUpdated(const QGeoPositionInfo &info);
-  void onIgnoreFrequencyLimitsSet(bool enabled);
-  void onDBLimitToggled(bool enable);
-  void onUseUserDMRIdToggled(bool enable);
+	void onSystemLocationToggled(bool enable);
+	void positionUpdated(const QGeoPositionInfo &info);
+	void onIgnoreFrequencyLimitsSet(bool enabled);
+	void onDBLimitToggled(bool enable);
+	void onUseUserDMRIdToggled(bool enable);
 
 protected:
-  QGeoPositionInfoSource *_source;
+	QGeoPositionInfoSource *_source;
 };
 
-#endif // SETTINGS_HH
+
+#endif	/* !SETTINGS_HH_ */

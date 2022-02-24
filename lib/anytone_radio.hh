@@ -1,12 +1,12 @@
-/** @defgroup anytone Anytone Radios
+/** \defgroup anytone Anytone Radios
  * Base classes for all anytone radios.
  *
  * Anytone radios share a lot of common formats and interfaces.
- * Consequently there are base-classes for radio interfaces (@c AnytoneInterface), codeplugs
- * (@c AnytoneCodeplug) and radios (@c AnytoneRadio). This helps to keep the burden of implementing
+ * Consequently there are base-classes for radio interfaces (\c AnytoneInterface), codeplugs
+ * (\c AnytoneCodeplug) and radios (\c AnytoneRadio). This helps to keep the burden of implementing
  * the support for each radio at a minimum.
  *
- * @ingroup dsc */
+ * \ingroup dsc */
 #ifndef __ANYTONE_RADIO_HH__
 #define __ANYTONE_RADIO_HH__
 
@@ -29,7 +29,7 @@
  * settings within the radio that are not defined within the common codeplug config while keeping
  * the amount of data being read from and written to the device small.
  *
- * @ingroup anytone */
+ * \ingroup anytone */
 class AnytoneRadio: public Radio
 {
   Q_OBJECT
@@ -81,7 +81,7 @@ protected:
   QString _name;
   /** The interface to the radio. */
   AnytoneInterface *_dev;
-  /** If @c true, the codeplug on the radio gets updated upon upload. If @c false, it gets
+  /** If \c true, the codeplug on the radio gets updated upon upload. If \c false, it gets
    * overridden. */
   Codeplug::Flags _codeplugFlags;
   /** The generic configuration. */

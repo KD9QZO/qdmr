@@ -38,14 +38,14 @@ class GPSSystem;
  * using wireshark to monitor the USB communication between the windows CPS (running in a vritual
  * box) and the device. The latter makes the reverse-engineering particularily cumbersome.
  *
- * @section d878uvcpl Codeplug structure within radio
+ * \section d878uvcpl Codeplug structure within radio
  * <table>
  *  <tr><th colspan="3">Channels</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>024C1500</td> <td>000200</td>      <td>Bitmap of 4000 channels, default 0x00,
  *    0x00 padded.</td></tr>
  *  <tr><td>00800000</td> <td>max. 002000</td> <td>Channel bank 0 of upto 128 channels,
- *    see @c D878UVCodeplug::ChannelElement 64 b each. </td></tr>
+ *    see \c D878UVCodeplug::ChannelElement 64 b each. </td></tr>
  *  <tr><td>00802000</td> <td>max, 002000</td> <td>Unknown data, Maybe extended channel information
  *    for channel bank 0? It is of exactly the same size as the channel bank 0. Mostly 0x00, a
  *    few 0xff.</td></tr>
@@ -55,9 +55,9 @@ class GPSSystem;
  *  <tr><td>00FC0000</td> <td>max. 000800</td> <td>Channel bank 32, upto 32 channels.</td></tr>
  *  <tr><td>00FC2000</td> <td>max. 000800</td> <td>Unknown data, realted to CH bank 32.</td></tr>
  *  <tr><td>00FC0800</td> <td>000040</td>      <td>VFO A settings,
- *    see @c D878UVCodeplug::ChannelElement.</td></tr>
+ *    see \c D878UVCodeplug::ChannelElement.</td></tr>
  *  <tr><td>00FC0840</td> <td>000040</td>      <td>VFO B settings,
- *    see @c D878UVCodeplug::ChannelElement.</td></tr>
+ *    see \c D878UVCodeplug::ChannelElement.</td></tr>
  *  <tr><td>00FC2800</td> <td>000080</td>      <td>Unknonw data, related to VFO A+B?
  *    It is of exactly the same size as the two VFO channels. Mostly 0x00, a few 0xff. Same pattern
  *    as the unknown data associated with channel banks.</td></tr>
@@ -76,11 +76,11 @@ class GPSSystem;
  *  <tr><td>01042000</td> <td>000020</td>      <td>Roaming channel bitmask, up to 250 bits,
  *    0-padded, default 0.</td></tr>
  *  <tr><td>01040000</td> <td>max. 0x1f40</td> <td>Optional up to 250 roaming channels, of 32b each.
- *    See @c D878UVCodeplug::RoamingChannelElement for details.</td></tr>
+ *    See \c D878UVCodeplug::RoamingChannelElement for details.</td></tr>
  *  <tr><td>01042080</td> <td>000010</td>      <td>Roaming zone bitmask, up to 64 bits, 0-padded,
  *    default 0.</td></tr>
  *  <tr><td>01043000</td> <td>max. 0x2000</td> <td>Optional up to 64 roaming zones, of 128b each.
- *    See @c D878UVCodeplug::RoamingZoneElement for details.</td></tr>
+ *    See \c D878UVCodeplug::RoamingZoneElement for details.</td></tr>
  *
  *  <tr><th colspan="3">Contacts</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
@@ -89,19 +89,19 @@ class GPSSystem;
  *  <tr><td>02640000</td> <td>000500</td>      <td>Contact bitmap, 10000 bit, inverted,
  *    default 0xff, 0x00 padded.</td></tr>
  *  <tr><td>02680000</td> <td>max. 0f4240</td> <td>10000 contacts,
- *    see @c AnytoneCodeplug::ContactElement. As each contact is 100b, they do not align with the
+ *    see \c AnytoneCodeplug::ContactElement. As each contact is 100b, they do not align with the
  *    16b blocks being transferred to the device. Hence contacts are organized internally in groups
  *    of 4 contacts forming a "bank". </td></tr>
  *  <tr><td>04340000</td> <td>max. 013880</td> <td>DMR ID to contact index map,
- *    see @c AnytoneCodeplug::ContactMapElement. Sorted by ID, empty entries set to
- *    @c 0xffffffffffffffff.</td>
+ *    see \c AnytoneCodeplug::ContactMapElement. Sorted by ID, empty entries set to
+ *    \c 0xffffffffffffffff.</td>
  *
  *  <tr><th colspan="3">Analog Contacts</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>02900000</td> <td>000080</td>      <td>Index list of valid ananlog contacts.</td></tr>
  *  <tr><td>02900100</td> <td>000080</td>      <td>Bytemap for 128 analog contacts.</td></tr>
  *  <tr><td>02940000</td> <td>max. 000180</td> <td>128 analog contacts.
- *    See @c AnytoneCodeplug::DTMFContactElement. As each analog contact is 24b, they do not align with
+ *    See \c AnytoneCodeplug::DTMFContactElement. As each analog contact is 24b, they do not align with
  *    the 16b transfer block-size. Hence analog contacts are internally organized in groups of 2. </td></tr>
  *
  *  <tr><th colspan="3">RX Group Lists</th></tr>
@@ -109,7 +109,7 @@ class GPSSystem;
  *  <tr><td>025C0B10</td> <td>000020</td>      <td>Bitmap of 250 RX group lists,
  *    default/padding 0x00.</td></tr>
  *  <tr><td>02980000</td> <td>max. 000120</td> <td>Grouplist 0,
- *    see @c AnytoneCodeplug::GroupListElement.</td></tr>
+ *    see \c AnytoneCodeplug::GroupListElement.</td></tr>
  *  <tr><td>02980200</td> <td>max. 000120</td> <td>Grouplist 1</td></tr>
  *  <tr><td>...</td>      <td>...</td>         <td>...</td></tr>
  *  <tr><td>0299f200</td> <td>max. 000120</td> <td>Grouplist 250</td></tr>
@@ -118,7 +118,7 @@ class GPSSystem;
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>024C1340</td> <td>000020</td> <td>Bitmap of 250 scan lists.</td></tr>
  *  <tr><td>01080000</td> <td>000090</td> <td>Bank 0, Scanlist 1,
- *    see @c AnytoneCodeplug::ScanListElement. </td></tr>
+ *    see \c AnytoneCodeplug::ScanListElement. </td></tr>
  *  <tr><td>01080200</td> <td>000090</td> <td>Bank 0, Scanlist 2</td></tr>
  *  <tr><td>...</td>      <td>...</td>    <td>...</td></tr>
  *  <tr><td>01081E00</td> <td>000090</td> <td>Bank 0, Scanlist 16</td></tr>
@@ -132,32 +132,32 @@ class GPSSystem;
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>024C1320</td> <td>000020</td>      <td>Bitmap of 250 radio IDs.</td></tr>
  *  <tr><td>02580000</td> <td>max. 001f40</td> <td>250 Radio IDs.
- *    See @c AnytoneCodeplug::RadioIDElement.</td></tr>
+ *    See \c AnytoneCodeplug::RadioIDElement.</td></tr>
  *
  *  <tr><th colspan="3">GPS/APRS</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>02501000</td> <td>000040</td> <td>APRS settings,
- *    see @c D878UVCodeplug::AnalogAPRSSettingsElement.</td>
+ *    see \c D878UVCodeplug::AnalogAPRSSettingsElement.</td>
  *  <tr><td>02501040</td> <td>000060</td> <td>APRS settings,
- *    see @c D878UVCodeplug::DMRAPRSSystemsElement.</td>
+ *    see \c D878UVCodeplug::DMRAPRSSystemsElement.</td>
  *  <tr><td>025010A0</td> <td>000060</td> <td>Extended APRS settings,
- *    see @c D878UVCodeplug::AnalogAPRSSettingsExtensionElement.</tr>
+ *    see \c D878UVCodeplug::AnalogAPRSSettingsExtensionElement.</tr>
  *  <tr><td>02501200</td> <td>000040</td> <td>APRS Text, upto 60 chars ASCII, 0-padded.</td>
  *  <tr><td>02501800</td> <td>000100</td> <td>APRS-RX settings list up to 32 entries, 8b each.
- *    See @c D878UVCodeplug::AnalogAPRSRXEntryElement.</td></tr>
+ *    See \c D878UVCodeplug::AnalogAPRSRXEntryElement.</td></tr>
  *
  *  <tr><th colspan="3">General Settings</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>02500000</td> <td>000100</td> <td>General settings,
- *    see @c D878UVCodeplug::GeneralSettingsElement.</td></tr>
+ *    see \c D878UVCodeplug::GeneralSettingsElement.</td></tr>
  *  <tr><td>02500100</td> <td>000400</td> <td>Zone A & B channel list.</td></tr>
  *  <tr><td>02500500</td> <td>000100</td> <td>DTMF list</td></tr>
  *  <tr><td>02500600</td> <td>000030</td> <td>Power on settings,
- *    see @c AnytoneCodeplug::BootSettingsElement.</td></tr>
+ *    see \c AnytoneCodeplug::BootSettingsElement.</td></tr>
  *  <tr><td>02501280</td> <td>000030</td> <td>General settings extension 1,
- *    see @c D878UVCodeplug::AnalogAPRSRXEntryElement.</td></tr>
+ *    see \c D878UVCodeplug::AnalogAPRSRXEntryElement.</td></tr>
  *  <tr><td>02501400</td> <td>000100</td> <td>General settings extension 2,
- *    see @c D878UVCodeplug::AnalogAPRSSettingsExtensionElement.</td></tr>
+ *    see \c D878UVCodeplug::AnalogAPRSSettingsExtensionElement.</td></tr>
  *  <tr><td>024C2000</td> <td>0003F0</td> <td>List of 250 auto-repeater offset frequencies.
  *    32bit little endian frequency in 10Hz. I.e., 600kHz = 60000.
  *    Default 0x00000000, 0x00 padded.</td></tr>
@@ -165,11 +165,11 @@ class GPSSystem;
  *  <tr><th colspan="3">Messages</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>01640000</td> <td>max. 000100</td> <td>Some kind of linked list of messages.
- *    See @c AnytoneCodeplug::MessageListElement. Each entry has a size of 0x10.</td></tr>
+ *    See \c AnytoneCodeplug::MessageListElement. Each entry has a size of 0x10.</td></tr>
  *  <tr><td>01640800</td> <td>000090</td>      <td>Bytemap of up to 100 valid messages.
  *    0x00=valid, 0xff=invalid, remaining 46b set to 0x00.</td></tr>
  *  <tr><td>02140000</td> <td>max. 000800</td> <td>Bank 0, Messages 1-8.
- *    Each message consumes 0x100b. See @c AnytoneCodeplug::MessageElement. </td></tr>
+ *    Each message consumes 0x100b. See \c AnytoneCodeplug::MessageElement. </td></tr>
  *  <tr><td>02180000</td> <td>max. 000800</td> <td>Bank 1, Messages 9-16</td></tr>
  *  <tr><td>...</td>      <td>...</td>         <td>...</td></tr>
  *  <tr><td>02440000</td> <td>max. 000800</td> <td>Bank 12, Messages 97-100</td></tr>
@@ -177,28 +177,28 @@ class GPSSystem;
  *  <tr><th colspan="3">Hot Keys</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>025C0000</td> <td>000100</td> <td>4 analog quick-call settings.
- *    See @c AnytoneCodeplug::AnalogQuickCallElement.</td>
+ *    See \c AnytoneCodeplug::AnalogQuickCallElement.</td>
  *  <tr><td>025C0B00</td> <td>000010</td> <td>Status message bitmap.</td>
  *  <tr><td>025C0100</td> <td>000400</td> <td>Upto 32 status messages.
  *    Length unknown, offset 0x20. ASCII 0x00 terminated and padded.</td>
  *  <tr><td>025C0500</td> <td>000360</td> <td>18 hot-key settings, see
- *    @c AnytoneCodeplug::HotKeyElement</td></tr>
+ *    \c AnytoneCodeplug::HotKeyElement</td></tr>
  *
  *  <tr><th colspan="3">Encryption</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>024C1700</td> <td>000040</td> <td>32 Encryption IDs, 0-based, 16bit big-endian.</td></tr>
  *  <tr><td>024C1800</td> <td>000500</td> <td>32 DMR-Encryption keys,
- *    see @c D868UVCodeplug::dmr_encryption_key_t,
+ *    see \c D868UVCodeplug::dmr_encryption_key_t,
  *    40b each.</td></tr>
  *  <tr><td>024C4000</td> <td>004000</td> <td>Upto 256 AES encryption keys.
- *    See @c D878UVCodeplug::AESEncryptionKeyElement.</td></tr>
+ *    See \c D878UVCodeplug::AESEncryptionKeyElement.</td></tr>
  *
  *  <tr><th colspan="3">Misc</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>024C1400</td> <td>000020</td> <td>Alarm setting,
- *    see @c AnytoneCodeplug::AlarmSettingElement.</td></tr>
+ *    see \c AnytoneCodeplug::AlarmSettingElement.</td></tr>
  *  <tr><td>024C1440</td> <td>000030</td> <td>Digital alarm settings extension,
- *    see @c AnytoneCodeplug::DigitalAlarmExtensionElement. </td></tr>
+ *    see \c AnytoneCodeplug::DigitalAlarmExtensionElement. </td></tr>
  *
  *  <tr><th colspan="3">FM Broadcast</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
@@ -223,7 +223,7 @@ class GPSSystem;
  *
  * </table>
  *
- * @ingroup d878uv */
+ * \ingroup d878uv */
 class D878UVCodeplug : public D868UVCodeplug
 {
   Q_OBJECT
@@ -231,28 +231,28 @@ class D878UVCodeplug : public D868UVCodeplug
 public:
   /** Represents the actual channel encoded within the binary D878UV codeplug.
    *
-   * This class implements only the differences to the generic @c AnytoneCodeplug::ChannelElement
+   * This class implements only the differences to the generic \c AnytoneCodeplug::ChannelElement
    * (i.e. D868UVII).
    *
    * Memmory layout of encoded channel (size 0x40 bytes):
-   * @verbinclude d878uv_channel.txt
+   * \verbinclude d878uv_channel.txt
    */
   class ChannelElement: public D868UVCodeplug::ChannelElement
   {
   public:
     /** Possible PTT ID settings. */
     enum class PTTId {
-      Off = 0,                    ///< Never send PTT-ID.
-      Start = 1,                  ///< Send PTT-ID at start.
-      End = 2,                    ///< Send PTT-ID at end.
-      Both = 3                    ///< Send PTT-ID at start and end.
+      Off = 0,		/*!< Never send PTT-ID. */
+      Start = 1,		/*!< Send PTT-ID at start. */
+      End = 2,		/*!< Send PTT-ID at end. */
+      Both = 3		/*!< Send PTT-ID at start and end. */
     };
 
     /** Defines all possible APRS PTT settings. */
     enum class APRSPTT {
-      Off   = 0,                  ///< Do not send APRS on PTT.
-      Start = 1,                  ///< Send APRS at start of transmission.
-      End   = 2                   ///< Send APRS at end of transmission.
+      Off   = 0,		/*!< Do not send APRS on PTT. */
+      Start = 1,		/*!< Send APRS at start of transmission. */
+      End   = 2		/*!< Send APRS at end of transmission. */
     };
 
   protected:
@@ -271,21 +271,21 @@ public:
     /** Sets the PTT ID setting. */
     virtual void setPTTIDSetting(PTTId ptt);
 
-    /** Returns @c true if roaming is enabled. */
+    /** Returns \c true if roaming is enabled. */
     virtual bool roamingEnabled() const;
     /** Enables/disables roaming. */
     virtual void enableRoaming(bool enable);
     // Moved
-    /** Returns @c true if the data ACK is enabled. */
+    /** Returns \c true if the data ACK is enabled. */
     bool dataACK() const;
     /** Enables/disables data ACK. */
     void enableDataACK(bool enable);
 
-    /** Returns @c true if digital APRS transmission is enabled. */
+    /** Returns \c true if digital APRS transmission is enabled. */
     bool txDigitalAPRS() const;
     /** Enables/disables digital APRS transmission. */
     void enableTXDigitalAPRS(bool enable);
-    /** Returns @c true if the analog APRS reporing (TX) is enabled. */
+    /** Returns \c true if the analog APRS reporing (TX) is enabled. */
     virtual bool txAnalogAPRS() const;
     /** Enables/disables analog APRS reporting. */
     virtual void enableTXAnalogAPRS(bool enable);
@@ -320,29 +320,29 @@ public:
   /** Represents the general config of the radio within the D878UV binary codeplug.
    *
    * This class implements only the differences to the generic
-   * @c AnytonCodeplug::GeneralSettingsElement.
+   * \c AnytonCodeplug::GeneralSettingsElement.
    *
    * Binary encoding of the general settings (size 0x0100 bytes):
-   * @verbinclude d878uv_generalsettings.txt */
+   * \verbinclude d878uv_generalsettings.txt */
   class GeneralSettingsElement: public AnytoneCodeplug::GeneralSettingsElement
   {
   public:
     /** Possible UI languages. */
     enum class Language {
-      English = 0,                 ///< UI Language is english.
-      German  = 1                  ///< UI Language is german.
+      English = 0,		/*!< UI Language is english. */
+      German  = 1		/*!< UI Language is german. */
     };
 
     /** Possible VFO frequency steps. */
     enum FreqStep {
-      FREQ_STEP_2_5kHz = 0,             ///< 2.5kHz
-      FREQ_STEP_5kHz = 1,               ///< 5kHz
-      FREQ_STEP_6_25kHz = 2,            ///< 6.25kHz
-      FREQ_STEP_10kHz = 3,              ///< 10kHz
-      FREQ_STEP_12_5kHz = 4,            ///< 12.5kHz
-      FREQ_STEP_20kHz = 5,              ///< 20kHz
-      FREQ_STEP_25kHz = 6,              ///< 25kHz
-      FREQ_STEP_50kHz = 7               ///< 50kHz
+      FREQ_STEP_2_5kHz = 0,		/*!< 2.5kHz */
+      FREQ_STEP_5kHz = 1,		/*!< 5kHz */
+      FREQ_STEP_6_25kHz = 2,		/*!< 6.25kHz */
+      FREQ_STEP_10kHz = 3,		/*!< 10kHz */
+      FREQ_STEP_12_5kHz = 4,		/*!< 12.5kHz */
+      FREQ_STEP_20kHz = 5,		/*!< 20kHz */
+      FREQ_STEP_25kHz = 6,		/*!< 25kHz */
+      FREQ_STEP_50kHz = 7		/*!< 50kHz */
     };
 
     /** All possible STE types. */
@@ -437,7 +437,7 @@ public:
     virtual unsigned wfmChannelIndex() const;
     /** Sets the wide-FM (broadcast) channel index. */
     virtual void setWFMChannelIndex(unsigned idx);
-    /** Returns @c true if the WFM RX is in VFO mode. */
+    /** Returns \c true if the WFM RX is in VFO mode. */
     virtual bool wfmVFOEnabled() const;
     /** Enables/disables VFO mode for WFM RX. */
     virtual void enableWFMVFO(bool enable);
@@ -447,12 +447,12 @@ public:
     /** Sets the DTMF tone duration in ms. */
     virtual void setDTMFToneDuration(unsigned ms);
 
-    /** Returns @c true if "man down" is enabled. */
+    /** Returns \c true if "man down" is enabled. */
     virtual bool manDown() const;
     /** Enables/disables "man down". */
     virtual void enableManDown(bool enable);
 
-    /** Returns @c true if WFM monitor is enabled. */
+    /** Returns \c true if WFM monitor is enabled. */
     virtual bool wfmMonitor() const;
     /** Enables/disables WFM monitor. */
     virtual void enableWFMMonitor(bool enable);
@@ -462,20 +462,20 @@ public:
     /** Sets the TBST frequency. */
     virtual void setTBSTFrequency(TBSTFrequency freq);
 
-    /** Returns @c true if the "pro mode" is enabled. */
+    /** Returns \c true if the "pro mode" is enabled. */
     virtual bool proMode() const;
     /** Enables/disables the "pro mode". */
     virtual void enableProMode(bool enable);
 
-    /** Retuns @c true if the own ID is filtered in call lists. */
+    /** Retuns \c true if the own ID is filtered in call lists. */
     virtual bool filterOwnID() const;
     /** Enables/disables filter of own ID in call lists. */
     virtual void enableFilterOwnID(bool enable);
-    /** Retuns @c true remote stun/kill is enabled. */
+    /** Retuns \c true remote stun/kill is enabled. */
     virtual bool remoteStunKill() const;
     /** Enables/disables remote stun/kill. */
     virtual void enableRemoteStunKill(bool enable);
-    /** Retuns @c true remote monitor is enabled. */
+    /** Retuns \c true remote monitor is enabled. */
     virtual bool remoteMonitor() const;
     /** Enables/disables remote monitor. */
     virtual void enableRemoteMonitor(bool enable);
@@ -484,15 +484,15 @@ public:
     virtual SlotMatch monitorSlotMatch() const;
     /** Sets the monitor slot match. */
     virtual void setMonitorSlotMatch(SlotMatch match);
-    /** Retuns @c true if the monitor matches color code. */
+    /** Retuns \c true if the monitor matches color code. */
     virtual bool monitorColorCodeMatch() const;
     /** Enables/disables monitor color code match. */
     virtual void enableMonitorColorCodeMatch(bool enable);
-    /** Retuns @c true if the monitor matches ID. */
+    /** Retuns \c true if the monitor matches ID. */
     virtual bool monitorIDMatch() const;
     /** Enables/disables monitor ID match. */
     virtual void enableMonitorIDMatch(bool enable);
-    /** Retuns @c true if the monitor holds the time slot. */
+    /** Retuns \c true if the monitor holds the time slot. */
     virtual bool monitorTimeSlotHold() const;
     /** Enables/disables monitor time slot hold. */
     virtual void enableMonitorTimeSlotHold(bool enable);
@@ -506,12 +506,12 @@ public:
     /** Sets the analog call hold in seconds. */
     virtual void setAnalogCallHold(unsigned sec);
 
-    /** Returns @c true if the GPS range reporting is enabled. */
+    /** Returns \c true if the GPS range reporting is enabled. */
     virtual bool gpsRangReporting() const;
     /** Enables/disables GPS range reporting. */
     virtual void enableGPSRangeReporting(bool enable);
 
-    /** Returns @c true if the call channel is maintained. */
+    /** Returns \c true if the call channel is maintained. */
     virtual bool maintainCallChannel() const;
     /** Enables/disables maintaining the call channel. */
     virtual void enableMaintainCalLChannel(bool enable);
@@ -530,11 +530,11 @@ public:
     /** Sets the GPS ranging interval in seconds. */
     virtual void setGPSRangingInterval(unsigned sec);
 
-    /** Returns @c true if the channel number is displayed. */
+    /** Returns \c true if the channel number is displayed. */
     virtual bool displayChannelNumber() const;
     /** Enables/disables display of channel number. */
     virtual void enableDisplayChannelNumber(bool enable);
-    /** Returns @c true if the contact is displayed. */
+    /** Returns \c true if the contact is displayed. */
     virtual bool displayContact() const;
     /** Enables/disables display of contact. */
     virtual void enableDisplayContact(bool enable);
@@ -544,7 +544,7 @@ public:
     /** Sets the auto roaming period in minutes. */
     virtual void setAutoRoamPeriod(unsigned min);
 
-    /** Returns @c true if the key-tone level is adjustable. */
+    /** Returns \c true if the key-tone level is adjustable. */
     virtual bool keyToneLevelAdjustable() const;
     /** Returns the key-tone level (0=adjustable). */
     virtual unsigned keyToneLevel() const;
@@ -558,24 +558,24 @@ public:
     /** Sets the display color for callsigns. */
     virtual void setCallDisplayColor(Color color);
 
-    /** Returns @c true if the GPS units are imperical. */
+    /** Returns \c true if the GPS units are imperical. */
     virtual bool gpsUnitsImperial() const;
     /** Enables/disables imperical GPS units. */
     virtual void enableGPSUnitsImperial(bool enable);
 
-    /** Returns @c true if the knob is locked. */
+    /** Returns \c true if the knob is locked. */
     virtual bool knobLock() const;
     /** Enables/disables the knob lock. */
     virtual void enableKnobLock(bool enable);
-    /** Returns @c true if the keypad is locked. */
+    /** Returns \c true if the keypad is locked. */
     virtual bool keypadLock() const;
     /** Enables/disables the keypad lock. */
     virtual void enableKeypadLock(bool enable);
-    /** Returns @c true if the sidekeys are locked. */
+    /** Returns \c true if the sidekeys are locked. */
     virtual bool sidekeysLock() const;
     /** Enables/disables the sidekeys lock. */
     virtual void enableSidekeysLock(bool enable);
-    /** Returns @c true if the "professional" key is locked. */
+    /** Returns \c true if the "professional" key is locked. */
     virtual bool keyLockForced() const;
     /** Enables/disables the "professional" key lock. */
     virtual void enableKeyLockForced(bool enable);
@@ -594,7 +594,7 @@ public:
     /** Sets the standby image color. */
     virtual void setStandbyImageColor(Color color);
 
-    /** Returns @c true if the last heard is shown. */
+    /** Returns \c true if the last heard is shown. */
     virtual bool showLastHeard() const;
     /** Enables/disables the knob lock. */
     virtual void enableShowLastHeard(bool enable);
@@ -627,7 +627,7 @@ public:
     /** Sets the auto-repeater direction for VFO B. */
     virtual void setAutoRepeaterDirectionB(AutoRepDir dir);
 
-    /** Returns @c true if a boot channel is set. */
+    /** Returns \c true if a boot channel is set. */
     virtual bool defaultChannel() const;
     /** Enables/disables the boot channel. */
     virtual void enableDefaultChannel(bool enable);
@@ -639,7 +639,7 @@ public:
     virtual unsigned defaultZoneIndexB() const;
     /** Sets the default zone (0-based) for VFO B. */
     virtual void setDefaultZoneIndexB(unsigned idx);
-    /** Returns @c true if the default channel for VFO A is VFO. */
+    /** Returns \c true if the default channel for VFO A is VFO. */
     virtual bool defaultChannelAIsVFO() const;
     /** Returns the default channel index for VFO A.
      * Must be within default zone. If 0xff, default channel is VFO. */
@@ -648,7 +648,7 @@ public:
     virtual void setDefaultChannelAIndex(unsigned idx);
     /** Sets the default channel for VFO A to be VFO. */
     virtual void setDefaultChannelAToVFO();
-    /** Returns @c true if the default channel for VFO B is VFO. */
+    /** Returns \c true if the default channel for VFO B is VFO. */
     virtual bool defaultChannelBIsVFO() const;
     /** Returns the default channel index for VFO B.
      * Must be within default zone. If 0xff, default channel is VFO. */
@@ -663,7 +663,7 @@ public:
     /** Sets the default roaming zone index. */
     virtual void setDefaultRoamingZoneIndex(unsigned idx);
 
-    /** Returns @c true if repeater range check is enabled. */
+    /** Returns \c true if repeater range check is enabled. */
     virtual bool repeaterRangeCheck() const;
     /** Enables/disables repeater range check. */
     virtual void enableRepeaterRangeCheck(bool enable);
@@ -686,12 +686,12 @@ public:
     /** Sets the backlight duration during TX in seconds. */
     virtual void setBacklightTXDuration(unsigned sec);
 
-    /** Retruns @c true if the "separate display" is enabled. */
+    /** Retruns \c true if the "separate display" is enabled. */
     virtual bool separateDisplay() const;
     /** Enables/disables "separate display. */
     virtual void enableSeparateDisplay(bool enable);
 
-    /** Retruns @c true if keep caller is enabled. */
+    /** Retruns \c true if keep caller is enabled. */
     virtual bool keepCaller() const;
     /** Enables/disables keep caller. */
     virtual void enableKeepCaller(bool enable);
@@ -701,7 +701,7 @@ public:
     /** Sets the channel name color. */
     virtual void setChannelNameColor(Color color);
 
-    /** Retruns @c true if repeater check notification is enabled. */
+    /** Retruns \c true if repeater check notification is enabled. */
     virtual bool repeaterCheckNotification() const;
     /** Enables/disables repeater check notification. */
     virtual void enableRepeaterCheckNotification(bool enable);
@@ -711,7 +711,7 @@ public:
     /** Sets the backlight duration during RX in seconds. */
     virtual void setBacklightRXDuration(unsigned sec);
 
-    /** Retruns @c true if roaming is enabled. */
+    /** Retruns \c true if roaming is enabled. */
     virtual bool roaming() const;
     /** Enables/disables repeater check notification. */
     virtual void enableRoaming(bool enable);
@@ -726,11 +726,11 @@ public:
     /** Sets the number of repeater check notifications. */
     virtual void setRepeaterCheckNumNotifications(unsigned num);
 
-    /** Retruns @c true if boot GPS check is enabled. */
+    /** Retruns \c true if boot GPS check is enabled. */
     virtual bool bootGPSCheck() const;
     /** Enables/disables boot GPS check. */
     virtual void enableBootGPSCheck(bool enable);
-    /** Retruns @c true if boot reset is enabled. */
+    /** Retruns \c true if boot reset is enabled. */
     virtual bool bootReset() const;
     /** Enables/disables boot reset. */
     virtual void enableBootReset(bool enable);
@@ -742,7 +742,7 @@ public:
   /** Implements the GPS message settings (part of general settings).
    *
    * Memory layout of the encoded GPS message (size 0x0030 bytes):
-   * @verbinclude d878uv_gpsmessage.txt */
+   * \verbinclude d878uv_gpsmessage.txt */
   class GPSMessageElement: public Element
   {
   protected:
@@ -770,7 +770,7 @@ public:
   /** General settings extension element for the D878UV.
    *
    * Memory representation of the encoded settings element (size 0x100 bytes):
-   * @verbinclude d878uv_generalsettingsextension.txt */
+   * \verbinclude d878uv_generalsettingsextension.txt */
   class GeneralSettingsExtensionElement: public Element
   {
   public:
@@ -800,7 +800,7 @@ public:
     /** Resets the settings. */
     void clear();
 
-    /** Retruns @c true if talker alias is send. */
+    /** Retruns \c true if talker alias is send. */
     virtual bool sendTalkerAlias() const;
     /** Enables/disables sending talker alias. */
     virtual void enableSendTalkerAlias(bool enable);
@@ -815,7 +815,7 @@ public:
     /** Sets the talker alias encoding. */
     virtual void setTalkerAliasEncoding(TalkerAliasEncoding encoding);
 
-    /** Returns @c true if the auto repeater UHF 2 offset index is set. */
+    /** Returns \c true if the auto repeater UHF 2 offset index is set. */
     virtual bool hasAutoRepeaterUHF2OffsetIndex() const;
     /** Retunrs the index of the UHF 2 offset frequency. */
     virtual unsigned autoRepeaterUHF2OffsetIndex() const;
@@ -824,7 +824,7 @@ public:
     /** Clears the auto repeater UHF 2 offset frequency index. */
     virtual void clearAutoRepeaterUHF2OffsetIndex();
 
-    /** Returns @c true if the auto repeater VHF 2 offset index is set. */
+    /** Returns \c true if the auto repeater VHF 2 offset index is set. */
     virtual bool hasAutoRepeaterVHF2OffsetIndex() const;
     /** Retunrs the index of the VHF 2 offset frequency. */
     virtual unsigned autoRepeaterVHF2OffsetIndex() const;
@@ -864,7 +864,7 @@ public:
   /** Represents the APRS settings within the binary D878UV codeplug.
    *
    * Memmory layout of APRS settings (size 0x0040 bytes):
-   * @verbinclude d878uv_aprssetting.txt
+   * \verbinclude d878uv_aprssetting.txt
    */
   class AnalogAPRSSettingsElement: public Element
   {
@@ -899,7 +899,7 @@ public:
     /** Sets the manual TX interval in seconds. */
     virtual void setManualTXInterval(unsigned sec);
 
-    /** Returns @c true if the auto transmit is enabled. */
+    /** Returns \c true if the auto transmit is enabled. */
     virtual bool autoTX() const;
     /** Retruns the auto TX interval in seconds. */
     virtual unsigned autoTXInterval() const;
@@ -908,7 +908,7 @@ public:
     /** Disables auto tx. */
     virtual void disableAutoTX();
 
-    /** Returns @c true if a fixed location is send. */
+    /** Returns \c true if a fixed location is send. */
     virtual bool fixedLocationEnabled() const;
     /** Returns the fixed location send. */
     virtual QGeoCoordinate fixedLocation() const;
@@ -963,7 +963,7 @@ public:
   /** Represents an extension to the APRS settings.
    *
    * Memmory layout of APRS settings (0x60byte):
-   * @verbinclude d878uv_aprssettingext.txt */
+   * \verbinclude d878uv_aprssettingext.txt */
   class AnalogAPRSSettingsExtensionElement: public Element
   {
   protected:
@@ -982,39 +982,39 @@ public:
     /** Sets the fixed altitude in meter. */
     virtual void setFixedAltitude(unsigned m);
 
-    /** Returns @c true if the report position flag is set. */
+    /** Returns \c true if the report position flag is set. */
     virtual bool reportPosition() const;
     /** Enables/disables report position flag. */
     virtual void enableReportPosition(bool enable);
-    /** Returns @c true if the report Mic-E flag is set. */
+    /** Returns \c true if the report Mic-E flag is set. */
     virtual bool reportMicE() const;
     /** Enables/disables report Mic-E flag. */
     virtual void enableReportMicE(bool enable);
-    /** Returns @c true if the report object flag is set. */
+    /** Returns \c true if the report object flag is set. */
     virtual bool reportObject() const;
     /** Enables/disables report object flag. */
     virtual void enableReportObject(bool enable);
-    /** Returns @c true if the report item flag is set. */
+    /** Returns \c true if the report item flag is set. */
     virtual bool reportItem() const;
     /** Enables/disables report item flag. */
     virtual void enableReportItem(bool enable);
-    /** Returns @c true if the report message flag is set. */
+    /** Returns \c true if the report message flag is set. */
     virtual bool reportMessage() const;
     /** Enables/disables report message flag. */
     virtual void enableReportMessage(bool enable);
-    /** Returns @c true if the report weather flag is set. */
+    /** Returns \c true if the report weather flag is set. */
     virtual bool reportWeather() const;
     /** Enables/disables report weather flag. */
     virtual void enableReportWeather(bool enable);
-    /** Returns @c true if the report NMEA flag is set. */
+    /** Returns \c true if the report NMEA flag is set. */
     virtual bool reportNMEA() const;
     /** Enables/disables report NMEA flag. */
     virtual void enableReportNMEA(bool enable);
-    /** Returns @c true if the report status flag is set. */
+    /** Returns \c true if the report status flag is set. */
     virtual bool reportStatus() const;
     /** Enables/disables report status flag. */
     virtual void enableReportStatus(bool enable);
-    /** Returns @c true if the report other flag is set. */
+    /** Returns \c true if the report other flag is set. */
     virtual bool reportOther() const;
     /** Enables/disables report other flag. */
     virtual void enableReportOther(bool enable);
@@ -1023,7 +1023,7 @@ public:
   /** Represents an analog APRS RX entry.
    *
    * Memmory layout of analog APRS RX entry (size 0x0008 bytes):
-   * @verbinclude d878uv_aprsrxentry.txt */
+   * \verbinclude d878uv_aprsrxentry.txt */
   class AnalogAPRSRXEntryElement: public Element
   {
   protected:
@@ -1049,7 +1049,7 @@ public:
   /** Represents the 8 DMR-APRS systems within the binary codeplug.
    *
    * Memmory layout of encoded DMR-APRS systems (size 0x0060 bytes):
-   * @verbinclude d878uv_dmraprssystems.txt */
+   * \verbinclude d878uv_dmraprssystems.txt */
   class DMRAPRSSystemsElement: public Element
   {
   protected:
@@ -1063,7 +1063,7 @@ public:
     /** Resets the systems. */
     void clear();
 
-    /** Retunrs @c true if the channel points to the current/selected channel. */
+    /** Retunrs \c true if the channel points to the current/selected channel. */
     virtual bool channelIsSelected(unsigned n) const;
     /** Returns the digital channel index for the n-th system. */
     virtual unsigned channelIndex(unsigned n) const;
@@ -1082,16 +1082,16 @@ public:
     /** Sets the call type for the n-th system. */
     virtual void setCallType(unsigned n, DigitalContact::Type type);
 
-    /** Returns @c true if the n-th system overrides the channel time-slot. */
+    /** Returns \c true if the n-th system overrides the channel time-slot. */
     virtual bool timeSlotOverride(unsigned n);
-    /** Retunrs the time slot if overriden (only valid if @c timeSlot returns true). */
+    /** Retunrs the time slot if overriden (only valid if \c timeSlot returns true). */
     virtual DigitalChannel::TimeSlot timeSlot(unsigned n) const;
     /** Overrides the time slot of the n-th selected channel. */
     virtual void setTimeSlot(unsigned n, DigitalChannel::TimeSlot ts);
     /** Clears the time-slot override. */
     virtual void clearTimeSlotOverride(unsigned n);
 
-    /** Returns @c true if the roaming is enabled. */
+    /** Returns \c true if the roaming is enabled. */
     virtual bool roaming() const;
     /** Enables/disables roaming. */
     virtual void enableRoaming(bool enable);
@@ -1114,7 +1114,7 @@ public:
   /** Implements the binary representation of a roaming channel within the codeplug.
    *
    * Memmory layout of roaming channel (size 0x0020 bytes):
-   * @verbinclude d878uv_roamingchannel.txt */
+   * \verbinclude d878uv_roamingchannel.txt */
   class RoamingChannelElement: public Element
   {
   protected:
@@ -1161,7 +1161,7 @@ public:
   /** Represents a roaming zone within the binary codeplug.
    *
    * Memmory layout of roaming zone (0x80byte):
-   * @verbinclude d878uv_roamingzone.txt */
+   * \verbinclude d878uv_roamingzone.txt */
   class RoamingZoneElement: public Element
   {
   protected:
@@ -1175,7 +1175,7 @@ public:
     /** Clears the roaming zone. */
     void clear();
 
-    /** Returns @c true if the n-th member is set. */
+    /** Returns \c true if the n-th member is set. */
     virtual bool hasMember(unsigned n) const;
     /** Returns the n-th member index. */
     virtual unsigned member(unsigned n) const;
@@ -1191,7 +1191,7 @@ public:
 
     /** Assembles a binary representation of the given RoamingZone instance.*/
     virtual bool fromRoamingZone(RoamingZone *zone, const QHash<DigitalChannel *, unsigned> &map);
-    /** Constructs a @c RoamingZone instance from this configuration. */
+    /** Constructs a \c RoamingZone instance from this configuration. */
     virtual RoamingZone *toRoamingZone() const;
     /** Links the given RoamingZone. */
     virtual bool linkRoamingZone(RoamingZone *zone, const QHash<unsigned, DigitalChannel *> &map);
@@ -1200,7 +1200,7 @@ public:
   /** Represents an AES encryption key.
    *
    * Binary representation of the key (size 0x0040 bytes):
-   * @verbinclude d878uv_aeskey.txt */
+   * \verbinclude d878uv_aeskey.txt */
   class AESEncryptionKeyElement: public Element
   {
   protected:
@@ -1230,7 +1230,7 @@ public:
   /** Encodes some information about the radio and firmware.
    *
    * Binary encoding of the info, size 0x0100 bytes:
-   * @verbinclude d878uv_radioinfo.txt */
+   * \verbinclude d878uv_radioinfo.txt */
   class RadioInfoElement: public Element
   {
   public:
@@ -1267,8 +1267,8 @@ public:
     /** Resets the info. */
     void clear();
 
-    /** Returns @c true if full test is enabled.
-     * @warning Do not enable, may brick device! */
+    /** Returns \c true if full test is enabled.
+     * \warning Do not enable, may brick device! */
     virtual bool fullTest() const;
 
     /** Returns the frequency range. */
@@ -1276,12 +1276,12 @@ public:
     /** Sets the frequency range. */
     virtual void setFrequencyRange(FrequencyRange range);
 
-    /** Returns @c true if "international" is enabled. */
+    /** Returns \c true if "international" is enabled. */
     virtual bool international() const;
     /** Enables/disables "international". */
     virtual void enableInternational(bool enable);
 
-    /** Returns @c true if band select is enabled. */
+    /** Returns \c true if band select is enabled. */
     virtual bool bandSelect() const;
     /** Enables/disables band select. */
     virtual void enableBandSelect(bool enable);

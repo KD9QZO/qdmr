@@ -1,10 +1,10 @@
-/** @defgroup conf Common codeplug configuration
+/** \defgroup conf Common codeplug configuration
  * This module collects all classes that represent the general configuration for all DMR codeplugs.
  *
  * To this end, it aims at covering the important features for ham radio applications but ignoring
  * all features that are more related to "professional" applications of these radios.
  *
- * The central class is @c Config, this class represents a complete configuration a.k.a. codeplug
+ * The central class is \c Config, this class represents a complete configuration a.k.a. codeplug
  * of a radio. It contains all the information being programmed into the radio irrespective of the
  * model and manufacturer. */
 
@@ -32,7 +32,7 @@ class UserDatabase;
  * It contains the description of the contacts, channels, zones, etc. of the codeplug
  * configuration.
  *
- * @ingroup conf */
+ * \ingroup conf */
 class Config : public ConfigObject
 {
 	Q_OBJECT
@@ -41,7 +41,7 @@ public:
   /** Constructs an empty configuration. */
   explicit Config(QObject *parent = nullptr);
 
-  /** Returns @c true if the config was modified, @see modified. */
+  /** Returns \c true if the config was modified, \see modified. */
   bool isModified() const;
   /** Sets the modified flag. */
   void setModified(bool modified);
@@ -69,9 +69,9 @@ public:
   PositioningSystems *posSystems() const;
   /** Returns the list of roaming zones. */
   RoamingZoneList *roaming() const;
-  /** Returns @c true if one of the digital channels has a roaming zone assigned. */
+  /** Returns \c true if one of the digital channels has a roaming zone assigned. */
   bool requiresRoaming() const;
-  /** Returns @c true if one of the channels has a GPS or APRS system assigned. */
+  /** Returns \c true if one of the channels has a GPS or APRS system assigned. */
   bool requiresGPS() const;
 
   /** Clears the complete configuration. */
@@ -90,7 +90,7 @@ protected slots:
   void onConfigModified();
 
 protected:
-  /** If @c true, the configuration was modified. */
+  /** If \c true, the configuration was modified. */
   bool _modified;
   /** Radio wide settings. */
   RadioSettings *_settings;

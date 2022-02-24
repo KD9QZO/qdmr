@@ -5,7 +5,7 @@
 #include <libusb.h>
 
 /** Implements the HID radio interface using libusb.
- * @ingroup rif */
+ * \ingroup rif */
 class HIDevice: public QObject
 {
 	Q_OBJECT
@@ -16,13 +16,13 @@ public:
   /** Destructor. */
 	virtual ~HIDevice();
 
-  /** Returns @c true if the connection is established. */
+  /** Returns \c true if the connection is established. */
 	bool isOpen() const;
-  /** Send command/data to the device and store response in @c rdata.
-   * @param data Pointer to the command/data to send.
-   * @param nbytes The number of bytes to send.
-   * @param rdata Pointer to receive buffer.
-   * @param rlength Size of receive buffer. */
+  /** Send command/data to the device and store response in \c rdata.
+   * \param data Pointer to the command/data to send.
+   * \param nbytes The number of bytes to send.
+   * \param rdata Pointer to receive buffer.
+   * \param rlength Size of receive buffer. */
 	bool hid_send_recv(const unsigned char *data, unsigned nbytes, unsigned char *rdata, unsigned rlength);
 
   /** Close connection to device. */

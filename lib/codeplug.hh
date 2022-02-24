@@ -23,16 +23,16 @@ public:
    * codeplug. */
   class Flags {
   public:
-    /** If @c true, the codeplug will first be downloaded from the device, updated from the
+    /** If \c true, the codeplug will first be downloaded from the device, updated from the
      * abstract config and then written back to the device. This maintains the user-settings
-     * made within the device or manufacturer CPS. If @c false, the code-plug gets overridden
-     * entirely using some default settings. Default @c true. */
+     * made within the device or manufacturer CPS. If \c false, the code-plug gets overridden
+     * entirely using some default settings. Default \c true. */
     bool updateCodePlug;
-    /** If @c true enables GPS when there is a GPS or APRS system defined that is used by any
-     * channel. This may cause automatic transmissions, hence the default is @c false. */
+    /** If \c true enables GPS when there is a GPS or APRS system defined that is used by any
+     * channel. This may cause automatic transmissions, hence the default is \c false. */
     bool autoEnableGPS;
-    /** If @c true enables automatic roaming when there is a roaming zone defined that is used by any
-     * channel. This may cause automatic transmissions, hence the default is @c false. */
+    /** If \c true enables automatic roaming when there is a roaming zone defined that is used by any
+     * channel. This may cause automatic transmissions, hence the default is \c false. */
     bool autoEnableRoaming;
 
     /** Default constructor, enables code-plug update and disables automatic GPS/APRS and roaming. */
@@ -42,13 +42,13 @@ public:
   /** Represents the abstract base class of all codeplug elements. That is a memory region within
    * the codeplug that encodes a specific element. E.g., channels, contacts, zones, etc.
    * This class provies some helper methods to access specific members of the element.
-   * @since 0.9.0 */
+   * \since 0.9.0 */
   class Element
   {
   protected:
     /** Hidden constructor.
-     * @param ptr Specifies the pointer to the element within the codeplug.
-     * @param size Specifies the size of the element in bytes. */
+     * \param ptr Specifies the pointer to the element within the codeplug.
+     * \param size Specifies the size of the element in bytes. */
     Element(uint8_t *ptr, size_t size);
 
   public:
@@ -57,7 +57,7 @@ public:
     /** Destructor. */
     virtual ~Element();
 
-    /** Returns @c true if the pointer is not null. */
+    /** Returns \c true if the pointer is not null. */
     virtual bool isValid() const;
     /** Abstract method to reset the element within the codeplug. Any device specific element
      * should implement this method. */
@@ -154,16 +154,16 @@ public:
     /** Stores a 8-digit (4-byte/32bit) BDC value in little-endian at the given byte-offset. */
     void setBCD8_le(unsigned offset, uint32_t value);
 
-    /** Reads upto @c maxlen ASCII chars at the given byte-offset using @c eos as the string termination char. */
+    /** Reads upto \c maxlen ASCII chars at the given byte-offset using \c eos as the string termination char. */
     QString readASCII(unsigned offset, unsigned maxlen, uint8_t eos=0x00) const;
-    /** Stores upto @c maxlen ASCII chars at the given byte-offset using @c eos as the string termination char.
-     * The stored string gets padded with @c eos to @c maxlen. */
+    /** Stores upto \c maxlen ASCII chars at the given byte-offset using \c eos as the string termination char.
+     * The stored string gets padded with \c eos to \c maxlen. */
     void writeASCII(unsigned offset, const QString &txt, unsigned maxlen, uint8_t eos=0x00);
 
-    /** Reads upto @c maxlen unicode chars at the given byte-offset using @c eos as the string termination char. */
+    /** Reads upto \c maxlen unicode chars at the given byte-offset using \c eos as the string termination char. */
     QString readUnicode(unsigned offset, unsigned maxlen, uint16_t eos=0x0000) const;
-    /** Stores upto @c maxlen unicode chars at the given byte-offset using @c eos as the string termination char.
-     * The stored string gets padded with @c eos to @c maxlen. */
+    /** Stores upto \c maxlen unicode chars at the given byte-offset using \c eos as the string termination char.
+     * The stored string gets padded with \c eos to \c maxlen. */
     void writeUnicode(unsigned offset, const QString &txt, unsigned maxlen, uint16_t eos=0x0000);
 
   protected:
@@ -175,10 +175,10 @@ public:
 
   /** Base class for all codeplug contexts.
    * Each device specific codeplug may extend this class to allow for device specific elements to
-   * be indexed in a separate index. By default tables for @c DigitalContact, @c RXGroupList,
-   * @c Channel, @c Zone and @c ScanList are defined. For any other type, an additional table must
-   * be defined first using @c addTable.
-   * @since 0.9.0 */
+   * be indexed in a separate index. By default tables for \c DigitalContact, \c RXGroupList,
+   * \c Channel, \c Zone and \c ScanList are defined. For any other type, an additional table must
+   * be defined first using \c addTable.
+   * \since 0.9.0 */
   class Context
   {
   public:
@@ -189,10 +189,10 @@ public:
     Config *config() const;
 
     /** Resolves the given index for the specifies element type.
-     * @returns @c nullptr if the index is not defined or the type is unknown. */
+     * \returns \c nullptr if the index is not defined or the type is unknown. */
     ConfigObject *obj(const QMetaObject *elementType, unsigned idx);
     /** Returns the index for the given object.
-     * @returns -1 if no index is associated with the object or its type is unknown. */
+     * \returns -1 if no index is associated with the object or its type is unknown. */
     int index(ConfigObject *obj);
     /** Associates the given object with the given index. */
     bool add(ConfigObject *obj, unsigned idx);
@@ -206,7 +206,7 @@ public:
       return this->obj(&(T::staticMetaObject), idx)->template as<T>();
     }
 
-    /** Returns @c true, if the given index is defined for the specified type. */
+    /** Returns \c true, if the given index is defined for the specified type. */
     template <class T>
     bool has(unsigned idx) {
       return nullptr != this->obj(&(T::staticMetaObject), idx)->template as<T>();
@@ -223,7 +223,7 @@ public:
     };
 
   protected:
-    /** Returns @c true if a table is defined for the given type. */
+    /** Returns \c true if a table is defined for the given type. */
     bool hasTable(const QMetaObject *obj) const;
     /** Returns a reference to the table for the given type. */
     Table &getTable(const QMetaObject *obj);
@@ -249,10 +249,10 @@ public:
    * contacts etc.). */
   virtual bool index(Config *config, Context &ctx) const = 0;
 
-  /** Decodes a binary codeplug to the given abstract configuration @c config.
+  /** Decodes a binary codeplug to the given abstract configuration \c config.
    * This must be implemented by the device-specific codeplug. */
 	virtual bool decode(Config *config) = 0;
-  /** Encodes a given abstract configuration (@c config) to the device specific binary code-plug.
+  /** Encodes a given abstract configuration (\c config) to the device specific binary code-plug.
    * This must be implemented by the device-specific codeplug. */
   virtual bool encode(Config *config, const Flags &flags=Flags()) = 0;
 };

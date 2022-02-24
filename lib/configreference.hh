@@ -12,7 +12,7 @@ class ScanList;
 
 /** Implements a reference to a config object.
  * This class is only used to implement the automatic generation/parsing of the YAML codeplug files.
- * @ingroup conf */
+ * \ingroup conf */
 class ConfigObjectReference: public QObject
 {
   Q_OBJECT
@@ -22,15 +22,15 @@ protected:
   ConfigObjectReference(const QMetaObject &elementType=ConfigObject::staticMetaObject, QObject *parent = nullptr);
 
 public:
-  /** Returns @c true if the reference is null.
+  /** Returns \c true if the reference is null.
    * That is, if there is no object referenced. */
   bool isNull() const;
 
   /** Resets the reference.
-   * Same as @c set(nullptr). */
+   * Same as \c set(nullptr). */
   virtual void clear();
   /** Sets the reference.
-   * If set to @c nullptr, the reference gets cleared. */
+   * If set to \c nullptr, the reference gets cleared. */
   virtual bool set(ConfigObject *object);
   /** Adds a possible type to this reference. */
   virtual bool allow(const QMetaObject *elementType);
@@ -43,7 +43,7 @@ public:
     return _object->as<Type>();
   }
 
-  /** Returns @c true if the reference is of the specified type. */
+  /** Returns \c true if the reference is of the specified type. */
   template <class Type>
   bool is() const {
     if (nullptr == _object)
@@ -70,7 +70,7 @@ protected:
 
 /** Represents a reference to a contact.
  * This class is only used to automate the parsing and generation of the YAML codeplug file.
- * @ingroup config */
+ * \ingroup config */
 class ContactReference: public ConfigObjectReference
 {
   Q_OBJECT
@@ -86,7 +86,7 @@ public:
 
 
 /** Represents a reference to a digital contact.
- * @ingroup conf*/
+ * \ingroup conf*/
 class DigitalContactReference: public ContactReference
 {
   Q_OBJECT
@@ -110,7 +110,7 @@ public:
 
 /** Represents a reference to a channel.
  * This class is only used to automate the parsing and generation of the YAML codeplug file.
- * @ingroup config */
+ * \ingroup config */
 class ChannelReference: public ConfigObjectReference
 {
   Q_OBJECT
@@ -126,7 +126,7 @@ public:
 
 
 /** Implements a reference to a digital channel.
- * @ingroup conf */
+ * \ingroup conf */
 class DigitalChannelReference: public ChannelReference
 {
   Q_OBJECT
@@ -138,7 +138,7 @@ public:
 
 
 /** Implements a reference to a analog channel.
- * @ingroup conf */
+ * \ingroup conf */
 class AnalogChannelReference: public ChannelReference
 {
   Q_OBJECT
@@ -150,7 +150,7 @@ public:
 
 
 /** Represents a list of weak references to channels (analog and digital).
- * @ingroup config */
+ * \ingroup config */
 class ChannelRefList: public ConfigObjectRefList
 {
   Q_OBJECT
@@ -166,7 +166,7 @@ public:
 
 
 /** Represents a list of references to some digital channels.
- * @ingroup config */
+ * \ingroup config */
 class DigitalChannelRefList: public ChannelRefList
 {
   Q_OBJECT
@@ -178,7 +178,7 @@ public:
 
 
 /** Implements a reference to a scan list.
- * @ingroup conf */
+ * \ingroup conf */
 class ScanListReference: public ConfigObjectReference
 {
   Q_OBJECT
@@ -190,7 +190,7 @@ public:
 
 
 /** Implements a reference to a positioning system.
- * @ingroup conf */
+ * \ingroup conf */
 class PositioningSystemReference: public ConfigObjectReference {
   Q_OBJECT
 
@@ -205,7 +205,7 @@ public:
 
 
 /** Implements a reference to an APRS system.
- * @ingroup conf */
+ * \ingroup conf */
 class APRSSystemReference: public PositioningSystemReference {
   Q_OBJECT
 
@@ -216,7 +216,7 @@ public:
 
 
 /** Implements a reference to a GPS system.
- * @ingroup conf */
+ * \ingroup conf */
 class GPSSystemReference: public PositioningSystemReference {
   Q_OBJECT
 
@@ -227,7 +227,7 @@ public:
 
 
 /** Implements a reference to a radio ID.
- * @ingroup conf */
+ * \ingroup conf */
 class RadioIDReference: public ConfigObjectReference {
   Q_OBJECT
 
@@ -238,7 +238,7 @@ public:
 
 
 /** Implements a reference to a group list.
- * @ingroup conf */
+ * \ingroup conf */
 class GroupListReference: public ConfigObjectReference {
   Q_OBJECT
 
@@ -249,7 +249,7 @@ public:
 
 
 /** Implements a reference to a roaming zone.
- * @ingroup conf */
+ * \ingroup conf */
 class RoamingZoneReference: public ConfigObjectReference {
   Q_OBJECT
 

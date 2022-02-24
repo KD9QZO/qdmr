@@ -11,15 +11,15 @@
  *  <tr><th colspan="3">Callsign database</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>04000000</td> <td>max. 186a00</th> <td>Index of callsign entries. Follows the same
- *   weird format as @c D868UVCodeplug::contact_map_t. Sorted by ID. Empty entries set to
+ *   weird format as \c D868UVCodeplug::contact_map_t. Sorted by ID. Empty entries set to
  *   0xffffffffffffffff.</td></tr>
- *  <tr><td>044c0000</td> <td>unknown</td>     <td>Database limits, see @c limits_t.</td></tr>
+ *  <tr><td>044c0000</td> <td>unknown</td>     <td>Database limits, see \c limits_t.</td></tr>
  *  <tr><td>04500000</td> <td>unknown</td>     <td>The actual DB entries, each entry is of
- *   variable size but shares the same header, see @c entry_t. Order arbitrary.
+ *   variable size but shares the same header, see \c entry_t. Order arbitrary.
  *   Filled with 0x00.</td></tr>
  * </table>
  *
- * @ingroup d868uv */
+ * \ingroup d868uv */
 class D868UVCallsignDB : public CallsignDB
 {
   Q_OBJECT
@@ -34,7 +34,7 @@ public:
    * comment is 16, excluding terminating 0x00.
    *
    * Memmory layout of encoded Callsign/User database entry (variable size, min 0x000c-0x0064):
-   * @verbinclude d868uv_callsigndbentry.txt
+   * \verbinclude d868uv_callsigndbentry.txt
    */
   class EntryElement: public Codeplug::Element
   {
@@ -65,7 +65,7 @@ public:
                             const QString &state, const QString &country, const QString &comment);
 
     /** Constructs a database entry from the given user.
-     * @returns The size of the entry. */
+     * \returns The size of the entry. */
     virtual unsigned fromUser(const UserDatabase::User &user);
 
     /** Computes the size of the database entry for the given user. */
@@ -79,7 +79,7 @@ public:
   /** Stores some basic limits of the callsign db.
    *
    * Memmory layout of encoded Callsign/User database entry (size 0x0010 bytes):
-   * @verbinclude d868uv_callsigndblimit.txt */
+   * \verbinclude d868uv_callsigndblimit.txt */
   class LimitsElement: public Codeplug::Element
   {
   protected:

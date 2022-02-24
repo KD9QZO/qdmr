@@ -33,20 +33,20 @@ class GPSSystem;
  * using wireshark to monitor the USB communication between the windows CPS (running in a vritual
  * box) and the device. The latter makes the reverse-engineering particularily cumbersome.
  *
- * @section d868uvcpl Codeplug structure within radio
+ * \section d868uvcpl Codeplug structure within radio
  * <table>
  *  <tr><th colspan="3">Channels</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>024C1500</td> <td>000200</td>      <td>Bitmap of 4000 channels, default 0x00, 0x00 padded.</td></tr>
  *  <tr><td>00800000</td> <td>max. 002000</td> <td>Channel bank 0 of upto 128 channels,
- *   see @c AnytoneCodeplug::ChannelElement 64 b each. </td></tr>
+ *   see \c AnytoneCodeplug::ChannelElement 64 b each. </td></tr>
  *  <tr><td>00840000</td> <td>max. 002000</td> <td>Channel bank 1 of upto 128 channels.</td></tr>
  *  <tr><td>...</td>      <td>...</td>         <td>...</td></tr>
  *  <tr><td>00FC0000</td> <td>max. 000800</td> <td>Channel bank 32, upto 32 channels.</td></tr>
  *  <tr><td>00FC0800</td> <td>000040</td>      <td>VFO A settings,
- *    see @c AnytoneCodeplug::ChannelElement.</td></tr>
+ *    see \c AnytoneCodeplug::ChannelElement.</td></tr>
  *  <tr><td>00FC0840</td> <td>000040</td>      <td>VFO B settings,
- *    see @c AnytoneCodeplug::ChannelElement.</td></tr>
+ *    see \c AnytoneCodeplug::ChannelElement.</td></tr>
  *
  *  <tr><th colspan="3">Zones</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
@@ -62,19 +62,19 @@ class GPSSystem;
  *    10000 32bit indices, little endian, default 0xffffffff</td></tr>
  *  <tr><td>02640000</td> <td>000500</td>      <td>Contact bitmap, 10000 bit, inverted, default 0xff, 0x00 padded.</td></tr>
  *  <tr><td>02680000</td> <td>max. 0f4240</td> <td>10000 contacts,
- *    see @c AnytoneCodeplug::ContactElement. As each contact is 100b, they do not align with the
+ *    see \c AnytoneCodeplug::ContactElement. As each contact is 100b, they do not align with the
  *    16b blocks being transferred to the device. Hence contacts are organized internally in groups
  *    of 4 contacts forming a "bank". </td></tr>
  *  <tr><td>04340000</td> <td>max. 013880</td> <td>DMR ID to contact index map,
- *    see @c AnytoneCodeplug::ContactMapElement. Sorted by ID, empty entries set to
- *    @c 0xffffffffffffffff.</td>
+ *    see \c AnytoneCodeplug::ContactMapElement. Sorted by ID, empty entries set to
+ *    \c 0xffffffffffffffff.</td>
  *
  *  <tr><th colspan="3">Analog Contacts</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>02900000</td> <td>000080</td>      <td>Index list of valid ananlog contacts.</td></tr>
  *  <tr><td>02900100</td> <td>000080</td>      <td>Bytemap for 128 analog contacts.</td></tr>
  *  <tr><td>02940000</td> <td>max. 000180</td> <td>128 analog contacts.
- *    See @c AnytoneCodeplug::DTMFContactElement. As each analog contact is 24b, they do not align
+ *    See \c AnytoneCodeplug::DTMFContactElement. As each analog contact is 24b, they do not align
  *    with the 16b transfer block-size. Hence analog contacts are internally organized in groups
  *    of 2. </td></tr>
  *
@@ -82,7 +82,7 @@ class GPSSystem;
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>025C0B10</td> <td>000020</td>      <td>Bitmap of 250 RX group lists, default/padding 0x00.</td></tr>
  *  <tr><td>02980000</td> <td>max. 000120</td> <td>Grouplist 0,
- *    see @c AnytoneCodeplug::GroupListElement.</td></tr>
+ *    see \c AnytoneCodeplug::GroupListElement.</td></tr>
  *  <tr><td>02980200</td> <td>max. 000120</td> <td>Grouplist 1</td></tr>
  *  <tr><td>...</td>      <td>...</td>         <td>...</td></tr>
  *  <tr><td>0299f200</td> <td>max. 000120</td> <td>Grouplist 250</td></tr>
@@ -91,7 +91,7 @@ class GPSSystem;
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>024C1340</td> <td>000020</td> <td>Bitmap of 250 scan lists.</td></tr>
  *  <tr><td>01080000</td> <td>000090</td> <td>Bank 0, Scanlist 1,
- *    see @c AnytoneCodeplug::ScanListElement. </td></tr>
+ *    see \c AnytoneCodeplug::ScanListElement. </td></tr>
  *  <tr><td>01080200</td> <td>000090</td> <td>Bank 0, Scanlist 2</td></tr>
  *  <tr><td>...</td>      <td>...</td>    <td>...</td></tr>
  *  <tr><td>01081E00</td> <td>000090</td> <td>Bank 0, Scanlist 16</td></tr>
@@ -105,33 +105,33 @@ class GPSSystem;
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>024C1320</td> <td>000020</td>      <td>Bitmap of 250 radio IDs.</td></tr>
  *  <tr><td>02580000</td> <td>max. 001f40</td> <td>250 Radio IDs.
- *    See @c AnytoneCodeplug::RadioIDElement.</td></tr>
+ *    See \c AnytoneCodeplug::RadioIDElement.</td></tr>
  *
  *  <tr><th colspan="3">GPS</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>02501000</td> <td>000030</td> <td>GPS settings,
- *    see @c AnytoneCodeplug::DMRAPRSSettingsElement.</td>
+ *    see \c AnytoneCodeplug::DMRAPRSSettingsElement.</td>
  *  <tr><td>02501100</td> <td>000030</td> <td>GPS message.</td>
  *
  *  <tr><th colspan="3">General Settings</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>02500000</td> <td>0000D0</td> <td>General settings,
- *    see @c D868UVCodeplug::GeneralSettingsElement.</td></tr>
+ *    see \c D868UVCodeplug::GeneralSettingsElement.</td></tr>
  *  <tr><td>02500100</td> <td>000400</td> <td>Zone A & B channel list.</td></tr>
  *  <tr><td>02500500</td> <td>000100</td> <td>DTMF list</td></tr>
  *  <tr><td>02500600</td> <td>000030</td> <td>Power on settings,
- *    see @c AnytoneCodeplug::BootSettingsElement.</td></tr>
+ *    see \c AnytoneCodeplug::BootSettingsElement.</td></tr>
  *  <tr><td>024C2000</td> <td>0003F0</td> <td>List of 250 auto-repeater offset frequencies.
  *    32bit little endian frequency in 10Hz. I.e., 600kHz = 60000. Default 0x00000000, 0x00 padded.</td></tr>
  *
  *  <tr><th colspan="3">Messages</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>01640000</td> <td>max. 000100</td> <td>Some kind of linked list of messages.
- *    See @c AnytoneCodeplug::MessageListElement. Each entry has a size of 0x10.</td></tr>
+ *    See \c AnytoneCodeplug::MessageListElement. Each entry has a size of 0x10.</td></tr>
  *  <tr><td>01640800</td> <td>000090</td>      <td>Bytemap of up to 100 valid messages.
  *    0x00=valid, 0xff=invalid, remaining 46b set to 0x00.</td></tr>
  *  <tr><td>02140000</td> <td>max. 000800</td> <td>Bank 0, Messages 1-8.
- *    Each message consumes 0x100b. See @c AnytoneCodeplug::MessageElement. </td></tr>
+ *    Each message consumes 0x100b. See \c AnytoneCodeplug::MessageElement. </td></tr>
  *  <tr><td>02180000</td> <td>max. 000800</td> <td>Bank 1, Messages 9-16</td></tr>
  *  <tr><td>...</td>      <td>...</td>         <td>...</td></tr>
  *  <tr><td>02440000</td> <td>max. 000800</td> <td>Bank 12, Messages 97-100</td></tr>
@@ -139,19 +139,19 @@ class GPSSystem;
  *  <tr><th colspan="3">Hot Keys</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>025C0000</td> <td>000100</td> <td>4 analog quick-call settings.
- *   See @c AnytoneCodeplug::AnalogQuickCallElement.</td>
+ *   See \c AnytoneCodeplug::AnalogQuickCallElement.</td>
  *  <tr><td>025C0B00</td> <td>000010</td> <td>Status message bitmap.</td>
  *  <tr><td>025C0100</td> <td>000400</td> <td>Upto 32 status messages.
  *    Length unknown, offset 0x20. ASCII 0x00 terminated and padded.</td>
  *  <tr><td>025C0500</td> <td>000360</td> <td>18 hot-key settings,
- *    see @c AnytoneCodeplug::HotKeyElement</td></tr>
+ *    see \c AnytoneCodeplug::HotKeyElement</td></tr>
  *
  *  <tr><th colspan="3">Misc</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>024C1400</td> <td>000020</td> <td>Alarm setting,
- *    see @c AnytoneCodeplug::AlarmSettingElement.</td></tr>
+ *    see \c AnytoneCodeplug::AlarmSettingElement.</td></tr>
  *  <tr><td>024C1440</td> <td>000030</td> <td>Digital alarm settings extension,
- *   see @c AnytoneCodeplug::DigitalAlarmExtensionElement. </td></tr>
+ *   see \c AnytoneCodeplug::DigitalAlarmExtensionElement. </td></tr>
  *
  *  <tr><th colspan="3">FM Broadcast</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
@@ -165,13 +165,13 @@ class GPSSystem;
  *  <tr><th>Start</th>    <th>Size</th>        <th>Content</th></tr>
  *  <tr><td>024C0C80</td> <td>000010</td> <td>5-tone encoding bitmap for 100 IDs.</td></tr>
  *  <tr><td>024C0000</td> <td>000020</td> <td>List of 100 5-tone IDs,
- *    see @c AnytoneCodeplug::FiveToneIDElement</td></tr>
+ *    see \c AnytoneCodeplug::FiveToneIDElement</td></tr>
  *  <tr><td>024C0D00</td> <td>000200</td> <td>List of 16 5-tone functions,
- *    see @c AnytoneCodeplug::FiveToneFunctionElement.</td></tr>
+ *    see \c AnytoneCodeplug::FiveToneFunctionElement.</td></tr>
  *  <tr><td>024C1000</td> <td>000080</td> <td>5-tone settings,
- *    see @c AnytoneCodeplug::FiveToneSettingsElement. </td></tr>
+ *    see \c AnytoneCodeplug::FiveToneSettingsElement. </td></tr>
  *  <tr><td>024C1080</td> <td>000050</td> <td>DTMF settings,
- *    see @c AnytoneCodeplug::DTMFSettingsElement.</td></tr>
+ *    see \c AnytoneCodeplug::DTMFSettingsElement.</td></tr>
  *  <tr><td>024C1280</td> <td>000010</td> <td>2-tone encoding bitmap.</td></tr>
  *  <tr><td>024C1100</td> <td>000010</td> <td>2-tone encoding.</td></tr>
  *  <tr><td>024C1290</td> <td>000010</td> <td>2-tone settings.</td></tr>
@@ -181,11 +181,11 @@ class GPSSystem;
  *  <tr><th colspan="3">Encryption</th></tr>
  *  <tr><th>Start</th>    <th>Size</th>   <th>Content</th></tr>
  *  <tr><td>024C1700</td> <td>000040</td> <td>32 Encryption IDs, 0-based, 16bit big-endian.</td></tr>
- *  <tr><td>024C1800</td> <td>000500</td> <td>32 DMR-Encryption keys, see @c dmr_encryption_key_t,
+ *  <tr><td>024C1800</td> <td>000500</td> <td>32 DMR-Encryption keys, see \c dmr_encryption_key_t,
  *    40b each.</td></tr>
  * </table>
  *
- * @ingroup d868uv */
+ * \ingroup d868uv */
 class D868UVCodeplug : public AnytoneCodeplug
 {
   Q_OBJECT
@@ -194,10 +194,10 @@ public:
   /** Represents the general config of the radio within the D868UV binary codeplug.
    *
    * This class only implemements the differences to the generic
-   * @c AnytoneCodeplug::GeneralSettingsElement.
+   * \c AnytoneCodeplug::GeneralSettingsElement.
    *
    * Memmory layout of encoded general settings (size 0x00d0 bytes):
-   * @verbinclude d868uv_generalsettings.txt
+   * \verbinclude d868uv_generalsettings.txt
    */
   class GeneralSettingsElement: public AnytoneCodeplug::GeneralSettingsElement
   {
@@ -220,11 +220,11 @@ public:
     virtual unsigned gpsUpdatePeriod() const;
     /** Sets the GPS update period in seconds. */
     virtual void setGPSUpdatePeriod(unsigned sec);
-    /** Returns @c true if the zone and contact are shown. */
+    /** Returns \c true if the zone and contact are shown. */
     virtual bool showZoneAndContact() const;
-    /** Enables/disables @c true the zone and contact display. */
+    /** Enables/disables \c true the zone and contact display. */
     virtual void enableShowZoneAndContact(bool enable);
-    /** Returns @c true if the key-tone level is adjustable. */
+    /** Returns \c true if the key-tone level is adjustable. */
     virtual bool keyToneLevelAdjustable() const;
     /** Returns the key-tone level (0=adjustable). */
     virtual unsigned keyToneLevel() const;
@@ -232,27 +232,27 @@ public:
     virtual void setKeyToneLevel(unsigned level);
     /** Sets the key-tone level adjustable. */
     virtual void setKeyToneLevelAdjustable();
-    /** Returns @c true if the GPS units are imperical. */
+    /** Returns \c true if the GPS units are imperical. */
     virtual bool gpsUnitsImperial() const;
     /** Enables/disables imperical GPS units. */
     virtual void enableGPSUnitsImperial(bool enable);
-    /** Returns @c true if the knob is locked. */
+    /** Returns \c true if the knob is locked. */
     virtual bool knobLock() const;
     /** Enables/disables the knob lock. */
     virtual void enableKnobLock(bool enable);
-    /** Returns @c true if the keypad is locked. */
+    /** Returns \c true if the keypad is locked. */
     virtual bool keypadLock() const;
     /** Enables/disables the keypad lock. */
     virtual void enableKeypadLock(bool enable);
-    /** Returns @c true if the sidekeys are locked. */
+    /** Returns \c true if the sidekeys are locked. */
     virtual bool sidekeysLock() const;
     /** Enables/disables the sidekeys lock. */
     virtual void enableSidekeysLock(bool enable);
-    /** Returns @c true if the "professional" key is locked. */
+    /** Returns \c true if the "professional" key is locked. */
     virtual bool keyLockForced() const;
     /** Enables/disables the "professional" key lock. */
     virtual void enableKeyLockForced(bool enable);
-    /** Returns @c true if the last heard is shown while pressing PTT. */
+    /** Returns \c true if the last heard is shown while pressing PTT. */
     virtual bool showLastHeard() const;
     /** Enables/disables showing last heard. */
     virtual void enableShowLastHeard(bool enable);
@@ -277,7 +277,7 @@ public:
     virtual AutoRepDir autoRepeaterDirectionB() const;
     /** Sets the auto-repeater direction for VFO B. */
     virtual void setAutoRepeaterDirectionB(AutoRepDir dir);
-    /** Retuns @c true if the default boot channel is enabled. */
+    /** Retuns \c true if the default boot channel is enabled. */
     virtual bool defaultChannel() const;
     /** Enables/disables default boot channel. */
     virtual void enableDefaultChannel(bool enable);
@@ -289,7 +289,7 @@ public:
     virtual unsigned defaultZoneIndexB() const;
     /** Sets the default zone (0-based) for VFO B. */
     virtual void setDefaultZoneIndexB(unsigned idx);
-    /** Returns @c true if the default channel for VFO A is VFO. */
+    /** Returns \c true if the default channel for VFO A is VFO. */
     virtual bool defaultChannelAIsVFO() const;
     /** Returns the default channel index for VFO A.
      * Must be within default zone. If 0xff, default channel is VFO. */
@@ -298,7 +298,7 @@ public:
     virtual void setDefaultChannelAIndex(unsigned idx);
     /** Sets the default channel for VFO A to be VFO. */
     virtual void setDefaultChannelAToVFO();
-    /** Returns @c true if the default channel for VFO B is VFO. */
+    /** Returns \c true if the default channel for VFO B is VFO. */
     virtual bool defaultChannelBIsVFO() const;
     /** Returns the default channel index for VFO B.
      * Must be within default zone. If 0xff, default channel is VFO. */
@@ -307,7 +307,7 @@ public:
     virtual void setDefaultChannelBIndex(unsigned idx);
     /** Sets the default channel for VFO B to be VFO. */
     virtual void setDefaultChannelBToVFO();
-    /** Returns @c true if the last caller is kept when changeing channel. */
+    /** Returns \c true if the last caller is kept when changeing channel. */
     virtual bool keepLastCaller() const;
     /** Enables/disables keeping the last caller when changeing the channel. */
     virtual void enableKeepLastCaller(bool enable);

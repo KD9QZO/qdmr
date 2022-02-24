@@ -1,10 +1,10 @@
-/** @defgroup d868uv Anytone AT-D868UV
+/** \defgroup d868uv Anytone AT-D868UV
  * Device specific classes for Anytone AT-D868UV.
  *
  * \image html d878uv.jpg "AT-D868UV" width=200px
  * \image latex d878uv.jpg "AT-D868UV" width=200px
  *
- * @ingroup anytone */
+ * \ingroup anytone */
 #ifndef __D868UV_HH__
 #define __D868UV_HH__
 
@@ -31,13 +31,13 @@
  * settings within the radio that are not defined within the common codeplug config while keeping
  * the amount of data being read from and written to the device small.
  *
- * @ingroup d868uv */
+ * \ingroup d868uv */
 class D868UV: public AnytoneRadio
 {
 	Q_OBJECT
 
 public:
-  /** Do not construct this class directly, rather use @c Radio::detect. */
+  /** Do not construct this class directly, rather use \c Radio::detect. */
   explicit D868UV(AnytoneInterface *device=nullptr, QObject *parent=nullptr);
 
   const Radio::Features &features() const;

@@ -6,55 +6,57 @@
 
 #define BSIZE 32
 
-static Radio::Features _open_gd77_features =
-{
-  .betaWarning = false,
+static Radio::Features _open_gd77_features = {
+	.betaWarning = false,
 
-  .hasDigital = true,
-  .hasAnalog = true,
+	.hasDigital = true,
+	.hasAnalog = true,
 
-  .frequencyLimits = QVector<Radio::Features::FrequencyRange>{ {136., 174.}, {400., 470.} },
+	.frequencyLimits = QVector<Radio::Features::FrequencyRange>{
+		{ 136.0, 174.0 },
+		{ 400.0, 470.0 }
+	},
 
-  .maxRadioIDs        = 1,
-  .needsDefaultRadioID = true,
-  .maxIntroLineLength = 16,
+	.maxRadioIDs = 1,
+	.needsDefaultRadioID = true,
+	.maxIntroLineLength = 16,
 
-  .maxChannels = 1024,
-  .maxChannelNameLength = 16,
-  .allowChannelNoDefaultContact = true,
+	.maxChannels = 1024,
+	.maxChannelNameLength = 16,
+	.allowChannelNoDefaultContact = true,
 
-  .maxZones = 68,
-  .maxZoneNameLength = 16,
-  .maxChannelsInZone = 80,
-  .hasABZone = false,
+	.maxZones = 68,
+	.maxZoneNameLength = 16,
+	.maxChannelsInZone = 80,
+	.hasABZone = false,
 
-  .hasScanlists = false,
-  .maxScanlists = 64,
-  .maxScanlistNameLength = 16,
-  .maxChannelsInScanlist = 32,
-  .scanListNeedsPriority = true,
+	.hasScanlists = false,
+	.maxScanlists = 64,
+	.maxScanlistNameLength = 16,
+	.maxChannelsInScanlist = 32,
+	.scanListNeedsPriority = true,
 
-  .maxContacts = 1024,
-  .maxContactNameLength = 16,
+	.maxContacts = 1024,
+	.maxContactNameLength = 16,
 
-  .maxGrouplists = 76,
-  .maxGrouplistNameLength = 16,
-  .maxContactsInGrouplist = 32,
+	.maxGrouplists = 76,
+	.maxGrouplistNameLength = 16,
+	.maxContactsInGrouplist = 32,
 
-  .hasGPS = false,
-  .maxGPSSystems = 0,
+	.hasGPS = false,
+	.maxGPSSystems = 0,
 
-  .hasAPRS = false,
-  .maxAPRSSystems = 0,
+	.hasAPRS = false,
+	.maxAPRSSystems = 0,
 
-  .hasRoaming = false,
-  .maxRoamingChannels = 0,
-  .maxRoamingZones = 0,
-  .maxChannelsInRoamingZone = 0,
+	.hasRoaming = false,
+	.maxRoamingChannels = 0,
+	.maxRoamingZones = 0,
+	.maxChannelsInRoamingZone = 0,
 
-  .hasCallsignDB = true,
-  .callsignDBImplemented = true,
-  .maxCallsignsInDB = 15796
+	.hasCallsignDB = true,
+	.callsignDBImplemented = true,
+	.maxCallsignsInDB = 15796
 };
 
 
@@ -421,9 +423,7 @@ OpenGD77::upload()
 }
 
 
-bool
-OpenGD77::uploadCallsigns()
-{
+bool OpenGD77::uploadCallsigns() {
   emit uploadStarted();
 
   // Check every segment in the codeplug

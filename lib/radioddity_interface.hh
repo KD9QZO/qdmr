@@ -13,7 +13,7 @@
 
 /** Implements a radio interface for radios using the HID USB schema (i.e. Radioddity devices).
  *
- * @ingroup radioddity */
+ * \ingroup radioddity */
 class RadioddityInterface: public HIDevice, public RadioInterface
 {
 	Q_OBJECT
@@ -21,11 +21,11 @@ class RadioddityInterface: public HIDevice, public RadioInterface
 public:
   /** Possible memory banks to select. */
   enum MemoryBank {
-    MEMBANK_NONE           = -1,    ///< No bank selected.
-    MEMBANK_CODEPLUG_LOWER =  0,    ///< Lower memory bank (EEPROM).
-    MEMBANK_CODEPLUG_UPPER =  1,    ///< Upper memory bank (FLASH).
-    MEMBANK_CALLSIGN_LOWER =  3,    ///< Callsign DB memory lower bank (also FLASH).
-    MEMBANK_CALLSIGN_UPPER =  4     ///< Callsign DB memory upper bank (also FLASH).
+    MEMBANK_NONE           = -1,		/*!< No bank selected. */
+    MEMBANK_CODEPLUG_LOWER =  0,		/*!< Lower memory bank (EEPROM). */
+    MEMBANK_CODEPLUG_UPPER =  1,		/*!< Upper memory bank (FLASH). */
+    MEMBANK_CALLSIGN_LOWER =  3,		/*!< Callsign DB memory lower bank (also FLASH). */
+    MEMBANK_CALLSIGN_UPPER =  4		/*!< Callsign DB memory upper bank (also FLASH). */
   };
 
 public:
@@ -34,7 +34,7 @@ public:
   /** Destructor. */
   virtual ~RadioddityInterface();
 
-  /** Returns @c true if the connection was established. */
+  /** Returns \c true if the connection was established. */
 	bool isOpen() const;
 
   void close();
@@ -45,11 +45,11 @@ public:
   bool read_start(uint32_t bank, uint32_t addr);
 
   /** Reads a block of data from the device at the given block number.
-   * @param bank The memory bank to read from.
-   * @param addr The address to read from within the memory bank.
-   * @param data Pointer to memory where the read data is stored.
-   * @param nbytes The number of bytes to read.
-   * @returns @c true on success. */
+   * \param bank The memory bank to read from.
+   * \param addr The address to read from within the memory bank.
+   * \param data Pointer to memory where the read data is stored.
+   * \param nbytes The number of bytes to read.
+   * \returns \c true on success. */
   bool read(uint32_t bank, uint32_t addr, unsigned char *data, int nbytes);
 
   bool read_finish();
@@ -57,11 +57,11 @@ public:
   bool write_start(uint32_t bank, uint32_t addr);
 
   /** Writes a block of data to the device at the given block number.
-   * @param bank The memory bank to read from.
-   * @param addr The address to read from within the memory bank.
-   * @param data Pointer to memory where the read data is stored.
-   * @param nbytes The number of bytes to read.
-   * @returns @c true on success. */
+   * \param bank The memory bank to read from.
+   * \param addr The address to read from within the memory bank.
+   * \param data Pointer to memory where the read data is stored.
+   * \param nbytes The number of bytes to read.
+   * \returns \c true on success. */
   bool write(uint32_t bank, uint32_t addr, unsigned char *data, int nbytes);
 
   bool write_finish();

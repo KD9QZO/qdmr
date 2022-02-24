@@ -4,45 +4,48 @@
 #include "utils.hh"
 
 
-TyTInterface::TyTInterface(unsigned vid, unsigned pid, QObject *parent)
-  : DFUDevice(vid, pid, parent), RadioInterface()
-{
-  if (! DFUDevice::isOpen()) {
-    logError() << _errorMessage;
-    return;
-  }
+TyTInterface::TyTInterface(unsigned vid, unsigned pid, QObject *parent): DFUDevice(vid, pid, parent), RadioInterface() {
+	if (! DFUDevice::isOpen()) {
+		logError() << _errorMessage;
+		return;
+	}
 
-  // Enter Programming Mode.
-  if (wait_idle()) {
-    logError() << (_errorMessage = "Device not ready. Close device.");
-    close(); return;
-  }
-  if (md380_command(0x91, 0x01)) {
-    logError() << (_errorMessage = "Cannot enter programming mode. Close device.");
-    close(); return;
-  }
+	// Enter Programming Mode.
+	if (wait_idle()) {
+		logError() << (_errorMessage = "Device not ready. Close device.");
+		close();
+		return;
+	}
 
-  // Get device identifier in a static buffer.
-  const char *idstr = identify();
-  if (idstr && (0==strcmp("MD390", idstr))) {
-    _ident = RadioInfo::byID(RadioInfo::MD390);
-  } else if (idstr && (0==strcmp("MD-UV380", idstr))) {
-    _ident = RadioInfo::byID(RadioInfo::UV380);
-  } else if (idstr && (0==strcmp("MD-UV390", idstr))) {
-    _ident = RadioInfo::byID(RadioInfo::UV390);
-  } else if (idstr && (0==strcmp("2017", idstr))) {
-    _ident = RadioInfo::byID(RadioInfo::MD2017);
-  } else if (idstr) {
-    logError() << (_errorMessage = tr("Unknown TyT device '%1'.").arg(idstr));
-    close(); return;
-  }
+	if (md380_command(0x91, 0x01)) {
+		logError() << (_errorMessage = "Cannot enter programming mode. Close device.");
+		close();
+		return;
+	}
 
-  // Zero address.
-  if(set_address(0x00000000)) {
-    _errorMessage = tr("Cannot set device address to 0x00000000: %1").arg(_errorMessage);
-    logError() << _errorMessage;
-    close(); return;
-  }
+	// Get device identifier in a static buffer.
+	const char *idstr = identify();
+	if (idstr && (0 == strcmp("MD390", idstr))) {
+		_ident = RadioInfo::byID(RadioInfo::MD390);
+	} else if (idstr && (0 == strcmp("MD-UV380", idstr))) {
+		_ident = RadioInfo::byID(RadioInfo::UV380);
+	} else if (idstr && (0 == strcmp("MD-UV390", idstr))) {
+		_ident = RadioInfo::byID(RadioInfo::UV390);
+	} else if (idstr && (0 == strcmp("2017", idstr))) {
+		_ident = RadioInfo::byID(RadioInfo::MD2017);
+	} else if (idstr) {
+		logError() << (_errorMessage = tr("Unknown TyT device '%1'.").arg(idstr));
+		close();
+		return;
+	}
+
+	// Zero address.
+	if (set_address(0x00000000)) {
+		_errorMessage = tr("Cannot set device address to 0x00000000: %1").arg(_errorMessage);
+		logError() << _errorMessage;
+		close();
+		return;
+	}
 }
 
 TyTInterface::~TyTInterface() {

@@ -337,7 +337,7 @@ OpenGD77Codeplug::decodeGeneralSettings(Config *config, Context &ctx) {
 
 void
 OpenGD77Codeplug::clearButtonSettings() {
-  /// @bug Find button settings within OpenGD77 codeplug.
+  /// \bug Find button settings within OpenGD77 codeplug.
 }
 
 void

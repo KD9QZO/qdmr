@@ -5,33 +5,28 @@
 /* ********************************************************************************************* *
  * Implementation of RadioID
  * ********************************************************************************************* */
-RadioID::RadioID(const QString &name, uint32_t id, QObject *parent)
-  : ConfigObject("id", parent), _name(name), _number(id)
-{
-  // pass...
+RadioID::RadioID(const QString &name, uint32_t id, QObject *parent): ConfigObject("id", parent), _name(name), _number(id) {
+	// pass...
 }
 
-const QString &
-RadioID::name() const {
-  return _name;
+const QString &RadioID::name() const {
+	return (_name);
 }
 
-void
-RadioID::setName(const QString &name) {
-  _name = name.simplified();
+void RadioID::setName(const QString &name) {
+	_name = name.simplified();
 }
 
-uint32_t
-RadioID::number() const {
-  return _number;
+uint32_t RadioID::number() const {
+	return (_number);
 }
 
-void
-RadioID::setNumber(uint32_t id) {
-  if (id == _number)
-    return;
-  _number = id;
-  emit modified();
+void RadioID::setNumber(uint32_t id) {
+	if (id == _number) {
+		return;
+	}
+	_number = id;
+	emit modified();
 }
 
 YAML::Node

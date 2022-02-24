@@ -9,7 +9,7 @@
  * efficiently. This should speedup the generation of codeplugs consisting of many small memory
  * sections.
  *
- * @ingroup util */
+ * \ingroup util */
 class AddressMap
 {
 public:
@@ -27,7 +27,7 @@ public:
   bool add(uint32_t addr, uint32_t len, int idx=-1);
   /** Removes an item from the address map associated with the given index. */
   bool rem(uint32_t idx);
-  /** Returns @c true if the given address is contained in any of the memory regions. */
+  /** Returns \c true if the given address is contained in any of the memory regions. */
   bool contains(uint32_t addr) const;
   /** Finds the index of the memory region containing the given address. If no such region is found,
    * -1 is returned. */
@@ -37,9 +37,9 @@ protected:
   /** Memory map item.
    * That is, a collection of address, length and associated index. */
   struct AddrMapItem {
-    uint32_t address;   ///< The start address of the item.
-    uint32_t length;    ///< The size/length of the memory item.
-    uint32_t index;     ///< The associated (element) index.
+    uint32_t address;		/*!< The start address of the item. */
+    uint32_t length;		/*!< The size/length of the memory item. */
+    uint32_t index;		/*!< The associated (element) index. */
 
     /** Contstructor. */
     inline AddrMapItem(uint32_t addr, uint32_t len, uint32_t idx)
@@ -54,7 +54,7 @@ protected:
     inline bool operator<(uint32_t addr) const {
       return address < addr;
     }
-    /** Returns @c true if the given address is contained within this memory region. */
+    /** Returns \c true if the given address is contained within this memory region. */
     inline bool contains(uint32_t addr) const {
       return (address <= addr) && ((address+length) > addr);
     }

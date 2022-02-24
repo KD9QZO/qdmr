@@ -10,7 +10,7 @@ class DigitalContact;
 
 
 /** Generic representation of a RX group list.
- * @ingroup conf */
+ * \ingroup conf */
 class RXGroupList: public ConfigObject
 {
 	Q_OBJECT
@@ -22,8 +22,8 @@ class RXGroupList: public ConfigObject
 
 public:
   /** Constructor.
-   * @param name Specifies the name of the group list.
-   * @param parent @c QObject parent instance. */
+   * \param name Specifies the name of the group list.
+   * \param parent \c QObject parent instance. */
 	explicit RXGroupList(const QString &name, QObject *parent=nullptr);
 
   /** Copy from other group list. */
@@ -68,7 +68,7 @@ protected:
 
 
 /** Represents the list of RX group lists within the generic configuration.
- * @ingroup conf */
+ * \ingroup conf */
 class RXGroupLists: public ConfigObjectList
 {
 	Q_OBJECT

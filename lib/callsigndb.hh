@@ -8,14 +8,14 @@ class UserDatabase;
 
 /** Abstract base class of all callsign database implementations.
  * This class defines the interface for all device-specific binary encodings of call sign
- * databases. The interface is particularily simple: reimplement the @c encode method.
- * @ingroup conf */
+ * databases. The interface is particularily simple: reimplement the \c encode method.
+ * \ingroup conf */
 class CallsignDB : public DFUFile
 {
   Q_OBJECT
 
 public:
-  /** Controls the selection of callsigns from the @c UserDatabase to be encoded into the
+  /** Controls the selection of callsigns from the \c UserDatabase to be encoded into the
    * callsign db. */
   class Selection {
   public:
@@ -24,7 +24,7 @@ public:
     /** Copy constructor. */
     Selection(const Selection &other);
 
-    /** Returns @c true if the selection has a limit on the number of callsigns to encode. */
+    /** Returns \c true if the selection has a limit on the number of callsigns to encode. */
     bool hasCountLimit() const;
     /** Returns the limit of callsigns to encode. */
     size_t countLimit() const;

@@ -1,5 +1,5 @@
-/** @defgroup log Log Message Handling
- * @ingroup util */
+/** \defgroup log Log Message Handling
+ * \ingroup util */
 #ifndef LOGGER_HH
 #define LOGGER_HH
 
@@ -20,27 +20,27 @@
 
 
 /** Implements a log-message.
- * Instances of this class will forward the content of this message automatically to the @c Logger
+ * Instances of this class will forward the content of this message automatically to the \c Logger
  * instance upon destruction. That means, you do not need to forward log messages explicitly.
- * @ingroup log */
+ * \ingroup log */
 class LogMessage: public QTextStream
 {
 public:
   /** Possible log-levels. */
   typedef enum {
-    DEBUG,    ///< Level for debug messages. Will not be shown to the user unless requested.
-    INFO,     ///< Level for informative messages. Will not be shown to the user unless requested.
-    WARNING,  ///< Level for warning messages.
-    ERROR,    ///< Level for error messages.
-    FATAL     ///< Level for fatal error messages.
+    DEBUG,		/*!< Level for debug messages. Will not be shown to the user unless requested. */
+    INFO,		/*!< Level for informative messages. Will not be shown to the user unless requested. */
+    WARNING,		/*!< Level for warning messages. */
+    ERROR,		/*!< Level for error messages. */
+    FATAL		/*!< Level for fatal error messages. */
   } Level;
 
 public:
   /** Constructor.
-   * @param level Specifies the level of the log message.
-   * @param file Specifies the source file.
-   * @param line Specifies the source line.
-   * @param message Specifies the log message content. */
+   * \param level Specifies the level of the log message.
+   * \param file Specifies the source file.
+   * \param line Specifies the source line.
+   * \param message Specifies the log message content. */
   LogMessage(Level level, const QString &file, int line, const QString &message="");
   /** Copy constructor. */
   LogMessage(const LogMessage &other);
@@ -69,7 +69,7 @@ protected:
 
 
 /** Interface for all log message handler.
- * @ingroup log */
+ * \ingroup log */
 class LogHandler: public QObject
 {
   Q_OBJECT
@@ -85,13 +85,13 @@ public:
 
 
 /** Singleton class to process log messages.
- * @ingroup log */
+ * \ingroup log */
 class Logger: public QObject
 {
   Q_OBJECT
 
 protected:
-  /** Hidden constructor. Use @c get method to obtain an instance. */
+  /** Hidden constructor. Use \c get method to obtain an instance. */
   Logger();
 
 public:
@@ -121,17 +121,17 @@ protected:
 };
 
 
-/** A log-handler that dumps log-messages into a @c QTextStream.
- * @ingroup log */
+/** A log-handler that dumps log-messages into a \c QTextStream.
+ * \ingroup log */
 class StreamLogHandler: public LogHandler
 {
   Q_OBJECT
 
 public:
   /** Constructor.
-   * @param stream Specifies the text stream to log into.
-   * @param minLevel Specifies the minimum log-level to log.
-   * @param parent Specifies the parent object. */
+   * \param stream Specifies the text stream to log into.
+   * \param minLevel Specifies the minimum log-level to log.
+   * \param parent Specifies the parent object. */
   StreamLogHandler(QTextStream &stream, LogMessage::Level minLevel=LogMessage::DEBUG, QObject *parent=nullptr);
 
   /** Returns the minimum log level. */
@@ -150,16 +150,16 @@ protected:
 
 
 /** A log-handler that dumps log-messages into files.
- * @ingroup log */
+ * \ingroup log */
 class FileLogHandler: public LogHandler
 {
   Q_OBJECT
 
 public:
   /** Constructor.
-   * @param file Specifies the filename to log to.
-   * @param minLevel Specifies the minimum log-level to log.
-   * @param parent Specifies the parent object. */
+   * \param file Specifies the filename to log to.
+   * \param minLevel Specifies the minimum log-level to log.
+   * \param parent Specifies the parent object. */
   FileLogHandler(const QString &file, LogMessage::Level minLevel=LogMessage::DEBUG, QObject *parent=nullptr);
 
   /** Destructor, closes log file. */

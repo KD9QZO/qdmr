@@ -315,25 +315,30 @@ MD390Codeplug::encodeZones(Config *config, const Flags &flags, Context &ctx) {
   return true;
 }
 
-bool
-MD390Codeplug::createZones(Config *config, Context &ctx) {
-  Zone *last_zone = nullptr;
-  for (int i=0; i<NUM_ZONES; i++) {
-    ZoneElement zone(data(ADDR_ZONES+i*ZONE_SIZE));
-    if (! zone.isValid())
-      break;
-    bool is_ext = (nullptr != last_zone) && (zone.name().endsWith(" B")) &&
-        (zone.name().startsWith(last_zone->name()));
-    Zone *obj = last_zone;
-    if (! is_ext) {
-      last_zone = obj = new Zone(zone.name());
-      if (zone.name().endsWith(" A"))
-        obj->setName(zone.name().chopped(2));
-      config->zones()->add(obj); ctx.add(obj, i+1);
-    }
-  }
+bool MD390Codeplug::createZones(Config *config, Context &ctx) {
+	Zone *last_zone = nullptr;
 
-  return true;
+	for (int i = 0; i < NUM_ZONES; i++) {
+		ZoneElement zone(data(ADDR_ZONES + i * ZONE_SIZE));
+
+		if (!zone.isValid()) {
+			break;
+		}
+
+		bool is_ext = (nullptr != last_zone) && (zone.name().endsWith(" B")) && (zone.name().startsWith(last_zone->name()));
+		Zone *obj = last_zone;
+
+		if (!is_ext) {
+			last_zone = obj = new Zone(zone.name());
+			if (zone.name().endsWith(" A")) {
+				obj->setName(zone.name().chopped(2));	/*!< \bug The class \ref QString does not have a member named \ref chopped() in QT versions below \b 5.10 */
+			}
+			config->zones()->add(obj);
+			ctx.add(obj, i + 1);
+		}
+	}
+
+	return (true);
 }
 
 bool

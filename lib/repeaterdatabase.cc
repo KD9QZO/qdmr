@@ -9,12 +9,12 @@
 #include "logger.hh"
 
 
-/// @cond with_internal_docs
+/// \cond with_internal_docs
 /** "is-less" Operator for sorting repeaters with respect to the distace. */
 class DistanceIsLess
 {
 public:
-  /** Constructor, @c qth specifies the QTH location. */
+  /** Constructor, \c qth specifies the QTH location. */
   inline DistanceIsLess(const QGeoCoordinate &qth): _qth(qth) { }
 
   /** Compares two repeaters with respect to the distance to the QTH. */
@@ -28,7 +28,7 @@ private:
   /** QTH location. */
   QGeoCoordinate  _qth;
 };
-/// @endcond
+/// \endcond
 
 
 RepeaterDatabase::RepeaterDatabase(const QGeoCoordinate &qth, unsigned updatePeriodDays, QObject *parent)

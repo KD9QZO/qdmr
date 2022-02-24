@@ -16,7 +16,7 @@ class ScanList;
  * the support of several Radioddity radios, as only the differences in the codeplug to this base
  * class must be implemented.
  *
- * @ingroup radioddity */
+ * \ingroup radioddity */
 class RadioddityCodeplug : public Codeplug
 {
   Q_OBJECT
@@ -25,27 +25,27 @@ public:
   /** Implements the base for all Radioddity channel encodings.
    *
    * Memory layout of encoded channel:
-   * @verbinclude radioddity_channel.txt */
+   * \verbinclude radioddity_channel.txt */
   class ChannelElement: public Codeplug::Element
   {
   public:
     /** Possible channel types. */
     enum Mode {
-      MODE_ANALOG = 0,   ///< Analog channel, aka FM.
-      MODE_DIGITAL = 1   ///< Digital channel, aka DMR.
+      MODE_ANALOG = 0,		/*!< Analog channel, aka FM. */
+      MODE_DIGITAL = 1		/*!< Digital channel, aka DMR. */
     };
 
     /** Possible admit criteria. */
     enum Admit {
-      ADMIT_ALWAYS = 0,  ///< Allow always.
-      ADMIT_CH_FREE = 1, ///< Allow TX on channel free.
-      ADMIT_COLOR = 2    ///< Allow TX on matching color-code.
+      ADMIT_ALWAYS = 0,		/*!< Allow always. */
+      ADMIT_CH_FREE = 1,		/*!< Allow TX on channel free. */
+      ADMIT_COLOR = 2		/*!< Allow TX on matching color-code. */
     };
 
     /** Possible privacy groups, not used in ham radio. */
     enum PrivacyGroup {
-      PRIVGR_NONE = 0,     ///< No privacy group, default.
-      PRIVGR_53474C39 = 1  ///< Privacy group 53474C39 (wtf?).
+      PRIVGR_NONE = 0,		/*!< No privacy group, default. */
+      PRIVGR_53474C39 = 1		/*!< Privacy group 53474C39 (wtf?). */
     };
 
   protected:
@@ -94,7 +94,7 @@ public:
     /** Sets the admit criterion. */
     virtual void setAdmitCriterion(Admit admit);
 
-    /** Returns @c true if a scan list is set. */
+    /** Returns \c true if a scan list is set. */
     virtual bool hasScanList() const;
     /** Returns the scan list index (+1). */
     virtual unsigned scanListIndex() const;
@@ -129,7 +129,7 @@ public:
     /** Sets the TX color code. */
     virtual void setTXColorCode(unsigned cc);
 
-    /** Returns @c true if a group list is set. */
+    /** Returns \c true if a group list is set. */
     virtual bool hasGroupList() const;
     /** Returns the group-list index (+1). */
     virtual unsigned groupListIndex() const;
@@ -141,33 +141,33 @@ public:
     /** Sets the RX color code. */
     virtual void setRXColorCode(unsigned cc);
 
-    /** Returns @c true if an emergency system is set. */
+    /** Returns \c true if an emergency system is set. */
     virtual bool hasEmergencySystem() const;
     /** Returns the emergency system index (+1). */
     virtual unsigned emergencySystemIndex() const;
     /** Sets the emergency system index (+1). */
     virtual void setEmergencySystemIndex(unsigned index);
 
-    /** Returns @c true if a TX contact is set. */
+    /** Returns \c true if a TX contact is set. */
     virtual bool hasContact() const;
     /** Returns the transmit contact index (+1). */
     virtual unsigned contactIndex() const;
     /** Sets the transmit contact index (+1). */
     virtual void setContactIndex(unsigned index);
 
-    /** Returns @c true if data-call-confirm is enabled. */
+    /** Returns \c true if data-call-confirm is enabled. */
     virtual bool dataCallConfirm() const;
     /** Enables/disables data-call-confirm. */
     virtual void enableDataCallConfirm(bool enable);
-    /** Returns @c true if emergency alarm ACK is enabled. */
+    /** Returns \c true if emergency alarm ACK is enabled. */
     virtual bool emergencyAlarmACK() const;
     /** Enables/disables emergency alarm ACK. */
     virtual void enableEmergencyAlarmACK(bool enable);
-    /** Returns @c true if private-call-confirm is enabled. */
+    /** Returns \c true if private-call-confirm is enabled. */
     virtual bool privateCallConfirm() const;
     /** Enables/disables private-call-confirm. */
     virtual void enablePrivateCallConfirm(bool enable);
-    /** Returns @c true if privacy is enabled. */
+    /** Returns \c true if privacy is enabled. */
     virtual bool privacyEnabled() const;
     /** Enables/disables privacy. */
     virtual void enablePrivacy(bool enable);
@@ -177,11 +177,11 @@ public:
     /** Sets the time slot of the channel. */
     virtual void setTimeSlot(DigitalChannel::TimeSlot ts);
 
-    /** Returns @c true if the dual-capacity direct mode is enabled. */
+    /** Returns \c true if the dual-capacity direct mode is enabled. */
     virtual bool dualCapacityDirectMode() const;
     /** Enables/disables the dual-capacity direct mode. */
     virtual void enableDualCapacityDirectMode(bool enable);
-    /** Returns @c true if non-STE is frequency (?!). */
+    /** Returns \c true if non-STE is frequency (?!). */
     virtual bool nonSTEFrequency() const;
     /** Enables/disables non-STE is frequency (?!). */
     virtual void enableNonSTEFrequency(bool enable);
@@ -191,15 +191,15 @@ public:
     /** Sets the bandwidth. */
     virtual void setBandwidth(AnalogChannel::Bandwidth bw);
 
-    /** Returns @c true if RX only is enabled. */
+    /** Returns \c true if RX only is enabled. */
     virtual bool rxOnly() const;
     /** Enables/disables RX only. */
     virtual void enableRXOnly(bool enable);
-    /** Returns @c true if talkaround is enabled. */
+    /** Returns \c true if talkaround is enabled. */
     virtual bool talkaround() const;
     /** Enables/disables talkaround. */
     virtual void enableTalkaround(bool enable);
-    /** Returns @c true if VOX is enabled. */
+    /** Returns \c true if VOX is enabled. */
     virtual bool vox() const;
     /** Enables/disables VOX. */
     virtual void enableVOX(bool enable);
@@ -209,7 +209,7 @@ public:
     /** Sets the power setting of the channel. */
     virtual void setPower(Channel::Power pwr);
 
-    /** Constructs a generic @c Channel object from the codeplug channel. */
+    /** Constructs a generic \c Channel object from the codeplug channel. */
     virtual Channel *toChannelObj(Context &ctx) const;
     /** Links a previously constructed channel to the rest of the configuration. */
     virtual bool linkChannelObj(Channel *c, Context &ctx) const;
@@ -220,7 +220,7 @@ public:
   /** Implements the base for channel banks in Radioddity codeplugs.
    *
    * Memory layout of a channel bank:
-   * @verbinclude radioddity_channelbank.txt */
+   * \verbinclude radioddity_channelbank.txt */
   class ChannelBankElement: public Element
   {
   protected:
@@ -236,7 +236,7 @@ public:
     /** Clears the bank. */
     void clear();
 
-    /** Retruns @c true if the channel is enabled. */
+    /** Retruns \c true if the channel is enabled. */
     virtual bool isEnabled(unsigned idx) const ;
     /** Enable/disable a channel in the bank. */
     virtual void enable(unsigned idx, bool enabled);
@@ -247,27 +247,27 @@ public:
   /** VFO Channel representation within the binary codeplug.
    *
    * Each channel requires 0x38b:
-   * @verbinclude radioddity_vfochannel.txt */
+   * \verbinclude radioddity_vfochannel.txt */
   class VFOChannelElement: public ChannelElement
   {
   public:
     /** Possible offset frequency modes. */
     enum class OffsetMode {
-      Off = 0,       ///< Disables transmit frequency offset.
-      Positive = 1,  ///< Transmit offset frequency is positive (TX above RX).
-      Negative = 2   ///< Transmit offset frequency is negative (TX below RX).
+      Off = 0,		/*!< Disables transmit frequency offset. */
+      Positive = 1,		/*!< Transmit offset frequency is positive (TX above RX). */
+      Negative = 2		/*!< Transmit offset frequency is negative (TX below RX). */
     };
 
     /** Possible tuning step sizes. */
     enum class StepSize {
-      SS2_5kHz = 0,  ///< 2.5kHz
-      SS5kHz = 1,    ///< 5kHz
-      SS6_25kHz = 2, ///< 6.25kHz
-      SS10kHz = 3,   ///< 10kHz
-      SS12_5kHz = 4, ///< 12.5kHz
-      SS20kHz = 5,   ///< 20kHz
-      SS30kHz = 6,   ///< 30kHz
-      SS50kHz = 7    ///< 50kHz
+      SS2_5kHz = 0,		/*!< 2.5kHz */
+      SS5kHz = 1,		/*!< 5kHz */
+      SS6_25kHz = 2,		/*!< 6.25kHz */
+      SS10kHz = 3,		/*!< 10kHz */
+      SS12_5kHz = 4,		/*!< 12.5kHz */
+      SS20kHz = 5,		/*!< 20kHz */
+      SS30kHz = 6,		/*!< 30kHz */
+      SS50kHz = 7		/*!< 50kHz */
     };
 
   protected:
@@ -304,7 +304,7 @@ public:
   /** Implements the base for digital contacts in Radioddity codeplugs.
    *
    * Memory layout of a digital contact:
-   * @verbinclude radioddity_contact.txt */
+   * \verbinclude radioddity_contact.txt */
   class ContactElement: public Element
   {
   protected:
@@ -319,7 +319,7 @@ public:
 
     /** Resets the contact. */
     void clear();
-    /** Returns @c true if the contact is valid. */
+    /** Returns \c true if the contact is valid. */
     bool isValid() const;
 
     /** Returns the name of the contact. */
@@ -337,7 +337,7 @@ public:
     /** Sets the call type. */
     virtual void setType(DigitalContact::Type type);
 
-    /** Returns @c true if the ring tone is enabled for this contact. */
+    /** Returns \c true if the ring tone is enabled for this contact. */
     virtual bool ring() const;
     /** Enables/disables ring tone for this contact. */
     virtual void enableRing(bool enable);
@@ -347,16 +347,16 @@ public:
     /** Sets the ring tone style for this contact [0-10]. */
     virtual void setRingStyle(unsigned style);
 
-    /** Constructs a @c DigitalContact instance from this codeplug contact. */
+    /** Constructs a \c DigitalContact instance from this codeplug contact. */
     virtual DigitalContact *toContactObj(Context &ctx) const;
-    /** Resets this codeplug contact from the given @c DigitalContact. */
+    /** Resets this codeplug contact from the given \c DigitalContact. */
     virtual void fromContactObj(const DigitalContact *obj, Context &ctx);
   };
 
   /** Implements a base DTMF (analog) contact for Radioddity codeplugs.
    *
    * Memmory layout of the DTMF contact:
-   * @verbinclude radioddity_dtmfcontact.txt
+   * \verbinclude radioddity_dtmfcontact.txt
    */
   class DTMFContactElement: Element
   {
@@ -372,7 +372,7 @@ public:
 
     /** Resets the contact. */
     void clear();
-    /** Returns @c true if the contact is valid. */
+    /** Returns \c true if the contact is valid. */
     bool isValid() const;
 
     /** Returns the name of the contact. */
@@ -385,16 +385,16 @@ public:
     /** Sets the number of the contact. */
     virtual void setNumber(const QString &number);
 
-    /** Constructs a @c DTMFContact instance from this codeplug contact. */
+    /** Constructs a \c DTMFContact instance from this codeplug contact. */
     virtual DTMFContact *toContactObj(Context &ctx) const;
-    /** Resets this codeplug contact from the given @c DTMFContact. */
+    /** Resets this codeplug contact from the given \c DTMFContact. */
     virtual void fromContactObj(const DTMFContact *obj, Context &ctx);
   };
 
   /** Represents a zone within Radioddity codeplugs.
    *
    * Memmory layout of the zone:
-   * @verbinclude radioddity_zone.txt
+   * \verbinclude radioddity_zone.txt
    */
   class ZoneElement: Element
   {
@@ -409,7 +409,7 @@ public:
 
     /** Resets the zone. */
     void clear();
-    /** Returns @c true if the zone is valid. */
+    /** Returns \c true if the zone is valid. */
     bool isValid() const;
 
     /** Returns the name of the zone. */
@@ -417,7 +417,7 @@ public:
     /** Sets the name of the zone. */
     virtual void setName(const QString &name);
 
-    /** Returns @c true if a member is stored at the given index.
+    /** Returns \c true if a member is stored at the given index.
      * That is, if the index is not 0. */
     virtual bool hasMember(unsigned n) const;
     /** Returns the n-th member index (+1). */
@@ -427,21 +427,21 @@ public:
     /** Clears the n-th member index. */
     virtual void clearMember(unsigned n);
 
-    /** Constructs a generic @c Zone object from this codeplug zone. */
+    /** Constructs a generic \c Zone object from this codeplug zone. */
     virtual Zone *toZoneObj(Context &ctx) const;
-    /** Links a previously constructed @c Zone object to the rest of the configuration. That is
+    /** Links a previously constructed \c Zone object to the rest of the configuration. That is
      * linking to the referred channels. */
     virtual bool linkZoneObj(Zone *zone, Context &ctx, bool putInB) const;
-    /** Resets this codeplug zone representation from the given generic @c Zone object. */
+    /** Resets this codeplug zone representation from the given generic \c Zone object. */
     virtual void fromZoneObjA(const Zone *zone, Context &ctx);
-    /** Resets this codeplug zone representation from the given generic @c Zone object. */
+    /** Resets this codeplug zone representation from the given generic \c Zone object. */
     virtual void fromZoneObjB(const Zone *zone, Context &ctx);
   };
 
   /** Implements the base class for all zone banks of Radioddity codeplugs.
    *
    * Memmory layout of the zone table/bank:
-   * @verbinclude radioddity_zonebank.txt
+   * \verbinclude radioddity_zonebank.txt
    */
   class ZoneBankElement: public Element
   {
@@ -458,7 +458,7 @@ public:
     /** Resets the bank. */
     void clear();
 
-    /** Retruns @c true if the channel is enabled. */
+    /** Retruns \c true if the channel is enabled. */
     virtual bool isEnabled(unsigned idx) const ;
     /** Enable/disable a channel in the bank. */
     virtual void enable(unsigned idx, bool enabled);
@@ -469,7 +469,7 @@ public:
   /** Represents a base class for all group lists within Radioddity codeplugs.
    *
    * Memmory layout of the RX group list:
-   * @verbinclude radioddity_grouplist.txt
+   * \verbinclude radioddity_grouplist.txt
    */
   class GroupListElement: public Element
   {
@@ -491,7 +491,7 @@ public:
     /** Sets the name of the group list. */
     virtual void setName(const QString &name);
 
-    /** Returns @c true if the group list has an n-th member.
+    /** Returns \c true if the group list has an n-th member.
      * That is if the n-th index is not 0. */
     virtual bool hasMember(unsigned n) const;
     /** Returns the n-th member index (+1). */
@@ -501,18 +501,18 @@ public:
     /** Clears the n-th member index. */
     virtual void clearMember(unsigned n);
 
-    /** Constructs a @c RXGroupList object from the codeplug representation. */
+    /** Constructs a \c RXGroupList object from the codeplug representation. */
     virtual RXGroupList *toRXGroupListObj(Context &ctx);
-    /** Links a previously constructed @c RXGroupList to the rest of the generic configuration. */
+    /** Links a previously constructed \c RXGroupList to the rest of the generic configuration. */
     virtual bool linkRXGroupListObj(int ncnt, RXGroupList *lst, Context &ctx) const;
-    /** Reset this codeplug representation from a @c RXGroupList object. */
+    /** Reset this codeplug representation from a \c RXGroupList object. */
     virtual void fromRXGroupListObj(const RXGroupList *lst, Context &ctx);
   };
 
   /** Implements a base class of group list memory banks for all Radioddity codeplugs.
    *
    * Memmory layout of the group list table:
-   * @verbinclude radioddity_grouplistbank.txt
+   * \verbinclude radioddity_grouplistbank.txt
    */
   class GroupListBankElement: public Element
   {
@@ -529,7 +529,7 @@ public:
     /** Resets the bank. */
     void clear();
 
-    /** Returns @c true if the n-th group list is enabled. */
+    /** Returns \c true if the n-th group list is enabled. */
     virtual bool isEnabled(unsigned n) const;
     /** Returns the number of contacts in the n-th group list. */
     virtual unsigned contactCount(unsigned n) const;
@@ -546,17 +546,17 @@ public:
   /** Implements the base class for scan lists of all Radioddity codeplugs.
    *
    * Memmory layout of the scan list.
-   * @verbinclude radioddity_scanlist.txt
+   * \verbinclude radioddity_scanlist.txt
    */
   class ScanListElement: public Element
   {
   public:
     /** Possible priority channel types. */
     enum Mode {
-      PL_NONPRI = 0,              ///< Only non-priority channels.
-      PL_DISABLE = 1,             ///< Disable priority channels.
-      PL_PRI = 2,                 ///< Only priority channels.
-      PL_PRI_NONPRI = 3           ///< Priority and non-priority channels.
+      PL_NONPRI = 0,		/*!< Only non-priority channels. */
+      PL_DISABLE = 1,		/*!< Disable priority channels. */
+      PL_PRI = 2,		/*!< Only priority channels. */
+      PL_PRI_NONPRI = 3		/*!< Priority and non-priority channels. */
     };
 
   protected:
@@ -577,7 +577,7 @@ public:
     /** Sets the name of the scan list. */
     virtual void setName(const QString &name);
 
-    /** Returns @c true if channel mark is enabled. */
+    /** Returns \c true if channel mark is enabled. */
     virtual bool channelMark() const;
     /** Enables/disables channel mark. */
     virtual void enableChannelMark(bool enable);
@@ -587,14 +587,14 @@ public:
     /** Sets the scan mode. */
     virtual void setMode(Mode mode);
 
-    /** Returns @c true if talk back is enabled. */
+    /** Returns \c true if talk back is enabled. */
     virtual bool talkback() const;
     /** Enables/disables talk back. */
     virtual void enableTalkback(bool enable);
 
-    /** Returns @c true if the n-th member is set. */
+    /** Returns \c true if the n-th member is set. */
     virtual bool hasMember(unsigned n) const;
-    /** Returns @c true if the n-th member is selected channel. */
+    /** Returns \c true if the n-th member is selected channel. */
     virtual bool isSelected(unsigned n) const;
     /** Retunrs the n-th member index. */
     virtual unsigned member(unsigned n) const;
@@ -605,9 +605,9 @@ public:
     /** Clears the n-th member. */
     virtual void clearMember(unsigned n);
 
-    /** Returns @c true if the primary priority channel is set. */
+    /** Returns \c true if the primary priority channel is set. */
     virtual bool hasPrimary() const;
-    /** Returns @c true if the primary priority channel is the selected channel. */
+    /** Returns \c true if the primary priority channel is the selected channel. */
     virtual bool primaryIsSelected() const;
     /** Return the channel index for the primary priority channel. */
     virtual unsigned primary() const;
@@ -618,9 +618,9 @@ public:
     /** Clears the primary priority channel. */
     virtual void clearPrimary();
 
-    /** Returns @c true if the secondary priority channel is set. */
+    /** Returns \c true if the secondary priority channel is set. */
     virtual bool hasSecondary() const;
-    /** Returns @c true if the secondary priority channel is the selected channel. */
+    /** Returns \c true if the secondary priority channel is the selected channel. */
     virtual bool secondaryIsSelected() const;
     /** Return the channel index for the secondary priority channel. */
     virtual unsigned secondary() const;
@@ -631,10 +631,10 @@ public:
     /** Clears the secondary priority channel. */
     virtual void clearSecondary();
 
-    /** Returns @c true if the revert channel is set, if @c false the radio will transmit on the
+    /** Returns \c true if the revert channel is set, if \c false the radio will transmit on the
      * last active channel during scan. */
     virtual bool hasRevert() const;
-    /** Returns @c true if the revert channel is the selected channel. */
+    /** Returns \c true if the revert channel is the selected channel. */
     virtual bool revertIsSelected() const;
     /** Return the channel index for the revert channel. */
     virtual unsigned revert() const;
@@ -655,18 +655,18 @@ public:
     /** Sets the priority sample time in ms. */
     virtual void setPrioritySampleTime(unsigned ms);
 
-    /** Constrcuts a @c ScanList object from this codeplug representation. */
+    /** Constrcuts a \c ScanList object from this codeplug representation. */
     virtual ScanList *toScanListObj(Context &ctx) const;
-    /** Links a previously constructed @c ScanList object to the rest of the generic configuration. */
+    /** Links a previously constructed \c ScanList object to the rest of the generic configuration. */
     virtual bool linkScanListObj(ScanList *lst, Context &ctx) const;
-    /** Initializes this codeplug representation from the given @c ScanList object. */
+    /** Initializes this codeplug representation from the given \c ScanList object. */
     virtual void fromScanListObj(const ScanList *lst, Context &ctx);
   };
 
   /** Implements the base class of scan lists banks for all Radioddity codeplugs.
    *
    * Memmory layout of the scan list table.
-   * @verbinclude radioddity_scanlistbank.txt
+   * \verbinclude radioddity_scanlistbank.txt
    */
   class ScanListBankElement: public Element
   {
@@ -683,7 +683,7 @@ public:
     /** Resets the scan list bank. */
     void clear();
 
-    /** Retruns @c true if the n-th scan list is enabled. */
+    /** Retruns \c true if the n-th scan list is enabled. */
     virtual bool isEnabled(unsigned n) const;
     /** Enable/disable n-th scan list. */
     virtual void enable(unsigned n, bool enabled);
@@ -694,22 +694,22 @@ public:
   /** Implements the base class of general settings for all Radioddity codeplugs.
    *
    * Memmory layout of the general settings
-   * @verbinclude radioddity_generalsettings.txt
+   * \verbinclude radioddity_generalsettings.txt
    */
   class GeneralSettingsElement: public Element
   {
   public:
     /** Possible monitor types. */
     enum MonitorType {
-      OPEN_SQUELCH = 0,            ///< Monitoring by opening the squelch.
-      SILENT_MONITOR = 1           ///< Silent monitoring.
+      OPEN_SQUELCH = 0,		/*!< Monitoring by opening the squelch. */
+      SILENT_MONITOR = 1		/*!< Silent monitoring. */
     };
 
     /** Possible ARTS tone settings. */
     enum ARTSTone {
-      ARTS_DISABLED = 0,           ///< ARTS tone is disabled.
-      ARTS_ONCE     = 4,           ///< ARTS tone once.
-      ARTS_ALWAYS   = 8            ///< ARTS tone always.
+      ARTS_DISABLED = 0,		/*!< ARTS tone is disabled. */
+      ARTS_ONCE     = 4,		/*!< ARTS tone once. */
+      ARTS_ALWAYS   = 8		/*!< ARTS tone always. */
     };
 
     /** Possible scan modes. */
@@ -785,19 +785,19 @@ public:
     /** Sets the private call hang time in ms. */
     virtual void setPrivateCallHangTime(unsigned ms);
 
-    /** Returns @c true if the down-channel mode is VFO. */
+    /** Returns \c true if the down-channel mode is VFO. */
     virtual bool downChannelModeVFO() const;
     /** Enables/disables down-channel mode is VFO. */
     virtual void enableDownChannelModeVFO(bool enable);
-    /** Returns @c true if the up-channel mode is VFO. */
+    /** Returns \c true if the up-channel mode is VFO. */
     virtual bool upChannelModeVFO() const;
     /** Enables/disables up-channel mode is VFO. */
     virtual void enableUpChannelModeVFO(bool enable);
-    /** Returns @c true if the reset tone is enabled. */
+    /** Returns \c true if the reset tone is enabled. */
     virtual bool resetTone() const;
     /** Enables/disables reset tone. */
     virtual void enableResetTone(bool enable);
-    /** Returns @c true if the uknown number tone is enabled. */
+    /** Returns \c true if the uknown number tone is enabled. */
     virtual bool unknownNumberTone() const;
     /** Enables/disables reset tone. */
     virtual void enableUnknownNumberTone(bool enable);
@@ -806,36 +806,36 @@ public:
     /** Sets the ARTS tone mode. */
     virtual void setARTSToneMode(ARTSTone mode);
 
-    /** Returns @c true if the digital channel talk permit tone is enabled. */
+    /** Returns \c true if the digital channel talk permit tone is enabled. */
     virtual bool digitalTalkPermitTone() const;
     /** Enables/disables digital channel talk permit tone. */
     virtual void enableDigitalTalkPermitTone(bool enable);
-    /** Returns @c true if the analog channel talk permit tone is enabled. */
+    /** Returns \c true if the analog channel talk permit tone is enabled. */
     virtual bool analogTalkPermitTone() const;
     /** Enables/disables analog channel talk permit tone. */
     virtual void enableAnalogTalkPermitTone(bool enable);
-    /** Returns @c true if the reset tone is enabled. */
+    /** Returns \c true if the reset tone is enabled. */
     virtual bool selftestTone() const;
     /** Enables/disables reset tone. */
     virtual void enableSelftestTone(bool enable);
-    /** Returns @c true if the frequency indication tone is enabled. */
+    /** Returns \c true if the frequency indication tone is enabled. */
     virtual bool frequencyIndicationTone() const;
     /** Enables/disables frequency indication tone. */
     virtual void enableFrequencyIndicationTone(bool enable);
-    /** Returns @c true if all tones are disabled. */
+    /** Returns \c true if all tones are disabled. */
     virtual bool allTonesDisabled() const;
     /** Disables/enables all tones. */
     virtual void disableAllTones(bool disable);
-    /** Returns @c true if reception is disabled for battery saveing. */
+    /** Returns \c true if reception is disabled for battery saveing. */
     virtual bool batsaveRX() const;
     /** Enables/disables battery saveing by disabling RX. */
     virtual void enableBatsaveRX(bool enable);
-    /** Returns @c true if preable is disabled for battery saveing. */
+    /** Returns \c true if preable is disabled for battery saveing. */
     virtual bool batsavePreamble() const;
     /** Enables/disables battery saveing by disabling preamble. */
     virtual void enableBatsavePreamble(bool enable);
 
-    /** Returns @c true if all LEDs are disabled. */
+    /** Returns \c true if all LEDs are disabled. */
     virtual bool allLEDsDisabled() const;
     /** Disables/enables all LEDs. */
     virtual void disableAllLEDs(bool disable);
@@ -844,15 +844,15 @@ public:
     /** Inhibits quick-key override. */
     virtual void inhibitQuickKeyOverride(bool inhibit);
 
-    /** Returns @c true if the TX exit tone is enabled. */
+    /** Returns \c true if the TX exit tone is enabled. */
     virtual bool txExitTone() const;
     /** Enables/disables TX exit tone. */
     virtual void enableTXExitTone(bool enable);
-    /** Returns @c true if the radio transmits on the active channel on double monitor. */
+    /** Returns \c true if the radio transmits on the active channel on double monitor. */
     virtual bool txOnActiveChannel() const;
     /** Enables/disables transmission on active channel on double monitor. */
     virtual void enableTXOnActiveChannel(bool enable);
-    /** Returns @c true if animation is enabled. */
+    /** Returns \c true if animation is enabled. */
     virtual bool animation() const;
     /** Enables/disables animation. */
     virtual void enableAnimation(bool enable);
@@ -884,24 +884,24 @@ public:
   /** Implements the base class of button settings for all Radioddity codeplugs.
    *
    * Encoding of button settings (size 0x20b):
-   * @verbinclude radioddity_buttonsettings.txt */
+   * \verbinclude radioddity_buttonsettings.txt */
   class ButtonSettingsElement: public Element
   {
   public:
     /** Possible actions for each button on short and long press. */
     enum class Action {
-      None                   = 0x00,  ///< Disables button.
+      None                   = 0x00,		/*!< Disables button. */
       ToggleAllAlertTones    = 0x01,
       EmergencyOn            = 0x02,
       EmergencyOff           = 0x03,
-      ToggleMonitor          = 0x05,  ///< Toggle monitor on channel.
+      ToggleMonitor          = 0x05,		/*!< Toggle monitor on channel. */
       NuiaceDelete           = 0x06,
-      OneTouch1              = 0x07,  ///< Performs the first of 6 user-programmable actions (call, message).
-      OneTouch2              = 0x08,  ///< Performs the second of 6 user-programmable actions (call, message).
-      OneTouch3              = 0x09,  ///< Performs the third of 6 user-programmable actions (call, message).
-      OneTouch4              = 0x0a,  ///< Performs the fourth of 6 user-programmable actions (call, message).
-      OneTouch5              = 0x0b,  ///< Performs the fifth of 6 user-programmable actions (call, message).
-      OneTouch6              = 0x0c,  ///< Performs the sixt of 6 user-programmable actions (call, message).
+      OneTouch1              = 0x07,		/*!< Performs the first of 6 user-programmable actions (call, message). */
+      OneTouch2              = 0x08,		/*!< Performs the second of 6 user-programmable actions (call, message). */
+      OneTouch3              = 0x09,		/*!< Performs the third of 6 user-programmable actions (call, message). */
+      OneTouch4              = 0x0a,		/*!< Performs the fourth of 6 user-programmable actions (call, message). */
+      OneTouch5              = 0x0b,		/*!< Performs the fifth of 6 user-programmable actions (call, message). */
+      OneTouch6              = 0x0c,		/*!< Performs the sixt of 6 user-programmable actions (call, message). */
       ToggleRepeatTalkaround = 0x0d,
       ToggleScan             = 0x0e,
       TogglePrivacy          = 0x10,
@@ -916,10 +916,10 @@ public:
 
     /** Possible one-touch actions. */
     enum class OneTouchAction {
-      None                   = 0x00,  ///< Disabled.
-      DigitalCall            = 0x10,  ///< Calls a digital contact.
-      DigitalMessage         = 0x11,  ///< Sends a SMS.
-      AnalogCall             = 0x20   ///< Calls an analog contact.
+      None                   = 0x00,		/*!< Disabled. */
+      DigitalCall            = 0x10,		/*!< Calls a digital contact. */
+      DigitalMessage         = 0x11,		/*!< Sends a SMS. */
+      AnalogCall             = 0x20		/*!< Calls an analog contact. */
     };
 
   protected:
@@ -969,9 +969,9 @@ public:
 
     /** Returns the n-th one-touch action. */
     virtual OneTouchAction oneTouchAction(unsigned n) const;
-    /** Returns the n-th one-touch contact index (if action is @c OneTouchAction::DigitalCall). */
+    /** Returns the n-th one-touch contact index (if action is \c OneTouchAction::DigitalCall). */
     virtual unsigned oneTouchContact(unsigned n) const;
-    /** Returns the n-th one-touch message index (if action is @c OneTouchAction::DigitalMessage). */
+    /** Returns the n-th one-touch message index (if action is \c OneTouchAction::DigitalMessage). */
     virtual unsigned oneTouchMessage(unsigned n) const;
     /** Disables the n-th one-touch action. */
     virtual void disableOneTouch(unsigned n);
@@ -986,15 +986,15 @@ public:
   /** Implements the base class of menu settings for all Radioddity codeplugs.
    *
    * Encoding of Menu settings (size 0x08b):
-   * @verbinclude radioddity_menusettings.txt */
+   * \verbinclude radioddity_menusettings.txt */
   class MenuSettingsElement: public Element
   {
   public:
     /** Possible channel display modes. */
     enum class ChannelDisplayMode {
-      Number    = 0,  ///< Show channel number.
-      Name      = 1,  ///< Show channel name.
-      Frequency = 2   ///< Show channel frequency.
+      Number    = 0,		/*!< Show channel number. */
+      Name      = 1,		/*!< Show channel name. */
+      Frequency = 2		/*!< Show channel frequency. */
     };
 
     /** Possible dual-watch modes. */
@@ -1021,114 +1021,114 @@ public:
     /** Sets the menu hang time in seconds. */
     virtual void setMenuHangTime(unsigned sec);
 
-    /** Returns @c true if the message menu is shown. */
+    /** Returns \c true if the message menu is shown. */
     virtual bool message() const;
     /** Enables/disables the message menu. */
     virtual void enableMessage(bool enable);
-    /** Returns @c true if the scan-start menu is shown. */
+    /** Returns \c true if the scan-start menu is shown. */
     virtual bool scanStart() const;
     /** Enables/disables the scan-start menu. */
     virtual void enableScanStart(bool enable);
-    /** Returns @c true if the edit scan-list menu is shown. */
+    /** Returns \c true if the edit scan-list menu is shown. */
     virtual bool editScanList() const;
     /** Enables/disables the edit scan-list menu. */
     virtual void enableEditScanList(bool enable);
-    /** Returns @c true if the call-alert menu is shown. */
+    /** Returns \c true if the call-alert menu is shown. */
     virtual bool callAlert() const;
     /** Enables/disables the call-alert menu. */
     virtual void enableCallAlert(bool enable);
-    /** Returns @c true if the edit-contact menu is shown. */
+    /** Returns \c true if the edit-contact menu is shown. */
     virtual bool editContact() const;
     /** Enables/disables the edit-contact menu. */
     virtual void enableEditContact(bool enable);
-    /** Returns @c true if the manual-dial menu is shown. */
+    /** Returns \c true if the manual-dial menu is shown. */
     virtual bool manualDial() const;
     /** Enables/disables the manual-dial menu. */
     virtual void enableManualDial(bool enable);
-    /** Returns @c true if the radio-check menu is shown. */
+    /** Returns \c true if the radio-check menu is shown. */
     virtual bool radioCheck() const;
     /** Enables/disables the radioCheck menu. */
     virtual void enableRadioCheck(bool enable);
-    /** Returns @c true if the remote-monitor menu is shown. */
+    /** Returns \c true if the remote-monitor menu is shown. */
     virtual bool remoteMonitor() const;
     /** Enables/disables the message menu. */
     virtual void enableRemoteMonitor(bool enable);
 
-    /** Returns @c true if the radio-enable menu is shown. */
+    /** Returns \c true if the radio-enable menu is shown. */
     virtual bool radioEnable() const;
     /** Enables/disables the radio-enable menu. */
     virtual void enableRadioEnable(bool enable);
-    /** Returns @c true if the radio-disable menu is shown. */
+    /** Returns \c true if the radio-disable menu is shown. */
     virtual bool radioDisable() const;
     /** Enables/disables the radio-disable menu. */
     virtual void enableRadioDisable(bool enable);
-    /** Returns @c true if the programming-password menu is shown. */
+    /** Returns \c true if the programming-password menu is shown. */
     virtual bool progPassword() const;
     /** Enables/disables the programming-password menu. */
     virtual void enableProgPassword(bool enable);
-    /** Returns @c true if the talkaround menu is shown. */
+    /** Returns \c true if the talkaround menu is shown. */
     virtual bool talkaround() const;
     /** Enables/disables the talkaround menu. */
     virtual void enableTalkaround(bool enable);
-    /** Returns @c true if the tone menu is shown. */
+    /** Returns \c true if the tone menu is shown. */
     virtual bool tone() const;
     /** Enables/disables the tone menu. */
     virtual void enableTone(bool enable);
-    /** Returns @c true if the power menu is shown. */
+    /** Returns \c true if the power menu is shown. */
     virtual bool power() const;
     /** Enables/disables the power menu. */
     virtual void enablePower(bool enable);
-    /** Returns @c true if the backlight menu is shown. */
+    /** Returns \c true if the backlight menu is shown. */
     virtual bool backlight() const;
     /** Enables/disables the backlight menu. */
     virtual void enableBacklight(bool enable);
-    /** Returns @c true if the intro-screen menu is shown. */
+    /** Returns \c true if the intro-screen menu is shown. */
     virtual bool introScreen() const;
     /** Enables/disables the message menu. */
     virtual void enableIntroScreen(bool enable);
 
-    /** Returns @c true if the keypad-lock menu is shown. */
+    /** Returns \c true if the keypad-lock menu is shown. */
     virtual bool keypadLock() const;
     /** Enables/disables the keypad-lock menu. */
     virtual void enableKeypadLock(bool enable);
-    /** Returns @c true if the LED-indicator menu is shown. */
+    /** Returns \c true if the LED-indicator menu is shown. */
     virtual bool ledIndicator() const;
     /** Enables/disables the LED-indicator menu. */
     virtual void enableLEDIndicator(bool enable);
-    /** Returns @c true if the squelch menu is shown. */
+    /** Returns \c true if the squelch menu is shown. */
     virtual bool squelch() const;
     /** Enables/disables the squelch menu. */
     virtual void enableSquelch(bool enable);
-    /** Returns @c true if the privacy menu is shown. */
+    /** Returns \c true if the privacy menu is shown. */
     virtual bool privacy() const;
     /** Enables/disables the privacy menu. */
     virtual void enablePrivacy(bool enable);
-    /** Returns @c true if the VOX menu is shown. */
+    /** Returns \c true if the VOX menu is shown. */
     virtual bool vox() const;
     /** Enables/disables the VOX menu. */
     virtual void enableVOX(bool enable);
-    /** Returns @c true if the password-lock menu is shown. */
+    /** Returns \c true if the password-lock menu is shown. */
     virtual bool passwordLock() const;
     /** Enables/disables the password-lock menu. */
     virtual void enablePasswordLock(bool enable);
-    /** Returns @c true if the missed-calls menu is shown. */
+    /** Returns \c true if the missed-calls menu is shown. */
     virtual bool missedCalls() const;
     /** Enables/disables the missed-calls menu. */
     virtual void enableMissedCalls(bool enable);
-    /** Returns @c true if the answered-calls menu is shown. */
+    /** Returns \c true if the answered-calls menu is shown. */
     virtual bool answeredCalls() const;
     /** Enables/disables the answered-calls menu. */
     virtual void enableAnsweredCalls(bool enable);
 
-    /** Returns @c true if the outgoing-calls menu is shown. */
+    /** Returns \c true if the outgoing-calls menu is shown. */
     virtual bool outgoingCalls() const;
     /** Enables/disables the outgoing-calls menu. */
     virtual void enableOutgoingCalls(bool enable);
-    /** Returns @c true if the channel display-mode menu is shown. */
+    /** Returns \c true if the channel display-mode menu is shown. */
     virtual bool channelDisplay() const;
     /** Enables/disables the channel display mode menu. */
     virtual void enableChannelDisplay(bool enable);
-    /** Returns @c true if the dual-watch menu is shown. */
+    /** Returns \c true if the dual-watch menu is shown. */
     virtual bool dualWatch() const;
     /** Enables/disables the dual-watch menu. */
     virtual void enableDualWatch(bool enable);
@@ -1148,7 +1148,7 @@ public:
     /** Sets the channel display mode. */
     virtual void setChannelDisplayMode(ChannelDisplayMode mode);
 
-    /** Returns @c true if the keytone is enabled. */
+    /** Returns \c true if the keytone is enabled. */
     virtual bool keyTone() const;
     /** Enables/disables the keytone. */
     virtual void enableKeyTone(bool enable);
@@ -1162,7 +1162,7 @@ public:
   /** Implements the base class of boot settings for all Radioddity codeplugs.
    *
    * Encoding of boot settings (size 0x20b):
-   * @verbinclude radioddity_bootsettings.txt */
+   * \verbinclude radioddity_bootsettings.txt */
   class BootSettingsElement: public Element
   {
   protected:
@@ -1178,12 +1178,12 @@ public:
     /** Resets the settings. */
     void clear();
 
-    /** Returns @c true if the text is shown on boot, other wise an image is shown. */
+    /** Returns \c true if the text is shown on boot, other wise an image is shown. */
     virtual bool bootText() const;
     /** Enables/disables boot text. */
     virtual void enableBootText(bool enable);
 
-    /** Returns @c true if the boot passowrd is enabled. */
+    /** Returns \c true if the boot passowrd is enabled. */
     virtual bool bootPasswordEnabled() const;
     /** Enables/disables the boot password. */
     virtual void enableBootPassword(bool enable);
@@ -1196,7 +1196,7 @@ public:
   /** Implements the base class of boot messages for all Radioddity codeplugs.
    *
    * Encoding of boot messages (size 0x20b):
-   * @verbinclude radioddity_boottext.txt */
+   * \verbinclude radioddity_boottext.txt */
   class BootTextElement: public Element
   {
   protected:
@@ -1230,7 +1230,7 @@ public:
   /** Implements the base class of a message bank for all Radioddity message banks.
    *
    * Encoding of messages (size: 0x1248b):
-   * @verbinclude radioddity_messagebank.txt */
+   * \verbinclude radioddity_messagebank.txt */
   class MessageBankElement: public Element
   {
   protected:

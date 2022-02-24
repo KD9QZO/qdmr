@@ -6,7 +6,7 @@
 
 /** Downloads, periodically updates and provides a list of talk group IDs and their names.
  *
- * @ingroup utils */
+ * \ingroup utils */
 class TalkGroupDatabase : public QAbstractTableModel
 {
   Q_OBJECT
@@ -26,8 +26,8 @@ class TalkGroupDatabase : public QAbstractTableModel
 
 public:
   /** Constructs a talk group database.
-   * @param updatePeriodDays Specifies the update period of the DB in days.
-   * @param parent Specifies the QObject parent. */
+   * \param updatePeriodDays Specifies the update period of the DB in days.
+   * \param parent Specifies the QObject parent. */
   TalkGroupDatabase(unsigned updatePeriodDays=30, QObject *parent=nullptr);
 
   /** Returns the number of talk groups. */

@@ -1,9 +1,9 @@
-/** @defgroup ogd77 Open GD-77 Firmware
+/** \defgroup ogd77 Open GD-77 Firmware
  * Implements a radio running the Open GD77 firmware.
- * @ingroup dsc */
+ * \ingroup dsc */
 
-#ifndef OPENGD77_HH
-#define OPENGD77_HH
+#ifndef OPENGD77_HH_
+#define OPENGD77_HH_
 
 #include "radio.hh"
 #include "opengd77_interface.hh"
@@ -13,20 +13,19 @@
 
 /** Implements an USB interface to Open GD-77(S) VHF/UHF 5W DMR (Tier I&II) radios.
  *
- * @ingroup ogd77 */
-class OpenGD77 : public Radio
-{
+ * \ingroup ogd77 */
+class OpenGD77: public Radio {
 	Q_OBJECT
 
 public:
-	/** Do not construct this class directly, rather use @c Radio::detect. */
-  explicit OpenGD77(OpenGD77Interface *device=nullptr, QObject *parent=nullptr);
-  virtual ~OpenGD77();
+	/** Do not construct this class directly, rather use \c Radio::detect. */
+	explicit OpenGD77(OpenGD77Interface *device=nullptr, QObject *parent=nullptr);
+	virtual ~OpenGD77();
 
 	const QString &name() const;
-  const Radio::Features &features() const;
-  const Codeplug &codeplug() const;
-  Codeplug &codeplug();
+	const Radio::Features &features() const;
+	const Codeplug &codeplug() const;
+	Codeplug &codeplug();
 
   /** Returns the default radio information. The actual instance may have different properties
    * due to variants of the same radio. */

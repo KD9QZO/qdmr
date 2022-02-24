@@ -7,16 +7,16 @@
 
 /** Base class for all call-sign DBs of TyT/Retevis devices.
  *
- * @section tytcdb Callsign database structure
+ * \section tytcdb Callsign database structure
  * <table>
  *  <tr><th>Start</th>    <th>End</th>      <th>Size</th>     <th>Content</th></tr>
  *  <tr><th colspan="4">Callsign database 0x0200000-0x1000000</th></tr>
- *  <tr><td>0x200000</td> <td>0x204004</td> <td>0x04004</td>  <td>Callsign database index table, see @c TyTCallsignDB::IndexEntryElement</td></tr>
- *  <tr><td>0x204004</td> <td>0xffffdc</td> <td>0xdfbfd8</td> <td>max 122197 callsign database entries, see @c TyTCallsignDB::EntryElement. </td></tr>
- *  <tr><td>0xffffdc</td> <td>0x1000000</td> <td>0x00025</td> <td>Padding, filled with @c 0xff.</td></tr>
+ *  <tr><td>0x200000</td> <td>0x204004</td> <td>0x04004</td>  <td>Callsign database index table, see \c TyTCallsignDB::IndexEntryElement</td></tr>
+ *  <tr><td>0x204004</td> <td>0xffffdc</td> <td>0xdfbfd8</td> <td>max 122197 callsign database entries, see \c TyTCallsignDB::EntryElement. </td></tr>
+ *  <tr><td>0xffffdc</td> <td>0x1000000</td> <td>0x00025</td> <td>Padding, filled with \c 0xff.</td></tr>
  * </table>
 
- * @ingroup tyt */
+ * \ingroup tyt */
 class TyTCallsignDB : public CallsignDB
 {
   Q_OBJECT
@@ -25,7 +25,7 @@ public:
   /** Represents a search index over the complete call-sign database.
    *
    * Memmory layout of encoded call-sign/user database:
-   * @verbinclude tytcallsigndbindex.txt
+   * \verbinclude tytcallsigndbindex.txt
    */
   class IndexElement: public Codeplug::Element
   {
@@ -33,7 +33,7 @@ public:
     /** Represents an index entry, a pair of DMR ID and call-sign DB index.
      *
      * Memmory layout of encoded call-sign/user database index entry:
-     * @verbinclude tytcallsigndbindexentry.txt
+     * \verbinclude tytcallsigndbindexentry.txt
      */
     class Entry: public Codeplug::Element
     {
@@ -75,7 +75,7 @@ public:
    * The call-sign DB entries must be ordered by their DMR IDs.
    *
    * Memmory layout of encoded call-sign/user database index entry:
-   * @verbinclude tytcallsigndbentry.txt
+   * \verbinclude tytcallsigndbentry.txt
    */
   class EntryElement: public Codeplug::Element
   {
@@ -105,7 +105,7 @@ public:
   bool encode(UserDatabase *db, const Selection &selection);
 
 protected:
-  /** Allocates required space for index and @c n call-signs. */
+  /** Allocates required space for index and \c n call-signs. */
   virtual void alloate(unsigned n);
 
   /** Clears the call-sign DB index. */

@@ -1,4 +1,4 @@
-/** @mainpage libdmrconf -- A Library to program DMR radios.
+/** \mainpage libdmrconf -- A Library to program DMR radios.
  * Libdmrconf is a Qt based library, providing methods to assemble, read and program codeplugs for
  * cheap Chineese DMR radios. To this end, it aims at providing a common way to describe codeplugs
  * irrespective of the actual radio being used. This project relies heavily on the work by
@@ -26,7 +26,7 @@
  * codeplugs between different models and even manufactures. Hence, the hard work to
  * assemble a decent codeplug for a particular region only needs to be done once.
  *
- * To this end, @c libdmrconf defines a configuarion language in text format, that represents the
+ * To this end, \c libdmrconf defines a configuarion language in text format, that represents the
  * configuration of the radio and from which the actual binary code-plug for each radio is derived.
  * If a radio does not support a particular feature within the configuration, it simply gets
  * ignored. The configuration language as well as classes for reading and writing config files are

@@ -5,9 +5,9 @@
 
 /** Device specific implementation of the call-sign DB for the TyT MD-2017.
  *
- * In fact this callsign DB is identical to the generic @c TyTCallsignDB.
+ * In fact this callsign DB is identical to the generic \c TyTCallsignDB.
  *
- * @ingroup md2017 */
+ * \ingroup md2017 */
 class MD2017CallsignDB : public TyTCallsignDB
 {
   Q_OBJECT

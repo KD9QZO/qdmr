@@ -1,4 +1,4 @@
-/** @defgroup dsc Supported devices
+/** \defgroup dsc Supported devices
  * This module collects all classes are device specific.
  *
  * That is, implementing device specific configurations, aka codeplugs as well as the specific
@@ -23,19 +23,19 @@ class UserDatabase;
  * generic configuration gets verified against the device features. This may lead to several
  * issues/warning. This class represents such a issue/warning message.
  *
- * @ingroup rif */
+ * \ingroup rif */
 class VerifyIssue {
 public:
   /** Issue type. */
 	typedef enum {
-    NONE = 0,     ///< All ok.
-    NOTIFICATION, ///< Inform user about changes made to the config to fit radio.
-    WARNING,      ///< Verification warning, some configured fature is just ignored for the particular radio.
-    ERROR         ///< Verification error, a consistent device specific configutation cannot be derived from the generic config.
+    NONE = 0,		/*!< All ok. */
+    NOTIFICATION,		/*!< Inform user about changes made to the config to fit radio. */
+    WARNING,		/*!< Verification warning, some configured fature is just ignored for the particular radio. */
+    ERROR		/*!< Verification error, a consistent device specific configutation cannot be derived from the generic config. */
 	} Type;
 
 public:
-  /** Constructor from @c type and @c message. */
+  /** Constructor from \c type and \c message. */
 	inline VerifyIssue(Type type, const QString &message)
 	    : _type(type), _message(message) { }
 
@@ -52,7 +52,7 @@ protected:
 };
 
 /** Flags to control the verification process.
- * @ingroup rif*/
+ * \ingroup rif*/
 struct VerifyFlags {
   /** If set, warnings will not interrupt the upload. */
   bool ignoreWarnings;
@@ -78,7 +78,7 @@ struct VerifyFlags {
  * with the device as well as the conversion betwenn device specific code-plugs and generic
  * configurations.
  *
- * @ingroup rif
+ * \ingroup rif
  */
 class Radio : public QThread
 {
@@ -89,13 +89,13 @@ public:
   struct Features {
     /** Represents a frequency range [min, max]. */
     struct FrequencyRange {
-      double min; ///< Lower frequency limit.
-      double max; ///< Upper frequency limit.
+      double min;		/*!< Lower frequency limit. */
+      double max;		/*!< Upper frequency limit. */
       /** Constructs a frequency range from limits. */
       FrequencyRange(double lower, double upper);
       /** Constructs a frequency range from limits. */
       FrequencyRange(double limits[2]);
-      /** Returns @c true if @c f is inside this limit. */
+      /** Returns \c true if \c f is inside this limit. */
       bool contains(double f) const;
     };
 
@@ -109,12 +109,12 @@ public:
       bool contains(double f) const;
     };
 
-    /** If @c true, shows a beta warning at upload. */
+    /** If \c true, shows a beta warning at upload. */
     bool betaWarning;
 
-    /** If @c true, the device supports DMR. */
+    /** If \c true, the device supports DMR. */
 		bool hasDigital;
-    /** If @c true, the device supports FM. */
+    /** If \c true, the device supports FM. */
 		bool hasAnalog;
 
     /** The frequency limits of the radio. */
@@ -122,7 +122,7 @@ public:
 
     /** Maximum number of radio IDs. */
     int maxRadioIDs;
-    /** If @c true, the radio requires a default radio ID. */
+    /** If \c true, the radio requires a default radio ID. */
     bool needsDefaultRadioID;
 
     /** Maximum length of boot messages. */
@@ -132,7 +132,7 @@ public:
 		int maxChannels;
     /** Maximum length of channel names. */
 		int maxChannelNameLength;
-    /** If @c true, the radio allows channels without default contact. */
+    /** If \c true, the radio allows channels without default contact. */
     bool allowChannelNoDefaultContact;
 
     /** Maximum number of zones. */
@@ -141,7 +141,7 @@ public:
 		int maxZoneNameLength;
     /** Maximum number of channels per zone. */
 		int maxChannelsInZone;
-    /** If @c true, the radio has a zone list for each VFO. */
+    /** If \c true, the radio has a zone list for each VFO. */
     bool hasABZone;
 
     /** If true, the radio support scanlists. */
@@ -166,17 +166,17 @@ public:
     /** Maximum number contacts per RX group list. */
 		int maxContactsInGrouplist;
 
-    /** If @c true, the device supports GPS. */
+    /** If \c true, the device supports GPS. */
     bool hasGPS;
     /** Maximum number of different GPS systems. */
     int maxGPSSystems;
 
-    /** If @c true, the device supports APRS (analog) position reporting. */
+    /** If \c true, the device supports APRS (analog) position reporting. */
     bool hasAPRS;
     /** Maximum number of different APRS systems. */
     int maxAPRSSystems;
 
-    /** If @c true, the device supports roaming. */
+    /** If \c true, the device supports roaming. */
     bool hasRoaming;
     /** Specifies the maximum number of roaming channels. */
     int maxRoamingChannels;
@@ -195,11 +195,11 @@ public:
 
   /** Possible states of the radio object. */
 	typedef enum {
-    StatusIdle,            ///< Idle, nothing to do.
-    StatusDownload,        ///< Downloading codeplug.
-    StatusUpload,          ///< Uploading codeplug.
-    StatusUploadCallsigns, ///< Uploading codeplug.
-    StatusError            ///< An error occured.
+    StatusIdle,		/*!< Idle, nothing to do. */
+    StatusDownload,		/*!< Downloading codeplug. */
+    StatusUpload,		/*!< Uploading codeplug. */
+    StatusUploadCallsigns,		/*!< Uploading codeplug. */
+    StatusError		/*!< An error occured. */
   } Status;
 
 public:
@@ -225,7 +225,7 @@ public:
   virtual CallsignDB *callsignDB();
 
   /** Verifies the configuration against the radio features.
-   * On exit, @c issues will contain the issues found and the maximum severity is returned. */
+   * On exit, \c issues will contain the issues found and the maximum severity is returned. */
   virtual VerifyIssue::Type verifyConfig(Config *config, QList<VerifyIssue> &issues,
                                          const VerifyFlags &flags=VerifyFlags());
 
@@ -244,7 +244,7 @@ public:
 public slots:
   /** Starts the download of the codeplug.
    * Once the download finished, the codeplug can be accessed and decoded using
-   * the @c codeplug() method. */
+   * the \c codeplug() method. */
   virtual bool startDownload(bool blocking=false) = 0;
   /** Derives the device-specific codeplug from the generic configuration and uploads that
    * codeplug to the radio. */

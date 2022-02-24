@@ -8,7 +8,7 @@ class Channel;
 #include "configreference.hh"
 
 /** Generic representation of a scan list.
- * @ingroup conf */
+ * \ingroup conf */
 class ScanList : public ConfigObject
 {
 	Q_OBJECT
@@ -40,7 +40,7 @@ public:
   /** Sets the name of the scanlist. */
 	bool setName(const QString &name);
 
-  /** Returns @c true if the given channel is part of this scanlist. */
+  /** Returns \c true if the given channel is part of this scanlist. */
   bool contains(Channel *channel) const;
   /** Returns the channel at the given index. */
 	Channel *channel(int idx) const;
@@ -98,7 +98,7 @@ protected:
 
 
 /** Represents the list of scan lists.
- * @ingroup conf */
+ * \ingroup conf */
 class ScanLists: public ConfigObjectList
 {
 	Q_OBJECT
